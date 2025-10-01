@@ -14,52 +14,58 @@ class PhoaItemData(NamedTuple):
 
 item_data_table: Dict[str, PhoaItemData] = {
     "Heart Ruby": PhoaItemData(
-        code=7676000,
+        code=3,
+        type=ItemClassification.useful,
         amount=3,
     ),
     "Energy Gem": PhoaItemData(
-        code=7676001,
+        code=4,
+        type=ItemClassification.useful,
         amount=2,
     ),
     "Moonstone": PhoaItemData(
-        code=7676002,
-        type=ItemClassification.progression,
-        amount=5,
-    ), # Actual amount is 10 (-5 for progression items)
+        code=5,
+        # type=ItemClassification.progression,
+        amount=4,
+    ), # Actual amount is 9 (-5 for progression items)
     "Dragon's Scale": PhoaItemData(
-        code=7676003,
+        code=185,
     ),
     "Anuri Pearlstone": PhoaItemData(
-        code=7676004,
+        code=98,
         type=ItemClassification.progression,
-        amount=9
+        amount=10
     ),
     "Lunar Frog": PhoaItemData(
-        code=7676005,
+        code=99,
     ),
     "Lunar Vase": PhoaItemData(
-        code=7676006
+        code=100
     ),
     "Slingshot": PhoaItemData(
-        code=7676007,
+        code=30,
         type=ItemClassification.progression,
     ),
     "Bombs": PhoaItemData(
-        code=7676008,
+        code=31,
         type=ItemClassification.progression,
     ),
-    "Fishing Rot": PhoaItemData(
-        code=7676009,
+    "Fishing Rod": PhoaItemData(
+        code=40,
         type=ItemClassification.progression,
     ),
-    "Life Saver": PhoaItem(
-        code=7676010,
+    "Life Saver": PhoaItemData(
+        code=14,
         type=ItemClassification.progression,
     ),
-    "Crank Lamp": PhoaItem(
-        code=7676011,
+    "Crank Lamp": PhoaItemData(
+        code=32,
         type=ItemClassification.progression,
     ),
+    # "Sonic Spear": PhoaItemData(
+    #     code=7676012,
+    #     type=ItemClassification.progression,
+    # ),
 }
 
 item_table = {name: data.code for name, data in item_data_table.items()}
