@@ -1,5 +1,6 @@
-from typing import Dict, NamedTuple
+from typing import Dict, NamedTuple, Optional
 from BaseClasses import Item, ItemClassification
+from worlds.phoa import PhoaOptions
 
 
 class PhoaItem(Item):
@@ -12,60 +13,96 @@ class PhoaItemData(NamedTuple):
     amount: int = 1
 
 
-item_data_table: Dict[str, PhoaItemData] = {
-    "Heart Ruby": PhoaItemData(
-        code=3,
-        type=ItemClassification.useful,
-        amount=3,
-    ),
-    "Energy Gem": PhoaItemData(
-        code=4,
-        type=ItemClassification.useful,
-        amount=2,
-    ),
-    "Moonstone": PhoaItemData(
-        code=5,
-        # type=ItemClassification.progression,
-        amount=4,
-    ), # Actual amount is 9 (-5 for progression items)
-    "Dragon's Scale": PhoaItemData(
-        code=185,
-    ),
-    "Anuri Pearlstone": PhoaItemData(
-        code=98,
-        type=ItemClassification.progression,
-        amount=10
-    ),
-    "Lunar Frog": PhoaItemData(
-        code=99,
-    ),
-    "Lunar Vase": PhoaItemData(
-        code=100
-    ),
-    "Slingshot": PhoaItemData(
-        code=30,
-        type=ItemClassification.progression,
-    ),
-    "Bombs": PhoaItemData(
-        code=31,
-        type=ItemClassification.progression,
-    ),
-    "Fishing Rod": PhoaItemData(
-        code=40,
-        type=ItemClassification.progression,
-    ),
-    "Life Saver": PhoaItemData(
-        code=14,
-        type=ItemClassification.progression,
-    ),
-    "Crank Lamp": PhoaItemData(
-        code=32,
-        type=ItemClassification.progression,
-    ),
-    # "Sonic Spear": PhoaItemData(
-    #     code=7676012,
-    #     type=ItemClassification.progression,
-    # ),
-}
+def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
+    items: Dict[str, PhoaItemData] = {
+        "Heart Ruby": PhoaItemData(
+            code=3,
+            type=ItemClassification.useful,
+            amount=3,
+        ),
+        "Energy Gem": PhoaItemData(
+            code=4,
+            type=ItemClassification.useful,
+            amount=2,
+        ),
+        "Moonstone": PhoaItemData(
+            code=5,
+            # type=ItemClassification.progression,
+            amount=4,
+        ),  # Actual amount is 9 (-5 for progression items)
+        "Dragon's Scale": PhoaItemData(
+            code=185,
+        ),
+        "Anuri Pearlstone": PhoaItemData(
+            code=98,
+            type=ItemClassification.progression,
+            amount=10
+        ),
+        "Lunar Frog": PhoaItemData(
+            code=99,
+        ),
+        "Lunar Vase": PhoaItemData(
+            code=100
+        ),
+        "Slingshot": PhoaItemData(
+            code=30,
+            type=ItemClassification.progression,
+        ),
+        "Bombs": PhoaItemData(
+            code=31,
+            type=ItemClassification.progression,
+        ),
+        "Fishing Rod": PhoaItemData(
+            code=40,
+            type=ItemClassification.progression,
+        ),
+        "Life Saver": PhoaItemData(
+            code=14,
+            type=ItemClassification.progression,
+        ),
+        "Crank Lamp": PhoaItemData(
+            code=32,
+            type=ItemClassification.progression,
+        ),
+        "Dandelion": PhoaItemData(
+            code=101,
+            amount=2,
+        ),
+        # "Sonic Spear": PhoaItemData(
+        #     code=7676012,
+        #     type=ItemClassification.progression,
+        # ),
+    }
 
-item_table = {name: data.code for name, data in item_data_table.items()}
+    if not options:
+        return items
+
+    print("Items are being filtered")
+
+    filters = [
+        (options.enable_misc, [("Dandelion", 2)])
+    ]
+
+    for option, adjustments in filters:
+        print("There's a filter")
+        if not option:
+            print("filter is false")
+            for item_name, amount in adjustments:
+                items = lower_item_amount(items, item_name, amount)
+
+    return items
+
+
+def lower_item_amount(item_data: Dict[str, PhoaItemData], item_name: str, amount: int):
+    print("removing"+ item_name)
+    if item_name not in item_data: return item_data
+
+    current_amount = item_data[item_name].amount
+    new_amount = max(0, current_amount - amount)
+
+    item_data[item_name] = item_data[item_name]._replace(amount=new_amount)
+
+    return item_data
+
+
+item_table = get_item_data(None)

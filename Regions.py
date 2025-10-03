@@ -1,14 +1,14 @@
 from typing import Dict, Callable, Optional
 
 from BaseClasses import MultiWorld, Region, Location, CollectionState
-from worlds.phoa import get_location_data
+from worlds.phoa import get_location_data, PhoaOptions
 from worlds.phoa.Locations import PhoaLocationData
 from worlds.phoa.LogicExtensions import PhoaLogic
 
 
-def create_regions_and_locations(world: MultiWorld, player: int):
-
-    locations_per_region: Dict[str, Dict[str, PhoaLocationData]] = split_locations_per_region(get_location_data(player))
+def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOptions):
+    locations_per_region: Dict[str, Dict[str, PhoaLocationData]] = split_locations_per_region(
+        get_location_data(player, options))
 
     regions = [
         create_region(world, player, locations_per_region, "Menu"),
@@ -36,13 +36,15 @@ def create_region(world: MultiWorld, player: int, locations_per_region: Dict[str
 
     return region
 
+
 def create_location(player: int, location_name: str, location_data: PhoaLocationData, region: Region):
-    location = Location(player, location_data.region +" - "+ location_name, location_data.address, region)
+    location = Location(player, location_data.region + " - " + location_name, location_data.address, region)
 
     if location_data.rule:
         location.access_rule = location_data.rule
 
     return location
+
 
 def connect(world: MultiWorld, player: int, source: str, target: str,
             rule: Optional[Callable[[CollectionState], bool]] = None):

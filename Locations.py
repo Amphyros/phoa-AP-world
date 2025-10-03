@@ -1,62 +1,68 @@
-from email.headerregistry import Address
+from enum import Flag, auto
 from typing import Dict, NamedTuple, Optional, Callable
 
-from kivy.core.window.window_pygame import android
-
 from BaseClasses import Location, CollectionState
+from worlds.phoa import PhoaOptions
 from worlds.phoa.LogicExtensions import PhoaLogic
+
+
+class PhoaFlag(Flag):
+    DEFAULT = auto()
+    MISC = auto()
 
 
 class PhoaLocation(Location):
     game: str = "Phoenotopia: Awakening"
 
+
 class PhoaLocationData(NamedTuple):
     region: str
     address: Optional[int]
     rule: Optional[Callable[[CollectionState], bool]] = None
+    flags: PhoaFlag = PhoaFlag.DEFAULT
 
-def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
 
+def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> Dict[str, PhoaLocationData]:
     logic = PhoaLogic(player)
 
-    location_data: Dict[str, PhoaLocationData] = {
+    locations: Dict[str, PhoaLocationData] = {
         "Watchtower (East)": PhoaLocationData(
             region="Overworld",
             address=7676000,
             # Locked by Bat
-        ), # Heart Ruby
+        ),  # Heart Ruby
         "Rutea's laboratory": PhoaLocationData(
             region="Overworld",
             address=7676001,
             rule=lambda state: state.has("Slingshot", player) or
                                state.has("Bombs", player),
-        ), # Heart Ruby
+        ),  # Heart Ruby
         "End of Secret Fishing Spot": PhoaLocationData(
             region="Overworld",
             address=7676002,
-        ), # Energy Gem
+        ),  # Energy Gem
         "Northeastern Treetops": PhoaLocationData(
             region="Overworld",
             address=7676003,
             rule=lambda state: state.has("Slingshot", player) or
                                state.has("Bombs", player),
-        ), # Moonstone
+        ),  # Moonstone
         "Underneath Boulder": PhoaLocationData(
             region="Overworld",
             address=7676004,
             rule=lambda state: state.has("Bombs", player),
-        ), # Moonstone
+        ),  # Moonstone
         "Overworld Encounter Near Sunflower Road": PhoaLocationData(
             region="Overworld",
             address=7676005,
             rule=lambda state: state.has("Slingshot", player) or
                                state.has("Bombs", player),
-        ), # Moonstone
+        ),  # Moonstone
         "Cave Blocked by Destructable Blocks": PhoaLocationData(
             region="Overworld",
             address=7676006,
             rule=lambda state: state.has("Bombs", player),
-        ), # Moonstone
+        ),  # Moonstone
         # "On Top of Anuri Temple": PhoaLocationData(
         #     region="Overworld",
         #     address=7676009,
@@ -66,43 +72,43 @@ def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
             region="Overworld",
             address=7676007,
             rule=lambda state: state.has("Fishing Rod", player),
-        ), # Dragon's Scale
+        ),  # Dragon's Scale
         "Gift from Alex": PhoaLocationData(
             region="Overworld",
             address=7676008,
-        ), # Slingshot
+        ),  # Slingshot
         "Skeleton Above First Gate": PhoaLocationData(
             region="Anuri Temple",
             address=7676009,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Maze with Scabers": PhoaLocationData(
             region="Anuri Temple",
             address=7676010,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Slingshot", player),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Press the Switches with Pots and Fruits": PhoaLocationData(
             region="Anuri Temple",
             address=7676011,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Carry Pot Across the Water and Bats": PhoaLocationData(
             region="Anuri Temple",
             address=7676012,
             rule=lambda state: logic.has_anuri_temple_access(state),
             # Requires Slingshot or Bombs
-        ), # Energy Gem
+        ),  # Energy Gem
         "Stackable Pots Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676013,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Moonstone
+        ),  # Moonstone
         "Sprint-jump on Timed Switches": PhoaLocationData(
             region="Anuri Temple",
             address=7676014,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Tall Tower Puzzle Behind Locked Door": PhoaLocationData(
             region="Anuri Temple",
             address=7676015,
@@ -114,7 +120,7 @@ def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
             region="Anuri Temple",
             address=7676016,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Lunar Vase
+        ),  # Lunar Vase
         "Moveable Bridges Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676017,
@@ -126,44 +132,44 @@ def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
             address=7676018,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Slingshot", player),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Three Switches With Lots of Pots": PhoaLocationData(
             region="Anuri Temple",
             address=7676019,
             rule=lambda state: logic.has_anuri_temple_access(state),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Hit the Switch Hidden Under a Breakable Tomb": PhoaLocationData(
             region="Anuri Temple",
             address=7676020,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Push the Metal Pot Onto the Switch From Above": PhoaLocationData(
             region="Anuri Temple",
             address=7676021,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Within Sarcophagus": PhoaLocationData(
             region="Anuri Temple",
             address=7676022,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player),
-        ), # Moonstone
+        ),  # Moonstone
         "Defeat the Glowing Slargummy": PhoaLocationData(
             region="Anuri Temple",
             address=7676023,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player) and
                                state.has("Crank Lamp", player),
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Time the gates through Scaber funnel": PhoaLocationData(
             region="Anuri Temple",
             address=7676024,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Anuri Pearlstone", player, 10),
             # Requires 1 pearlstone to enter
-        ), # Moonstone
+        ),  # Moonstone
         # "Fishing Spot After Slargummy": PhoaLocationData(
         #     region="Anuri Temple",
         #     address=7676025,
@@ -179,14 +185,24 @@ def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
                                state.has("Sling Shot", player) and
                                state.has("Anuri Pearlstone", player, 9),
             # Requires 6 pearlstones to enter
-        ), # Anuri Pearlstone
+        ),  # Anuri Pearlstone
         "Dive down in long vertical room": PhoaLocationData(
             region="Anuri Temple",
             address=7676027,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Anuri Pearlstone", player, 10),
             # Requires 7 pearlstones to enter
-        ), # Lunar Frog
+        ),  # Lunar Frog
+        "West Panselo Dandelion": PhoaLocationData(
+            region="Overworld",
+            address=7676028,
+            flags=PhoaFlag.MISC,
+        ),
+        "East Panselo Dandelion": PhoaLocationData(
+            region="Overworld",
+            address=7676029,
+            flags=PhoaFlag.MISC,
+        ),
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
@@ -196,4 +212,17 @@ def get_location_data(player: Optional[int]) -> Dict[str, PhoaLocationData]:
         ),
     }
 
-    return location_data
+    if not options:
+        return locations
+
+    filters = [
+        (options.enable_misc, PhoaFlag.MISC),
+    ]
+
+    for option, flag in filters:
+        if not option:
+            locations = {
+                name: data for name, data in locations.items() if data.flags != flag
+            }
+
+    return locations
