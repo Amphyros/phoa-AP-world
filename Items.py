@@ -30,19 +30,9 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             # type=ItemClassification.progression,
             amount=4,
         ),  # Actual amount is 9 (-5 for progression items)
-        "Dragon's Scale": PhoaItemData(
-            code=185,
-        ),
-        "Anuri Pearlstone": PhoaItemData(
-            code=98,
+        "Life Saver": PhoaItemData(
+            code=14,
             type=ItemClassification.progression,
-            amount=10
-        ),
-        "Lunar Frog": PhoaItemData(
-            code=99,
-        ),
-        "Lunar Vase": PhoaItemData(
-            code=100
         ),
         "Slingshot": PhoaItemData(
             code=30,
@@ -52,21 +42,44 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             code=31,
             type=ItemClassification.progression,
         ),
-        "Fishing Rod": PhoaItemData(
-            code=40,
-            type=ItemClassification.progression,
-        ),
-        "Life Saver": PhoaItemData(
-            code=14,
-            type=ItemClassification.progression,
-        ),
         "Crank Lamp": PhoaItemData(
             code=32,
             type=ItemClassification.progression,
         ),
+        "Fishing Rod": PhoaItemData(
+            code=40,
+            type=ItemClassification.progression,
+        ),
+        "Doki Herb": PhoaItemData(
+            code=45,
+            amount=6,
+        ),
+        "Berry Fruit": PhoaItemData(
+            code=50,
+        ),
+        "Perro Egg": PhoaItemData(
+            code=52,
+        ),
+        "Cheese": PhoaItemData(
+            code=64,
+        ),
+        "Anuri Pearlstone": PhoaItemData(
+            code=98,
+            type=ItemClassification.progression,
+            amount=10,
+        ),
+        "Lunar Frog": PhoaItemData(
+            code=99,
+        ),
+        "Lunar Vase": PhoaItemData(
+            code=100,
+        ),
         "Dandelion": PhoaItemData(
             code=101,
-            amount=2,
+            amount=4,
+        ),
+        "Dragon's Scale": PhoaItemData(
+            code=185,
         ),
         # "Sonic Spear": PhoaItemData(
         #     code=7676012,
@@ -80,7 +93,13 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
     print("Items are being filtered")
 
     filters = [
-        (options.enable_misc, [("Dandelion", 2)])
+        (options.enable_misc, [
+            ("Dandelion", 4),
+            ("Perro Egg", 1),
+            ("Cheese", 1),
+            ("Berry Fruit", 1),
+            ("Doki Herb", 6),
+        ]),
     ]
 
     for option, adjustments in filters:

@@ -193,16 +193,71 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
                                state.has("Anuri Pearlstone", player, 10),
             # Requires 7 pearlstones to enter
         ),  # Lunar Frog
-        "West Panselo Dandelion": PhoaLocationData(
+        "West Panselo on top of roof": PhoaLocationData(
             region="Overworld",
             address=7676028,
             flags=PhoaFlag.MISC,
-        ),
-        "East Panselo Dandelion": PhoaLocationData(
+        ), # Dandelion
+        "East Panselo on top of roof": PhoaLocationData(
             region="Overworld",
             address=7676029,
             flags=PhoaFlag.MISC,
-        ),
+        ), # Dandelion
+        "Panselo coop egg": PhoaLocationData(
+            region="Overworld",
+            address=7676030,
+            flags=PhoaFlag.MISC,
+        ), # Perro egg
+        "Panselo left tower hidden in box": PhoaLocationData(
+            region="Overworld",
+            address=7676031,
+            flags=PhoaFlag.MISC,
+        ), # Cheese
+        "Panselo on table in girls room": PhoaLocationData(
+            region="Overworld",
+            address=7676032,
+            flags=PhoaFlag.MISC,
+        ), # Berry Fruit
+        "On top of GEO house Panselo region": PhoaLocationData(
+            region="Overworld",
+            address=7676033,
+            flags=PhoaFlag.MISC,
+        ), # Dandelion
+        "On top of Franway panselo region": PhoaLocationData(
+            region="Overworld",
+            address=7676034,
+            flags=PhoaFlag.MISC,
+        ), # Dandelion
+        "Doki Forest cave guarded by gummies first item": PhoaLocationData(
+            region="Overworld",
+            address=7676035,
+            flags=PhoaFlag.MISC,
+        ), # Doki Herb
+        "Doki Forest cave guarded by gummies second item": PhoaLocationData(
+            region="Overworld",
+            address=7676036,
+            flags=PhoaFlag.MISC,
+        ), # Doki Herb
+        "Doki Forest cave guarded by gummies third item": PhoaLocationData(
+            region="Overworld",
+            address=7676037,
+            flags=PhoaFlag.MISC,
+        ), # Doki Herb
+        "Side entrance first item": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676038,
+            flags=PhoaFlag.MISC,
+        ),  # Doki Herb
+        "Side entrance second item": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676039,
+            flags=PhoaFlag.MISC,
+        ),  # Doki Herb
+        "Tall Tower Puzzle side item": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676040,
+            flags=PhoaFlag.MISC,
+        ),  # Doki Herb
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
