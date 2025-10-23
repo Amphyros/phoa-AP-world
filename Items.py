@@ -103,9 +103,7 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
     ]
 
     for option, adjustments in filters:
-        print("There's a filter")
         if not option:
-            print("filter is false")
             for item_name, amount in adjustments:
                 items = lower_item_amount(items, item_name, amount)
 

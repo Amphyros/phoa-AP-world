@@ -57,3 +57,8 @@ class PhoaWorld(World):
         for location in self.multiworld.get_locations(self.player):
             if location.address is None:
                 location.place_locked_item(Item(location.name, ItemClassification.progression, None, self.player))
+
+    def fill_slot_data(self):
+        return {
+            "DeathLink": self.options.death_link.value,
+        }
