@@ -9,6 +9,7 @@ from worlds.phoa.LogicExtensions import PhoaLogic
 class PhoaFlag(Flag):
     DEFAULT = auto()
     MISC = auto()
+    SMALLANIMALS = auto()
 
 
 class PhoaLocation(Location):
@@ -190,7 +191,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="Anuri Temple",
             address=7676027,
             rule=lambda state: logic.has_anuri_temple_access(state) and
-                               state.has("Anuri Pearlstone", player, 10),
+                               state.has("Anuri Pearlstone", player, 10) and
+                               state.has("Life Saver", player),
             # Requires 7 pearlstones to enter
         ),  # Lunar Frog
         "West Panselo on top of roof": PhoaLocationData(
@@ -258,6 +260,104 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676040,
             flags=PhoaFlag.MISC,
         ),  # Doki Herb
+        "Lizard Panselo Left Tower": PhoaLocationData(
+            region="Overworld",
+            address=7676041,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Doki Forest cave guarded by gummies Lizard": PhoaLocationData(
+            region="Overworld",
+            address=7676042,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Doki Forest Lizard at climbable roots": PhoaLocationData(
+            region="Overworld",
+            address=7676043,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Doki Forest Lizard in Alcove": PhoaLocationData(
+            region="Overworld",
+            address=7676044,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Doki Forest First Lizard in Campfire Cave": PhoaLocationData(
+            region="Overworld",
+            address=7676045,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Doki Forest Second Lizard in Campfire Cave": PhoaLocationData(
+            region="Overworld",
+            address=7676046,
+            flags=PhoaFlag.SMALLANIMALS,
+        ),
+        "Lizard on Top of Climbable Vines at the Entrance": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676047,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard Behind Bombable Blocks": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676048,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state) and
+                               state.has("Bombs", player),
+        ),
+        "Lizard Right of Anuri Throne": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676049,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard Left of Anuri Throne": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676050,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard at the End of Treasure Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676051,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard in Movable Bridge Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676052,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard in Many Pots Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676053,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard in Water Steps Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676054,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "First Lizard in Side Entrance Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676055,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Second Lizard in Side Entrance Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676056,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state)
+        ),
+        "Lizard at Treasure Room Before Century Toad": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676057,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_anuri_temple_access(state) and
+                               state.has("Anuri Pearlstone", player, 9),
+        ),
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
@@ -272,6 +372,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
 
     filters = [
         (options.enable_misc, PhoaFlag.MISC),
+        (options.enable_small_animal_drops, PhoaFlag.SMALLANIMALS)
     ]
 
     for option, flag in filters:

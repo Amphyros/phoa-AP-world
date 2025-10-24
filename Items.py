@@ -78,6 +78,10 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             code=101,
             amount=4,
         ),
+        "Mystery Meat": PhoaItemData(
+            code=112,
+            amount=17,
+        ),
         "Dragon's Scale": PhoaItemData(
             code=185,
         ),
@@ -99,6 +103,9 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             ("Cheese", 1),
             ("Berry Fruit", 1),
             ("Doki Herb", 6),
+        ]),
+        (options.enable_small_animal_drops, [
+            ("Mystery Meat", 17)
         ]),
     ]
 
