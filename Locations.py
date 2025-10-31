@@ -10,6 +10,8 @@ class PhoaFlag(Flag):
     DEFAULT = auto()
     MISC = auto()
     SMALLANIMALS = auto()
+    RINCHESTS = auto()
+    RINCONTAINERS = auto()
 
 
 class PhoaLocation(Location):
@@ -27,12 +29,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
     logic = PhoaLogic(player)
 
     locations: Dict[str, PhoaLocationData] = {
-        "Watchtower (East)": PhoaLocationData(
+        "Panselo Watchtower (East)": PhoaLocationData(
             region="Overworld",
             address=7676000,
             # Locked by Bat
         ),  # Heart Ruby
-        "Rutea's laboratory": PhoaLocationData(
+        "Panselo Rutea's laboratory": PhoaLocationData(
             region="Overworld",
             address=7676001,
             rule=lambda state: state.has("Slingshot", player) or
@@ -210,7 +212,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676030,
             flags=PhoaFlag.MISC,
         ),  # Perro egg
-        "Panselo left tower hidden in box": PhoaLocationData(
+        "Panselo Watchtower (West) hidden in box": PhoaLocationData(
             region="Overworld",
             address=7676031,
             flags=PhoaFlag.MISC,
@@ -264,100 +266,155 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="Overworld",
             address=7676041,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Doki Forest cave guarded by gummies Lizard": PhoaLocationData(
             region="Overworld",
             address=7676042,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Doki Forest Lizard at climbable roots": PhoaLocationData(
             region="Overworld",
             address=7676043,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Doki Forest Lizard in Alcove": PhoaLocationData(
             region="Overworld",
             address=7676044,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Doki Forest First Lizard in Campfire Cave": PhoaLocationData(
             region="Overworld",
             address=7676045,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Doki Forest Second Lizard in Campfire Cave": PhoaLocationData(
             region="Overworld",
             address=7676046,
             flags=PhoaFlag.SMALLANIMALS,
-        ),
+        ),  # Mystery Meat
         "Lizard on Top of Climbable Vines at the Entrance": PhoaLocationData(
             region="Anuri Temple",
             address=7676047,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard Behind Bombable Blocks": PhoaLocationData(
             region="Anuri Temple",
             address=7676048,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player),
-        ),
+        ),  # Mystery Meat
         "Lizard Right of Anuri Throne": PhoaLocationData(
             region="Anuri Temple",
             address=7676049,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard Left of Anuri Throne": PhoaLocationData(
             region="Anuri Temple",
             address=7676050,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard at the End of Treasure Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676051,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard in Movable Bridge Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676052,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard in Many Pots Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676053,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard in Water Steps Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676054,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "First Lizard in Side Entrance Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676055,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Second Lizard in Side Entrance Room": PhoaLocationData(
             region="Anuri Temple",
             address=7676056,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state)
-        ),
+        ),  # Mystery Meat
         "Lizard at Treasure Room Before Century Toad": PhoaLocationData(
             region="Anuri Temple",
             address=7676057,
             flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Anuri Pearlstone", player, 9),
-        ),
+        ),  # Mystery Meat
+        "Pot in Boys Room": PhoaLocationData(
+            region="Overworld",
+            address=7676058,
+            flags=PhoaFlag.RINCONTAINERS,
+        ),  # 5 Rin
+        "Box Right Side of Orphanage Hall": PhoaLocationData(
+            region="Overworld",
+            address=7676059,
+            flags=PhoaFlag.RINCONTAINERS,
+        ),  # 9 Rin
+        "Orphanage Attic Chest": PhoaLocationData(
+            region="Overworld",
+            address=7676060,
+            flags=PhoaFlag.RINCHESTS,
+        ),  # 35 Rin
+        "Panselo Watchtower (West) Chest": PhoaLocationData(
+            region="Overworld",
+            address=7676061,
+            flags=PhoaFlag.RINCHESTS,
+        ),  # 35 Rin
+        "Panselo Warehouse Chest": PhoaLocationData(
+            region="Overworld",
+            address=7676062,
+            flags=PhoaFlag.RINCHESTS,
+        ),  # 25 Rin
+        "Doki Forest Chest in Alcove through Crawl Space": PhoaLocationData(
+            region="Overworld",
+            address=7676063,
+            flags=PhoaFlag.RINCHESTS,
+        ),  # 35 Rin
+        "Anuri Skeleton at Bottom of Right Elevator Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676064,
+            flags=PhoaFlag.RINCONTAINERS,
+            rule=lambda state: logic.has_anuri_temple_access(state),
+        ),  # 15 Rin
+        "Anuri Skeleton at Top Left Side of Many Pots Room": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676065,
+            flags=PhoaFlag.RINCONTAINERS,
+            rule=lambda state: logic.has_anuri_temple_access(state),
+        ),  # 15 Rin
+        # "High up Right Pot in Maze Room": PhoaLocationData(
+        #     region="Anuri Temple",
+        #     address=7676066,
+        #     flags=PhoaFlag.RINCONTAINERS,
+        #     rule=lambda state: logic.has_anuri_temple_access(state),
+        # ),  # 15 Rin
+        "Big pot in Tomb Tunnel in Basement": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676067,
+            flags=PhoaFlag.RINCONTAINERS,
+            rule=lambda state: logic.has_anuri_temple_access(state) and
+                               state.has("Bombs", player),
+        ),  # 20 Rin
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
@@ -371,12 +428,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         return locations
 
     filters = [
-        (options.enable_misc, PhoaFlag.MISC),
-        (options.enable_small_animal_drops, PhoaFlag.SMALLANIMALS)
+        (options.enable_misc <= 0, PhoaFlag.MISC),
+        (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
+        (options.enable_rin_locations <= 0, PhoaFlag.RINCHESTS),
+        (options.enable_rin_locations <= 1, PhoaFlag.RINCONTAINERS),
     ]
 
     for option, flag in filters:
-        if not option:
+        if option:
             locations = {
                 name: data for name, data in locations.items() if data.flags != flag
             }

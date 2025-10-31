@@ -85,6 +85,26 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         "Dragon's Scale": PhoaItemData(
             code=185,
         ),
+        "5 Rin": PhoaItemData(
+            code=305,
+        ),
+        "9 rin": PhoaItemData(
+            code=309,
+        ),
+        "15 rin": PhoaItemData(
+            code=315,
+            amount=2
+        ),
+        "20 rin": PhoaItemData(
+            code=320,
+        ),
+        "25 rin": PhoaItemData(
+            code=325,
+        ),
+        "35 rin": PhoaItemData(
+            code=335,
+            amount=3,
+        ),
         # "Sonic Spear": PhoaItemData(
         #     code=7676012,
         #     type=ItemClassification.progression,
@@ -97,20 +117,30 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
     print("Items are being filtered")
 
     filters = [
-        (options.enable_misc, [
+        (options.enable_misc <= 0, [
             ("Dandelion", 4),
             ("Perro Egg", 1),
             ("Cheese", 1),
             ("Berry Fruit", 1),
             ("Doki Herb", 6),
         ]),
-        (options.enable_small_animal_drops, [
+        (options.enable_small_animal_drops <= 0, [
             ("Mystery Meat", 17)
+        ]),
+        (options.enable_rin_locations <= 0, [
+            ("5 rin", 1),
+            ("9 rin", 1),
+            ("15 rin", 2),
+            ("20 rin", 1),
+        ]),
+        (options.enable_rin_locations <= 1, [
+            ("25 rin", 1),
+            ("35 rin", 3),
         ]),
     ]
 
     for option, adjustments in filters:
-        if not option:
+        if option:
             for item_name, amount in adjustments:
                 items = lower_item_amount(items, item_name, amount)
 
