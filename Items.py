@@ -54,11 +54,17 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             code=45,
             amount=6,
         ),
+        "Pumpkin Muffin": PhoaItemData(
+            code=47,
+        ),
         "Berry Fruit": PhoaItemData(
             code=50,
         ),
         "Perro Egg": PhoaItemData(
             code=52,
+        ),
+        "Fruit Jam": PhoaItemData(
+            code=57,
         ),
         "Cheese": PhoaItemData(
             code=64,
@@ -78,9 +84,12 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             code=101,
             amount=4,
         ),
+        "Panselo Potato": PhoaItemData(
+            code= 102,
+        ),
         "Mystery Meat": PhoaItemData(
             code=112,
-            amount=17,
+            amount=18,
         ),
         "Dragon's Scale": PhoaItemData(
             code=185,
@@ -117,6 +126,12 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
     print("Items are being filtered")
 
     filters = [
+        (options.enable_npc_gifts <= 0, [
+            ("Pumpkin Muffin", 1),
+            ("Panselo Potato", 1),
+            ("Fruit Jam", 1),
+            ("Mystery Meat", 1),
+        ]),
         (options.enable_misc <= 0, [
             ("Dandelion", 4),
             ("Perro Egg", 1),
@@ -125,7 +140,7 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             ("Doki Herb", 6),
         ]),
         (options.enable_small_animal_drops <= 0, [
-            ("Mystery Meat", 17)
+            ("Mystery Meat", 17),
         ]),
         (options.enable_rin_locations <= 0, [
             ("5 rin", 1),

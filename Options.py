@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 from Options import Toggle, PerGameCommonOptions, DeathLink, Choice
 
+class EnableNpcGifts(Toggle):
+    """Include free gifts from NPCs"""
+    display_name = "Include NPC gifts"
 
 class EnableMisc(Toggle):
     """Include miscellaneous locations and items"""
@@ -19,6 +22,7 @@ class EnableRinLocations(Choice):
 
 @dataclass
 class PhoaOptions(PerGameCommonOptions):
+    enable_npc_gifts: EnableNpcGifts
     enable_misc: EnableMisc
     enable_small_animal_drops: EnableSmallAnimalDrops
     enable_rin_locations: EnableRinLocations

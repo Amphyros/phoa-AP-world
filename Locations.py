@@ -8,6 +8,7 @@ from worlds.phoa.LogicExtensions import PhoaLogic
 
 class PhoaFlag(Flag):
     DEFAULT = auto()
+    NPCGIFTS = auto()
     MISC = auto()
     SMALLANIMALS = auto()
     RINCHESTS = auto()
@@ -415,6 +416,26 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             rule=lambda state: logic.has_anuri_temple_access(state) and
                                state.has("Bombs", player),
         ),  # 20 Rin
+        "Nana's Pumpkin Muffin": PhoaLocationData(
+            region="Overworld",
+            address=7676068,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Pumpkin Muffin
+        "Jon's Potato": PhoaLocationData(
+            region="Overworld",
+            address=7676069,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Panselo Potato
+        "Free Gift from Panselo Shop Keeper Tao": PhoaLocationData(
+            region="Overworld",
+            address=7676070,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Fruit Jam
+        "Seth's Mystery Meat Gift": PhoaLocationData(
+            region="Overworld",
+            address=7676071,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Mystery Meat
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
@@ -428,6 +449,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         return locations
 
     filters = [
+        (options.enable_npc_gifts <= 0, PhoaFlag.NPCGIFTS),
         (options.enable_misc <= 0, PhoaFlag.MISC),
         (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
         (options.enable_rin_locations <= 0, PhoaFlag.RINCHESTS),
