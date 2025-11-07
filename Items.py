@@ -62,12 +62,16 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         ),
         "Perro Egg": PhoaItemData(
             code=52,
+            amount=2,
         ),
         "Fruit Jam": PhoaItemData(
             code=57,
         ),
         "Cheese": PhoaItemData(
             code=64,
+        ),
+        "Milk": PhoaItemData(
+            code=67,
         ),
         "Anuri Pearlstone": PhoaItemData(
             code=98,
@@ -86,6 +90,7 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         ),
         "Panselo Potato": PhoaItemData(
             code= 102,
+            amount=2,
         ),
         "Mystery Meat": PhoaItemData(
             code=112,
@@ -138,6 +143,11 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             ("Cheese", 1),
             ("Berry Fruit", 1),
             ("Doki Herb", 6),
+        ]),
+        (options.shop_sanity <= 0, [
+            ("Panselo Potato", 1),
+            ("Perro Egg", 1),
+            ("Milk", 1),
         ]),
         (options.enable_small_animal_drops <= 0, [
             ("Mystery Meat", 17),

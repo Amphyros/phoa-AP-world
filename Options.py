@@ -9,6 +9,10 @@ class EnableMisc(Toggle):
     """Include miscellaneous locations and items"""
     display_name = "Include miscellaneous"
 
+class EnableShopSanity(Toggle):
+    """Includes items that can be bought it shops"""
+    display_name = "Shop sanity"
+
 class EnableSmallAnimalDrops(Toggle):
     """Includes drops from animals like lizards, mice, scorpions and birds"""
     display_name = "Include small animal drops"
@@ -24,6 +28,7 @@ class EnableRinLocations(Choice):
 class PhoaOptions(PerGameCommonOptions):
     enable_npc_gifts: EnableNpcGifts
     enable_misc: EnableMisc
+    shop_sanity: EnableShopSanity
     enable_small_animal_drops: EnableSmallAnimalDrops
     enable_rin_locations: EnableRinLocations
     death_link: DeathLink

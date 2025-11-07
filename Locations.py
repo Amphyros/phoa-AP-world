@@ -10,6 +10,7 @@ class PhoaFlag(Flag):
     DEFAULT = auto()
     NPCGIFTS = auto()
     MISC = auto()
+    SHOPSANITY = auto()
     SMALLANIMALS = auto()
     RINCHESTS = auto()
     RINCONTAINERS = auto()
@@ -436,6 +437,21 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676071,
             flags=PhoaFlag.NPCGIFTS,
         ),  # Mystery Meat
+        "Panselo Shop Item 1": PhoaLocationData(
+            region="Overworld",
+            address=7676072,
+            flags=PhoaFlag.SHOPSANITY,
+        ),  # Perro egg
+        "Panselo Shop Item 2": PhoaLocationData(
+            region="Overworld",
+            address=7676073,
+            flags=PhoaFlag.SHOPSANITY,
+        ),  # Milk
+        "Panselo Shop Item 3": PhoaLocationData(
+            region="Overworld",
+            address=7676074,
+            flags=PhoaFlag.SHOPSANITY,
+        ),  # Panselo Potato
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
@@ -451,6 +467,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
     filters = [
         (options.enable_npc_gifts <= 0, PhoaFlag.NPCGIFTS),
         (options.enable_misc <= 0, PhoaFlag.MISC),
+        (options.shop_sanity <= 0, PhoaFlag.SHOPSANITY),
         (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
         (options.enable_rin_locations <= 0, PhoaFlag.RINCHESTS),
         (options.enable_rin_locations <= 1, PhoaFlag.RINCONTAINERS),
