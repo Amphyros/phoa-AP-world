@@ -6,7 +6,6 @@ This is going to be a guide to set up Phoenotopia: Awakening in Archipelago. Thi
 * BepInEx: Follow the installation guide [here](https://docs.bepinex.dev/articles/user_guide/installation/index.html)
     * **ALWAYS** install the 32bit (x86) version even if you run a 64bit system. Phoenotopia only runs a 86x executable
 * PhoA Archipelago Mod: [Github](https://github.com/Amphyros/Phoenotopia-Awakening-AP-client)
-* .NET 3.5????
 
 # Installing the Archipelago Mod
 
