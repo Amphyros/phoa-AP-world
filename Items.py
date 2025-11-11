@@ -28,8 +28,8 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         "Moonstone": PhoaItemData(
             code=5,
             # type=ItemClassification.progression,
-            amount=4,
-        ),  # Actual amount is 9 (-5 for progression items)
+            amount=5,
+        ),  # Actual amount is 9 (-4 for progression items) (Bart's Head is also replaced)
         "Life Saver": PhoaItemData(
             code=14,
             type=ItemClassification.progression,

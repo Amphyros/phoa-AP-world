@@ -452,6 +452,10 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676074,
             flags=PhoaFlag.SHOPSANITY,
         ),  # Panselo Potato
+        "Bart's Head Crater": PhoaLocationData(
+            region="Anuri Temple",
+            address=7676075,
+        ),  # Broken Golem Hat
         "Strange Urn": PhoaLocationData(
             region="Anuri Temple",
             address=None,
