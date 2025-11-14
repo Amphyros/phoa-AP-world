@@ -9,13 +9,14 @@ This is going to be a guide to set up Phoenotopia: Awakening in Archipelago. Thi
 
 # Installing the Archipelago Mod
 
-1. Download [BepInEx](https://docs.bepinex.dev/articles/user_guide/installation/index.html) and follow the installation guide. Be sure to download the **32bit (86x)** version, even if you're running a 64bit operating system.
-After following the steps, your game folder should have a `BepInEx` folder containing (among others) a `plugins` and `config` folder
-2. Download the [Phoa Archipelago Mod](https://github.com/Amphyros/Phoenotopia-Awakening-AP-client). This is a zipfile containing a bunch of .dll files. Extract these files to the `plugins` folder in the `BepInEx` folder of your game folder
-3. Launch the game, let it run till the Cape Cosmic logo shows and then close it. If you've done everything correctly, the config folder in the BepInEx folder now contains a file called: `PhoA_AP_client.cfg`
-4. The mod is now successfully installed! You can open PhoA_AP_client.cfg with a text editor like notepad to change the connection data. More about entering a multiworld game can be found below
+1. Download [BepInEx](https://docs.bepinex.dev/articles/user_guide/installation/index.html) and follow the installation guide. Be sure to download the **32bit (86x)** version, **even if you're running a 64bit operating system**.
+In the guide they refer to the game root. For you this should be `[Your Steam installation folder]\SteamLibrary\steamapps\common\Phoenotopia Awakening`.
+After following the steps, your game folder should have a `BepInEx` folder containing (among others) a `plugins` and `config` folder.
+2. Download the latest release of the [Phoa Archipelago Mod](https://github.com/Amphyros/Phoenotopia-Awakening-AP-client/releases). The release has a zipfile containing a bunch of .dll files. Extract these files to the `BepInEx\plugins` folder in your game folder.
+3. Launch the game, let it run till the Cape Cosmic logo shows and then close it. If you've done everything correctly, the `BepInEx\config` folder now contains a file called: `PhoA_AP_client.cfg`.
+4. The mod is now successfully installed! You can open PhoA_AP_client.cfg with a text editor like notepad to change the connection data. More about entering a multiworld game can be found below.
 5. OPTIONAL: It might be a good idea to enable the console window, as most of the connection info is logged in there. In the config folder you'll find a file named `BepInEx.cfg`. Open this with a text editor and scroll down to "Logging.Console". Set the value of "Enabled" to "true".
-NOTE: Please do **not** attempt to play the vanilla game with the mod installed, as some features are critically changed. If you want to disable the mod temporarily, drag the dll files from the plugins folder to a place outside the game folder.
+- NOTE: Please do **not** attempt to play the vanilla game with the mod installed, as some features are critically changed. If you want to disable the mod temporarily, drag the dll files from the plugins folder to a place outside the game folder.
 
 # Generating a Multiworld Game
 
