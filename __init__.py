@@ -8,14 +8,14 @@ from .Regions import create_regions_and_locations
 
 
 class PhoaWebWorld(WebWorld):
-    tutorials = Tutorial(
+    tutorials = [Tutorial(
         tutorial_name="Start Guide",
         description="A guide to start playing Phoenotopia: Awakening in Archipelago",
         language="Engels",
-        file_name="docs/setup_en.md",
+        file_name="setup_en.md",
         link="guide/en",
         authors=["Lenamphy"]
-    )
+    )]
 
 
 class PhoaWorld(World):
