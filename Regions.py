@@ -1,9 +1,187 @@
-from typing import Dict, Callable, Optional
+from typing import Dict, Callable, Optional, List, NamedTuple
 
 from BaseClasses import MultiWorld, Region, Location, CollectionState
 from worlds.phoa import get_location_data, PhoaOptions
 from worlds.phoa.Locations import PhoaLocationData
 from worlds.phoa.LogicExtensions import PhoaLogic
+
+
+class PhoaExit(NamedTuple):
+    name: str
+    region: str
+    connection: str
+    rule: Optional[Callable[[CollectionState], bool]] = None
+    group: str | None = None
+    one_way: bool = False
+
+
+def get_exit_data(player: int) -> List[PhoaExit]:
+    logic = PhoaLogic(player)
+
+    exits: List[PhoaExit] = [
+        # Menu
+        PhoaExit(
+            name="game_start",
+            region="Menu",
+            connection="panselo_village",
+            group="starting_location",
+            one_way=True,
+        ),
+        # panselo_village
+        PhoaExit(
+            name="panselo_gate",
+            region="panselo_village",
+            connection="panselo_region",
+            rule=lambda state: logic.can_activate_weapon_switch(state),
+            group="logic",
+        ),
+        # panselo_region
+        PhoaExit(
+            name="anuri_temple_entrance",
+            region="panselo_region",
+            connection="anuri_temple(main_entrance)",
+            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
+            group="region",  # logic and region?
+        ),
+        PhoaExit(
+            name="anuri_temple_side_entrance",
+            region="panselo_region",
+            connection="anuri_temple(side_entrance)",
+            rule=lambda state: state.has("Bombs", player),
+            group="logic",
+        ),
+        # anuri_temple(main_entrance)
+        PhoaExit(
+            name="anuri_temple_main_exit",
+            region="anuri_temple(main_entrance)",
+            connection="panselo_region",
+            group="region",  # logic and region?
+        ),  # TODO: Alter spawn location after loading zone
+        PhoaExit(
+            name="anuri_temple_pearl_entrance",
+            region="anuri_temple(main_entrance)",
+            connection="anuri_temple(main)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 1),
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_top_floor_boulder",
+            region="anuri_temple(main_entrance)",
+            connection="anuri_temple(top_floor)",
+            rule=lambda state: state.has("Bombs", player),
+            group="logic",
+        ),
+        # anuri_temple(top_floor)
+        PhoaExit(
+            name="anuri_temple_drop_to_throne",
+            region="anuri_temple(top_floor)",
+            connection="anuri_temple(main)",
+            group="logic",
+            one_way=True,  # Might be a problem with ER
+        ),
+        PhoaExit(
+            name="anuri_temple_door_to_scaber_maze",
+            region="anuri_temple(top_floor)",
+            connection="anuri_temple(scaber_switch_maze)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 10),
+            group="logic",
+        ),
+        # anuri_temple(main)
+        PhoaExit(
+            name="anuri_temple_to_main_entrance",
+            region="anuri_temple(main)",
+            connection="anuri_temple(main_entrance)",
+            group="logic",
+        ),  # TODO: Create switch that opens gate
+        PhoaExit(
+            name="anuri_temple_to_tall_tower_puzzle_room",
+            region="anuri_temple(main)",
+            connection="anuri_temple(tall_tower_puzzle_room)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 10),
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_to_side_entrance",
+            region="anuri_temple(main)",
+            connection="anuri_temple(side_entrance)",
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_to_basement",
+            region="anuri_temple(main)",
+            connection="anuri_temple(basement)",
+            rule=lambda state: state.has("Bombs", player),
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_bridge_switch",
+            region="anuri_temple(main)",
+            connection="anuri_temple(moveable_bridge_area)",
+            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_to_slargummy",
+            region="anuri_temple(main)",
+            connection="anuri_temple(slargummy_boss)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 6),
+            group="logic",
+        ),
+        # anuri_temple(side_entrance)
+        PhoaExit(
+            name="anuri_temple_side_exit",
+            region="anuri_temple(side_entrance)",
+            connection="panselo_region",
+            rule=lambda state: state.has("Bombs", player),
+            group="region",
+        ),
+        PhoaExit(
+            name="anuri_temple_side_exit",
+            region="anuri_temple(side_entrance)",
+            connection="anuri_temple(main)",
+            rule=lambda state: state.has("Anuri Temple - Side entrance gate opened", player),
+            group="region",
+        ),
+        # anuri_temple(slargummy_boss)
+        PhoaExit(
+            name="anuri_temple_slargummy_to_main",
+            region="anuri_temple(slargummy_boss)",
+            connection="anuri_temple(main)",
+            group="logic",
+        ),  # TODO: Create a way to return to main temple without by opening the gates
+        PhoaExit(
+            name="anuri_temple_slargummy_to_pond",
+            region="anuri_temple(slargummy_boss)",
+            connection="anuri_temple(pond)",
+            rule=lambda state: logic.can_kill_slargummy(state),
+            group="logic",
+        ),
+        # anuri_temple(pond)
+        PhoaExit(
+            name="anuri_temple_to_post_pond",
+            region="anuri_temple(pond)",
+            connection="anuri_temple(post_pond)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 9),
+            group="logic",
+        ),
+        # anuri_temple(post_pond)
+        PhoaExit(
+            name="anuri_temple_to_dive_room",
+            region="anuri_temple(post_pond)",
+            connection="anuri_temple(dive_room)",
+            rule=lambda state: state.has("Anuri Pearlstone", player, 10),
+            group="logic",
+        ),
+        PhoaExit(
+            name="anuri_temple_to_urn_room",
+            region="anuri_temple(post_pond)",
+            connection="anuri_temple(urn_room)",
+            rule=lambda state: state.has("Bombs", player),
+            group="logic",
+        ),
+    ]
+
+    return exits
 
 
 def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOptions):
@@ -12,17 +190,26 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
 
     regions = [
         create_region(world, player, locations_per_region, "Menu"),
-        create_region(world, player, locations_per_region, "Overworld"),
-        create_region(world, player, locations_per_region, "Anuri Temple")
+        create_region(world, player, locations_per_region, "panselo_village"),
+        create_region(world, player, locations_per_region, "panselo_region"),
+        create_region(world, player, locations_per_region, "anuri_temple(main_entrance)"),
+        create_region(world, player, locations_per_region, "anuri_temple(top_floor)"),
+        create_region(world, player, locations_per_region, "anuri_temple(scaber_switch_maze)"),
+        create_region(world, player, locations_per_region, "anuri_temple(main)"),
+        create_region(world, player, locations_per_region, "anuri_temple(tall_tower_puzzle_room)"),
+        create_region(world, player, locations_per_region, "anuri_temple(side_entrance)"),
+        create_region(world, player, locations_per_region, "anuri_temple(basement)"),
+        create_region(world, player, locations_per_region, "anuri_temple(moveable_bridge_area)"),
+        create_region(world, player, locations_per_region, "anuri_temple(slargummy_boss)"),
+        create_region(world, player, locations_per_region, "anuri_temple(pond)"),
+        create_region(world, player, locations_per_region, "anuri_temple(post_pond)"),
+        create_region(world, player, locations_per_region, "anuri_temple(dive_room)"),
+        create_region(world, player, locations_per_region, "anuri_temple(urn_room)"),
     ]
 
     world.regions += regions
 
-    logic = PhoaLogic(player)
-
-    connect(world, player, 'Menu', 'Overworld')
-    connect(world, player, 'Overworld', 'Anuri Temple', lambda state: logic.has_anuri_temple_access(state))
-    connect(world, player, 'Anuri Temple', 'Overworld')
+    connect_regions(world, player, get_exit_data(player))
 
 
 def create_region(world: MultiWorld, player: int, locations_per_region: Dict[str, Dict[str, PhoaLocationData]],
@@ -38,7 +225,7 @@ def create_region(world: MultiWorld, player: int, locations_per_region: Dict[str
 
 
 def create_location(player: int, location_name: str, location_data: PhoaLocationData, region: Region):
-    location = Location(player, location_data.region + " - " + location_name, location_data.address, region)
+    location = Location(player, location_name, location_data.address, region)
 
     if location_data.rule:
         location.access_rule = location_data.rule
@@ -46,11 +233,21 @@ def create_location(player: int, location_name: str, location_data: PhoaLocation
     return location
 
 
+def connect_regions(world: MultiWorld, player: int, exits: List[PhoaExit]):
+    for regionExit in exits:
+        connect(world, player, regionExit.region, regionExit.connection, regionExit.rule, regionExit.name)
+
+
 def connect(world: MultiWorld, player: int, source: str, target: str,
-            rule: Optional[Callable[[CollectionState], bool]] = None):
+            rule: Optional[Callable[[CollectionState], bool]] = None, name: str = None):
     source_region = world.get_region(source, player)
     target_region = world.get_region(target, player)
-    source_region.connect(target_region, rule=rule)
+    entrance = source_region.create_exit(name)
+
+    if rule is not None:
+        entrance.access_rule = rule
+
+    entrance.connect(target_region)
 
 
 def split_locations_per_region(locations: Dict[str, PhoaLocationData]):

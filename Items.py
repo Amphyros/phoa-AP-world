@@ -89,7 +89,7 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             amount=4,
         ),
         "Panselo Potato": PhoaItemData(
-            code= 102,
+            code=102,
             amount=2,
         ),
         "Mystery Meat": PhoaItemData(
@@ -127,8 +127,6 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
 
     if not options:
         return items
-
-    print("Items are being filtered")
 
     filters = [
         (options.enable_npc_gifts <= 0, [
@@ -173,8 +171,8 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
 
 
 def lower_item_amount(item_data: Dict[str, PhoaItemData], item_name: str, amount: int):
-    print("removing"+ item_name)
-    if item_name not in item_data: return item_data
+    if item_name not in item_data:
+        return item_data
 
     current_amount = item_data[item_name].amount
     new_amount = max(0, current_amount - amount)

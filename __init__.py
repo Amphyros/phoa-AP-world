@@ -23,14 +23,13 @@ class PhoaWorld(World):
     web = PhoaWebWorld()
     options: PhoaOptions
     options_dataclass = PhoaOptions
-    location_name_to_id = {data.region + " - " + name: data.address for name, data in
-                           get_location_data(-1, None).items()}
+    location_name_to_id = {name: data.address for name, data in get_location_data(-1, None).items()}
     item_name_to_id = {name: data.code for name, data in get_item_data(None).items()}
 
     def create_item(self, name: str) -> PhoaItem:
         return PhoaItem(name, item_table[name].type, item_table[name].code, self.player)
 
-    def create_items(self) -> None:
+    def create_items(self):
         self.create_and_assign_event_items()
         included_items: Dict[str, PhoaItemData] = get_item_data(self.options)
 
@@ -45,18 +44,19 @@ class PhoaWorld(World):
     def create_regions(self):
         create_regions_and_locations(self.multiworld, self.player, self.options)
 
-    def set_rules(self) -> None:
+    def set_rules(self):
         self.multiworld.completion_condition[self.player] = lambda state: state.has(
-            "Anuri Temple - Strange Urn", self.player
+            "Strange Urn", self.player
         )
 
     def get_filler_item_name(self) -> str:
         return '20 Rin'
 
-    def create_and_assign_event_items(self) -> None:
+    def create_and_assign_event_items(self):
         for location in self.multiworld.get_locations(self.player):
             if location.address is None:
-                location.place_locked_item(Item(location.name, ItemClassification.progression, None, self.player))
+                location.place_locked_item(
+                    Item(location.name, ItemClassification.progression, None, self.player))
 
     def fill_slot_data(self):
         return {
