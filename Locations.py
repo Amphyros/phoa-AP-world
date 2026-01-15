@@ -101,6 +101,16 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676068,
             flags=PhoaFlag.NPCGIFTS,
         ),  # Pumpkin Muffin
+        "Panselo Village - Yesterday's lunch from Kitt": PhoaLocationData(
+            region="panselo_village",
+            address=7676077,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Cooked Toad Leg
+        "Panselo Village - Kitt's money for the milk": PhoaLocationData(
+            region="panselo_village",
+            address=7676078,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # 20 Rin
         "Panselo Village - Warehouse Chest": PhoaLocationData(
             region="panselo_village",
             address=7676062,
@@ -205,6 +215,11 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676046,
             flags=PhoaFlag.SMALLANIMALS,
         ),  # Mystery Meat
+        "Doki Forest - Shelby's gift for lighting the campfire": PhoaLocationData(
+            region="panselo_region",
+            address=7676076,
+            flags=PhoaFlag.NPCGIFTS,
+        ),  # Doki Herb
         "Doki Forest - Fish underneath Anuri Temple": PhoaLocationData(
             region="panselo_region",
             address=7676007,

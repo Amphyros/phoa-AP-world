@@ -52,10 +52,13 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         ),
         "Doki Herb": PhoaItemData(
             code=45,
-            amount=6,
+            amount=7,
         ),
         "Pumpkin Muffin": PhoaItemData(
             code=47,
+        ),
+        "Cooked Toad Leg": PhoaItemData(
+            code=49,
         ),
         "Berry Fruit": PhoaItemData(
             code=50,
@@ -107,10 +110,11 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
         ),
         "15 rin": PhoaItemData(
             code=315,
-            amount=2
+            amount=2,
         ),
         "20 rin": PhoaItemData(
             code=320,
+            amount=2,
         ),
         "25 rin": PhoaItemData(
             code=325,
@@ -134,6 +138,9 @@ def get_item_data(options: Optional[PhoaOptions]) -> Dict[str, PhoaItemData]:
             ("Panselo Potato", 1),
             ("Fruit Jam", 1),
             ("Mystery Meat", 1),
+            ("Doki Herb", 1),
+            ("Cooked Toad Leg", 1),
+            ("20 Rin", 1),
         ]),
         (options.enable_misc <= 0, [
             ("Dandelion", 4),
