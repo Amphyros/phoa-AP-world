@@ -149,7 +149,6 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Rutea's room": PhoaLocationData(
             region="panselo_village",
             address=7676001,
-            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
             vanillaItem="Heart Ruby",
         ),
         "Panselo Village - Watchtower (East) item up top": PhoaLocationData(
@@ -177,19 +176,20 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Region - Overworld encounter near Sunflower Road": PhoaLocationData(
             region="panselo_region",
             address=7676005,
-            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             vanillaItem="Moonstone",
         ),
         "Panselo Region - Underneath boulder north of Panselo": PhoaLocationData(
             region="panselo_region",
             address=7676004,
-            rule=lambda state: state.has("Bombs", player),
+            rule=lambda state: logic.has_bombs(state) or logic.can_use_spear_bomb(state),
             vanillaItem="Moonstone",
         ),
         "Panselo Region - Northeastern treetops": PhoaLocationData(
             region="panselo_region",
             address=7676003,
-            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+                               or state.has("Hover Boots", player),
             vanillaItem="Moonstone",
         ),
         "Doki Forest - Cave guarded by Gummies - First item": PhoaLocationData(
@@ -225,7 +225,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - Cave blocked by destructable blocks": PhoaLocationData(
             region="panselo_region",
             address=7676006,
-            rule=lambda state: state.has("Bombs", player),
+            rule=lambda state: logic.has_explosives(state),
             vanillaItem="Moonstone",
         ),
         "Doki Forest - Chest through crawl space": PhoaLocationData(
@@ -261,7 +261,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - Fish underneath Anuri Temple": PhoaLocationData(
             region="panselo_region",
             address=7676007,
-            rule=lambda state: state.has("Fishing Rod", player),
+            rule=lambda state: logic.has_fishing_rod(state),
             vanillaItem="Dragon's Scale",
         ),
         "Doki Forest - Gift from Seth": PhoaLocationData(
@@ -275,11 +275,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676008,
             vanillaItem="Slingshot",
         ),
-        # "On Top of Anuri Temple": PhoaLocationData(
-        #     region="Overworld",
-        #     address=7676009,
-        #     rule=lambda state: state.has("Sonic Spear", player),
-        # ), # Moonstone
+        "Doki Forest - On Top of Anuri Temple": PhoaLocationData(
+            region="panselo_region",
+            address=7676009,
+            vanillaItem="Moonstone",
+            rule=lambda state: logic.has_sonic_spear(state),
+        ),
         "Anuri Temple - Lizard at top of climbable vines at entrance": PhoaLocationData(
             region="anuri_temple(main_entrance)",
             address=7676047,
@@ -330,16 +331,17 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676010,
             vanillaItem="Anuri Pearlstone",
         ),
-        # "Anuri Temple - High up pot in Scabers maze": PhoaLocationData(
-        #     region="anuri_temple(main)",
-        #     address=7676066,
-        #     flags=PhoaFlag.RINCONTAINERS,
-        #     rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
-        # ),  # 15 Rin
+        "Anuri Temple - High up pot in Scabers maze": PhoaLocationData(
+            region="anuri_temple(main)",
+            address=7676066,
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="15 Rin",
+            rule=lambda state: logic.has_sonic_spear(state),
+        ),
         "Anuri Temple - Press the switches with pots and fruits": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676011,
-            rule=lambda state: state.has("Slingshot", player),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state, True),
             vanillaItem="Anuri Pearlstone",
         ),
         "Anuri Temple - Side entrance room - First Lizard": PhoaLocationData(
@@ -424,7 +426,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Slingshot the switch and surfacing Toads": PhoaLocationData(
             region="anuri_temple(moveable_bridge_area)",
             address=7676018,
-            rule=lambda state: state.has("Slingshot", player),
+            rule=lambda state: logic.has_slingshot(state),
             vanillaItem="Anuri Pearlstone",
         ),
         "Anuri Temple - Tall tower puzzle behind locked door": PhoaLocationData(
@@ -441,7 +443,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple Basement - Hit the switch hidden under breakable tomb": PhoaLocationData(
             region="anuri_temple(basement)",
             address=7676020,
-            rule=lambda state: state.has("Bombs", player),
+            rule=lambda state: logic.has_explosives(state),
             vanillaItem="Anuri Pearlstone",
         ),
         "Anuri Temple Basement - Push metal pot onto switch from above": PhoaLocationData(
@@ -452,7 +454,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple Basement - Within sarcophagus": PhoaLocationData(
             region="anuri_temple(basement)",
             address=7676022,
-            rule=lambda state: state.has("Bombs", player),
+            rule=lambda state: logic.has_explosives(state),
             vanillaItem="Moonstone",
         ),
         "Anuri Temple Basement - Defeat the glowing slargummy": PhoaLocationData(
@@ -480,14 +482,15 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Use slingshot to hit the switches below": PhoaLocationData(
             region="anuri_temple(post_pond)",
             address=7676026,
-            rule=lambda state: state.has("Slingshot", player),
+            rule=lambda state: logic.has_slingshot(state)
+                               or logic.has_sonic_spear(state),
             vanillaItem="Anuri Pearlstone",
         ),
         "Anuri Temple - Lizard at treasure room before century toad": PhoaLocationData(
             region="anuri_temple(post_pond)",
             address=7676057,
             flags=PhoaFlag.SMALLANIMALS,
-            rule=lambda state: state.has_any({"Slingshot", "Bombs"}, player),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
             vanillaItem="Mystery Meat",
         ),
         "Anuri Temple - Dive down in long vertical room": PhoaLocationData(

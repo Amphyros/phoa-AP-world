@@ -10,7 +10,7 @@ class PhoaWebWorld(WebWorld):
     tutorials = [Tutorial(
         tutorial_name="Start Guide",
         description="A guide to start playing Phoenotopia: Awakening in Archipelago",
-        language="Engels",
+        language="English",
         file_name="setup_en.md",
         link="guide/en",
         authors=["Lenamphy"]
