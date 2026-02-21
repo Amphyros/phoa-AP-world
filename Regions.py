@@ -1,4 +1,4 @@
-from typing import Dict, Callable, Optional, List, NamedTuple
+from typing import Dict, Callable, Optional, NamedTuple
 
 from BaseClasses import MultiWorld, Region, Location, CollectionState
 from worlds.phoa import get_location_data, PhoaOptions
@@ -15,10 +15,10 @@ class PhoaExit(NamedTuple):
     one_way: bool = False
 
 
-def get_exit_data(player: int) -> List[PhoaExit]:
+def get_exit_data(player: int) -> list[PhoaExit]:
     logic = PhoaLogic(player)
 
-    exits: List[PhoaExit] = [
+    exits: list[PhoaExit] = [
         # Menu
         PhoaExit(
             name="game_start",
@@ -233,7 +233,7 @@ def create_location(player: int, location_name: str, location_data: PhoaLocation
     return location
 
 
-def connect_regions(world: MultiWorld, player: int, exits: List[PhoaExit]):
+def connect_regions(world: MultiWorld, player: int, exits: list[PhoaExit]):
     for regionExit in exits:
         connect(world, player, regionExit.region, regionExit.connection, regionExit.rule, regionExit.name)
 
