@@ -7,35 +7,40 @@ class PhoaLogic:
     def __init__(self, player: int):
         self.player = player
 
-    def has_anuri_temple_access(self, state: CollectionState) -> bool:
-        return state.has_any({"Slingshot", "Bombs"}, self.player)
-
     def has_bat(self, state: CollectionState) -> bool:
-        return state.has_any({"Wooden Bat", "Composite Bat"}, self.player)
+        return (state.has_any({"Wooden Bat", "Composite Bat"}, self.player)
+                or state.has("Progressive Bat", self.player, 1))
 
     def has_slingshot(self, state: CollectionState) -> bool:
-        return state.has_any({"Slingshot", "Treble Shot"}, self.player)
+        return (state.has_any({"Slingshot", "Treble Shot"}, self.player)
+                or state.has("Progressive Slingshot", self.player, 1))
 
     def has_bombs(self, state: CollectionState) -> bool:
-        return state.has_any({"Bombs", "Remote Bombs"}, self.player)
+        return (state.has_any({"Bombs", "Remote Bombs"}, self.player)
+                or state.has("Progressive Bombs", self.player, 1))
 
     def has_crossbow(self, state: CollectionState) -> bool:
-        return state.has_any({"Civilian Crossbow", "Double Crossbow"}, self.player)
+        return (state.has_any({"Civilian Crossbow", "Double Crossbow"}, self.player)
+                or state.has("Progressive Crossbow", self.player, 1))
 
     def has_sonic_spear(self, state: CollectionState) -> bool:
-        return state.has("Sonic Spear", self.player)
+        return (state.has("Sonic Spear", self.player)
+                or state.has("Progressive Spear", self.player, 1))
 
     def has_fishing_rod(self, state: CollectionState) -> bool:
-        return state.has_any({"Fishing Rod", "Serpent Rod"}, self.player)
+        return (state.has_any({"Fishing Rod", "Serpent Rod"}, self.player)
+                or state.has("Progressive Fishing Rod", self.player, 1))
 
     def has_light_source(self, state: CollectionState) -> bool:
-        return state.has_any({"Refurbished Crank Lamp", "Crank Lamp", "Neutron Lamp"}, self.player)
+        return (state.has_any({"Refurbished Crank Lamp", "Crank Lamp", "Neutron Lamp"}, self.player)
+                or state.has("Progressive Crank Lamp", self.player, 1))
 
     def has_anuri_pearlstones(self, amount: int, state: CollectionState) -> bool:
         return state.has("Anuri Pearlstone", self.player, amount)
 
     def can_use_spear_bomb(self, state: CollectionState) -> bool:
-        return state.has_all({"Sonic Spear", "Spear Bomb"}, self.player)
+        return (state.has_all({"Sonic Spear", "Spear Bomb"}, self.player)
+                or state.has("Progressive Spear", self.player, 2))
 
     def has_explosives(self, state: CollectionState) -> bool:
         return (self.has_bombs(state)

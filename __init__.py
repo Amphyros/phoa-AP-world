@@ -1,4 +1,5 @@
-from BaseClasses import Tutorial, ItemClassification, Item
+from BaseClasses import Tutorial, Item
+from BaseClasses import ItemClassification as IC
 from worlds.AutoWorld import WebWorld, World
 from .Options import PhoaOptions
 from .Locations import PhoaLocation, get_location_data
@@ -25,13 +26,22 @@ class PhoaWorld(World):
     location_name_to_id = {name: data.address for name, data in get_location_data(-1, None).items()}
     item_name_to_id = {name: data.code for name, data in item_table.items()}
 
+    progressive_item_classifications_overrides: list[str] = []
+
+    def generate_early(self) -> None:
+        self._determine_item_classifications_overrides()
+
     def create_item(self, name: str) -> PhoaItem:
         return PhoaItem(name, item_table[name].type, item_table[name].code, self.player)
 
     def create_items(self):
         self.create_and_assign_event_items()
 
-        item_pool_strings: list[str] = get_item_pool(self, get_location_data(self.player, self.options))
+        item_pool_strings, precollected_items = get_item_pool(self, get_location_data(self.player, self.options))
+
+        for item in precollected_items:
+            self.multiworld.push_precollected(self.create_item(item))
+
         item_pool: list[PhoaItem] = []
 
         for item_name in item_pool_strings:
@@ -54,9 +64,15 @@ class PhoaWorld(World):
         for location in self.multiworld.get_locations(self.player):
             if location.address is None:
                 location.place_locked_item(
-                    Item(location.name, ItemClassification.progression, None, self.player))
+                    Item(location.name, IC.progression, None, self.player))
 
     def fill_slot_data(self):
         return {
             "DeathLink": self.options.death_link.value,
         }
+
+    def _determine_item_classifications_overrides(self) -> None:
+        options = self.options
+
+        if not options.start_with_wooden_bat:
+            self.progressive_item_classifications_overrides.append("Progressive Bat")
