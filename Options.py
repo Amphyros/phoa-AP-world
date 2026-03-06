@@ -1,5 +1,7 @@
 from dataclasses import dataclass
-from Options import Toggle, PerGameCommonOptions, DeathLink, Choice, DefaultOnToggle
+from typing import Any
+
+from Options import Toggle, PerGameCommonOptions, DeathLink, Choice, DefaultOnToggle, OptionGroup
 
 
 class EnableNpcGifts(Toggle):
@@ -36,6 +38,11 @@ class StartWithWoodenBat(DefaultOnToggle):
     display_name = "Start with wooden bat"
 
 
+class OpenPanseloGates(Toggle):
+    """Opens the Panselo gates by default. The gates require a weapon to be opened. Enabling this setting will increase the amount of starting locations"""
+    display_name = "Open Panselo gates"
+
+
 class UpgradableBats(Toggle):
     """Instead of finding bats of random tiers, upgrade up one tier every time you find a bat"""
     display_name = "Upgradable bats"
@@ -59,7 +66,47 @@ class PhoaOptions(PerGameCommonOptions):
     enable_small_animal_drops: EnableSmallAnimalDrops
     enable_rin_locations: EnableRinLocations
     start_with_wooden_bat: StartWithWoodenBat
+    open_panselo_gates: OpenPanseloGates
     upgradable_bats: UpgradableBats
     upgradable_tools: UpgradableTools
     upgradable_spear: UpgradableSpear
     death_link: DeathLink
+
+    def get_slot_data_dict(self) -> dict[str, Any]:
+        return self.as_dict(
+            "enable_npc_gifts",
+            "enable_misc",
+            "shop_sanity",
+            "enable_small_animal_drops",
+            "enable_rin_locations",
+            "start_with_wooden_bat",
+            "open_panselo_gates",
+            "upgradable_bats",
+            "upgradable_tools",
+            "upgradable_spear",
+            "death_link"
+        )
+
+
+phoa_option_groups: list[OptionGroup] = [
+    OptionGroup(
+        "Progress Locations",
+        [
+            EnableNpcGifts,
+            EnableMisc,
+            EnableShopSanity,
+            EnableSmallAnimalDrops,
+            EnableRinLocations,
+        ],
+    ),
+    OptionGroup(
+        "Item Randomizer Modes",
+        [
+            StartWithWoodenBat,
+            OpenPanseloGates,
+            UpgradableBats,
+            UpgradableTools,
+            UpgradableSpear,
+        ],
+    ),
+]

@@ -1,7 +1,7 @@
 from BaseClasses import Tutorial, Item
 from BaseClasses import ItemClassification as IC
 from worlds.AutoWorld import WebWorld, World
-from .Options import PhoaOptions
+from .Options import PhoaOptions, phoa_option_groups
 from .Locations import PhoaLocation, get_location_data
 from .Items import PhoaItem, item_table, PhoaItemData, get_item_pool
 from .Regions import create_regions_and_locations
@@ -16,6 +16,7 @@ class PhoaWebWorld(WebWorld):
         link="guide/en",
         authors=["Lenamphy"]
     )]
+    option_groups = phoa_option_groups
 
 
 class PhoaWorld(World):
@@ -67,9 +68,7 @@ class PhoaWorld(World):
                     Item(location.name, IC.progression, None, self.player))
 
     def fill_slot_data(self):
-        return {
-            "DeathLink": self.options.death_link.value,
-        }
+        return self.options.get_slot_data_dict()
 
     def _determine_item_classifications_overrides(self) -> None:
         options = self.options

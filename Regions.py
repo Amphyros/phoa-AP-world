@@ -15,7 +15,7 @@ class PhoaExit(NamedTuple):
     one_way: bool = False
 
 
-def get_exit_data(player: int) -> list[PhoaExit]:
+def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
     logic = PhoaLogic(player)
 
     exits: list[PhoaExit] = [
@@ -31,7 +31,7 @@ def get_exit_data(player: int) -> list[PhoaExit]:
             name="panselo_gate",
             region="panselo_village",
             connection="panselo_region",
-            rule=lambda state: logic.can_deal_damage(state),
+            rule=lambda state: logic.can_deal_damage(state) or options.open_panselo_gates,
         ),
         PhoaExit(
             name="rutea's_lab_gate",
@@ -204,7 +204,7 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
 
     world.regions += regions
 
-    connect_regions(world, player, get_exit_data(player))
+    connect_regions(world, player, get_exit_data(player, options))
 
 
 def create_region(world: MultiWorld, player: int, locations_per_region: Dict[str, Dict[str, PhoaLocationData]],
