@@ -15,6 +15,19 @@ class PhoaLogic:
         return (state.has_any({"Slingshot", "Treble Shot"}, self.player)
                 or state.has("Progressive Slingshot", self.player, 1))
 
+
+
+
+
+    # Additions to logic
+
+    def has_flute(self, state: CollectionState) -> bool:
+        return state.has_any({"Flute", "Spheralis"}, self.player)
+
+
+
+
+
     def has_bombs(self, state: CollectionState) -> bool:
         return (state.has_any({"Bombs", "Remote Bombs"}, self.player)
                 or state.has("Progressive Bombs", self.player, 1))
