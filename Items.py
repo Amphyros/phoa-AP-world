@@ -38,8 +38,8 @@ item_table: Dict[str, PhoaItemData] = {
     "Civilian Crossbow":        PhoaItemData(37,    1,  IC.progression),
     "Double Crossbow":          PhoaItemData(38,    1,  IC.progression),
     "Refurbished Crank Lamp":   PhoaItemData(39,    1,  IC.progression),
-    "Fishing Rod":              PhoaItemData(40,    1,  IC.progression),  # Only if fishing spots are included?
-    "Serpent Rod":              PhoaItemData(41,    1,  IC.progression),
+    "Fishing Rod":              PhoaItemData(40,    1,  IC.useful),
+    "Serpent Rod":              PhoaItemData(41,    1,  IC.useful),
     "Kobold Blaster":           PhoaItemData(42,    1,  IC.progression),
     "Neutron Lamp":             PhoaItemData(43,    1,  IC.progression),  # Ignore light requirement option?
     "Remote Bombs":             PhoaItemData(44,    1,  IC.progression),
@@ -68,7 +68,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Progressive Crank Lamp":   PhoaItemData(296,   2,  IC.progression),  # Ignore light requirement option?
     "Progressive Spear":        PhoaItemData(297,   2,  IC.progression),
     "Progressive Crossbow":     PhoaItemData(298,   2,  IC.progression),
-    "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.progression),
+    "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.useful),
     "5 Rin":                    PhoaItemData(305,   1,  IC.filler),
     "9 Rin":                    PhoaItemData(309,   1,  IC.filler),
     "15 Rin":                   PhoaItemData(315,   3,  IC.filler),
@@ -79,10 +79,10 @@ item_table: Dict[str, PhoaItemData] = {
 # @formatter:on
 
 item_inclusion_priority: list[str] = \
-    ["Progressive Bat", "Composite Bat", "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin",
-     "15 Rin", "Pumpkin Muffin", "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Fruit Jam",
-     "Berry Fruit", "Perro Egg", "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog", "Lunar Vase", "Moonstone",
-     "Mysterious Golem Head"]
+    ["Progressive Bat", "Composite Bat", "Progressive Fishing Rod", "Serpent Rod", "Fishing Rod", "Energy Gem",
+     "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Pumpkin Muffin", "Cooked Toad Leg",
+     "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Fruit Jam", "Berry Fruit", "Perro Egg", "Doki Herb",
+     "Dandelion", "9 Rin", "5 Rin", "Lunar Frog", "Lunar Vase", "Moonstone", "Mysterious Golem Head"]
 
 
 def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) -> tuple[list[str], list[str]]:
@@ -102,7 +102,7 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     for item_name, item_data in local_item_table.items():
         if item_data.type == IC.progression or item_name in world.progressive_item_classifications_overrides:
             progressive_items.extend([item_name] * item_data.amount)
-        elif item_data.type == IC.useful:  # and (item_name is not "Heart Ruby" or item_name is not "Energy Gem")
+        elif item_data.type == IC.useful:
             useful_items.extend([item_name] * item_data.amount)
 
     items_from_locations: list[str] = [location.vanillaItem for location in locations.values()]
@@ -173,6 +173,15 @@ def filter_upgradable_items(items, options) -> dict[str, PhoaItemData]:
         ]),
         (options.upgradable_spear, ["Sonic Spear", "Spear Bomb"]),
         (not options.upgradable_spear, ["Progressive Spear"]),
+        (not options.enable_heart_ruby_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Heart Ruby"]),
+        (not options.enable_energy_gem_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Energy Gem"]),
+        (not options.enable_moonstone_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Moonstone"]),
     ]
 
     for condition, names in removal_map:

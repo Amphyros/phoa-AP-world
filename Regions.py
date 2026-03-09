@@ -171,7 +171,8 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="anuri_temple_to_urn_room",
             region="anuri_temple(post_pond)",
             connection="anuri_temple(urn_room)",
-            rule=lambda state: logic.has_bombs(state),
+            rule=lambda state: logic.has_bombs(state)
+                               or state.has("Hover Boots", player),
         ),
     ]
 
