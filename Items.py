@@ -3,6 +3,7 @@ from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
 from Options import OptionError
 from worlds.phoa.Locations import PhoaLocationData
+from . import PhoaOptions
 
 if TYPE_CHECKING:
     from .. import PhoaWorld
@@ -78,6 +79,16 @@ item_table: Dict[str, PhoaItemData] = {
 }
 # @formatter:on
 
+upgrade_groups = [
+    ("upgradable_bats", "Progressive Bat", ["Wooden Bat", "Composite Bat"]),
+    ("upgradable_tools", "Progressive Slingshot", ["Slingshot", "Treble Shot"]),
+    ("upgradable_tools", "Progressive Bombs", ["Bombs", "Remote Bombs"]),
+    ("upgradable_tools", "Progressive Crank Lamp", ["Crank Lamp", "Neutron Lamp"]),
+    ("upgradable_tools", "Progressive Crossbow", ["Civilian Crossbow", "Double Crossbow"]),
+    ("upgradable_tools", "Progressive Fishing Rod", ["Fishing Rod", "Serpent Rod"]),
+    ("upgradable_spear", "Progressive Spear", ["Sonic Spear", "Spear Bomb"]),
+]
+
 item_inclusion_priority: list[str] = \
     ["Progressive Bat", "Composite Bat", "Progressive Fishing Rod", "Serpent Rod", "Fishing Rod", "Energy Gem",
      "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Pumpkin Muffin", "Cooked Toad Leg",
@@ -96,8 +107,8 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     location_count = len(locations)
 
     # Initialize item pools based on classifications
-    progressive_items = []
-    useful_items = []
+    progressive_items: list[str] = []
+    useful_items: list[str] = []
 
     for item_name, item_data in local_item_table.items():
         if item_data.type == IC.progression or item_name in world.progressive_item_classifications_overrides:
@@ -105,7 +116,15 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
         elif item_data.type == IC.useful:
             useful_items.extend([item_name] * item_data.amount)
 
-    items_from_locations: list[str] = [location.vanillaItem for location in locations.values()]
+    # Remove progressive and useful items from the items_from_locations
+    upgrade_map = build_upgrade_map(world.options)
+    items_from_locations: list[str] = [
+        upgrade_map.get(location.vanillaItem, location.vanillaItem)
+        for location in locations.values()
+    ]
+
+    items_from_locations = [item for item in items_from_locations if item not in set(progressive_items)]
+    items_from_locations = [item for item in items_from_locations if item not in set(useful_items)]
 
     # Filter out the Wooden Bat or a Progressive Bat and add it to precollected items if starting with one
     precollected_items: list[str] = []
@@ -123,10 +142,6 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
             f"Not enough progress locations({str(location_count)}) "
             f"to place all progressive items({str(len(progressive_items))})"
         )
-
-    # Remove progressive and useful items from the items_from_locations
-    items_from_locations = [item for item in items_from_locations if item not in set(progressive_items)]
-    items_from_locations = [item for item in items_from_locations if item not in set(useful_items)]
 
     # Sort items on importance
     def sort_by_priority(items, priority_list: list[str]) -> list[str]:
@@ -153,26 +168,15 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     return item_pool, precollected_items
 
 
-def filter_upgradable_items(items, options) -> dict[str, PhoaItemData]:
+def filter_upgradable_items(items, options: PhoaOptions) -> dict[str, PhoaItemData]:
+    for option, progressive, bases in upgrade_groups:
+        if getattr(options, option):
+            for base in bases:
+                items.pop(base, None)
+            continue
+        items.pop(progressive, None)
+
     removal_map = [
-        (options.upgradable_bats, ["Wooden Bat", "Composite Bat"]),
-        (not options.upgradable_bats, ["Progressive Bat"]),
-        (options.upgradable_tools, [
-            "Slingshot", "Treble Shot",
-            "Bombs", "Remote Bombs",
-            "Crank Lamp", "Neutron Lamp",
-            "Civilian Crossbow", "Double Crossbow",
-            "Fishing Rod", "Serpent Rod",
-        ]),
-        (not options.upgradable_tools, [
-            "Progressive Slingshot",
-            "Progressive Bombs",
-            "Progressive Crank Lamp",
-            "Progressive Crossbow",
-            "Progressive Fishing Rod",
-        ]),
-        (options.upgradable_spear, ["Sonic Spear", "Spear Bomb"]),
-        (not options.upgradable_spear, ["Progressive Spear"]),
         (not options.enable_heart_ruby_locations
          and not options.keep_excluded_status_upgrades_in_item_pool,
          ["Heart Ruby"]),
@@ -190,3 +194,14 @@ def filter_upgradable_items(items, options) -> dict[str, PhoaItemData]:
                 items.pop(name, None)
 
     return items
+
+
+def build_upgrade_map(options: PhoaOptions) -> dict[str, str]:
+    mapping = {}
+
+    for option, progressive, bases in upgrade_groups:
+        if getattr(options, option):
+            for base in bases:
+                mapping[base] = progressive
+
+    return mapping

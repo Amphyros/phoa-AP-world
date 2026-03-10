@@ -141,6 +141,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="25 Rin",
         ),
+        "Panselo Village - Warehouse Free standing item": PhoaLocationData(
+            region="panselo_village",
+            address=7676080,
+            flags=PhoaFlag.MAINQUEST,
+            vanillaItem="Wooden Bat",
+        ),
         "Panselo Village - Jon's Potato": PhoaLocationData(
             region="panselo_village",
             address=7676069,
