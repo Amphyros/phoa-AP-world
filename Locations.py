@@ -21,6 +21,7 @@ class PhoaFlag(Flag):
     SMALLANIMALS = auto()
     RINCHESTS = auto()
     RINCONTAINERS = auto()
+    GEOCHALLENGE = auto()
 
 
 class PhoaLocation(Location):
@@ -81,6 +82,55 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.SHOPSANITY,
             vanillaItem="Panselo Potato",
         ),
+        "Panselo Village - Panselo Shop Box 1 after abduction": PhoaLocationData(
+            region="panselo_village",
+            address=7676084,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Panselo Potato",
+        ),
+        "Panselo Village - Panselo Shop Box 2 after abduction": PhoaLocationData(
+            region="panselo_village",
+            address=7676085,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Perro Egg",
+        ),
+        "Panselo Village - Panselo Shop Box 3 after abduction": PhoaLocationData(
+            region="panselo_village",
+            address=7676086,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Fruit Jam",
+        ),
+        "Panselo Village - Panselo Shop Box 4 after abduction": PhoaLocationData(
+            region="panselo_village",
+            address=7676087,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Milk",
+        ),
+        "Panselo Village - Panselo Shop Box 5 after abduction": PhoaLocationData(
+            region="panselo_village",
+            address=7676088,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Panselo Potato",
+        ),
+        "Panselo Village - Dojo high up punchbag": PhoaLocationData(
+            region="panselo_village",
+            address=7676082,
+            rule=lambda state: logic.can_deal_damage(state),
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="20 Rin",
+        ),
+        "Panselo Village - Play Prelude of Panselo": PhoaLocationData(
+            region="panselo_village",
+            address=7676089,
+            rule=lambda state: logic.has_music_instrument(state),
+            flags=PhoaFlag.NPCGIFTS,  # Sidequest?
+            vanillaItem="Prelude of Panselo",
+        ),
         "Panselo Village - Inside coop": PhoaLocationData(
             region="panselo_village",
             address=7676030,
@@ -134,6 +184,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676078,
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="20 Rin",
+        ),
+        "Panselo Village - Amanda's gift lunch": PhoaLocationData(
+            region="panselo_village",
+            address=7676090,
+            rule=lambda state: state.has("Slargummy boss defeated", player),
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Potato Lunch",
         ),
         "Panselo Village - Warehouse Chest": PhoaLocationData(
             region="panselo_village",
@@ -189,6 +246,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.MISC,
             vanillaItem="Dandelion",
         ),
+        "Panselo Region - GEO house reward": PhoaLocationData(
+            region="panselo_region",
+            address=7676083,
+            flags=PhoaFlag.GEOCHALLENGE,
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("GEO Song", player),
+            vanillaItem="Dandelion",
+        ),
         "Panselo Region - Overworld encounter near Sunflower Road": PhoaLocationData(
             region="panselo_region",
             address=7676005,
@@ -203,13 +268,21 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
-        "Panselo Region - Northeastern treetops": PhoaLocationData(
+        "Panselo Region - Northeastern treetops right stone pot": PhoaLocationData(
             region="panselo_region",
             address=7676003,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state)
                                or state.has("Hover Boots", player),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
+        ),
+        "Panselo Region - Northeastern treetops left stone pot": PhoaLocationData(
+            region="panselo_region",
+            address=7676081,
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+                               or state.has("Hover Boots", player),
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="30 Rin",
         ),
         "Doki Forest - Cave guarded by Gummies - First item": PhoaLocationData(
             region="panselo_region",
@@ -495,7 +568,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
-        "Anuri Temple Basement - Defeat the glowing slargummy": PhoaLocationData(
+        "Anuri Temple Basement - Defeat the glowing Slargummy": PhoaLocationData(
             region="anuri_temple(basement)",
             address=7676023,
             rule=lambda state: state.has("Crank Lamp", player),
@@ -546,6 +619,11 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="anuri_temple(main)",
             address=None,
         ),
+        "Slargummy boss defeated": PhoaLocationData(
+            region="anuri_temple(anuri_temple(slargummy_boss)",
+            address=None,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
+        ),
         "Strange Urn": PhoaLocationData(
             region="anuri_temple(urn_room)",
             address=None,
@@ -568,6 +646,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
         (options.enable_rin_locations <= 0, PhoaFlag.RINCHESTS),
         (options.enable_rin_locations <= 1, PhoaFlag.RINCONTAINERS),
+        (options.enable_geo_challenge_rewards <= 0, PhoaFlag.GEOCHALLENGE)
     ]
 
     for option, flag in filters:

@@ -74,6 +74,11 @@ class EnableRinLocations(Choice):
     default = 0
 
 
+class EnableGEOChallengeRewards(Toggle):
+    """Includes the rewards you get from completing GEO challenges"""
+    display_name = "Include GEO challenge rewards"
+
+
 class StartWithWoodenBat(DefaultOnToggle):
     """Start out with wooden bat"""
     display_name = "Start with wooden bat"
@@ -113,6 +118,7 @@ class PhoaOptions(PerGameCommonOptions):
     shop_sanity: EnableShopSanity
     enable_small_animal_drops: EnableSmallAnimalDrops
     enable_rin_locations: EnableRinLocations
+    enable_geo_challenge_rewards: EnableGEOChallengeRewards
     start_with_wooden_bat: StartWithWoodenBat
     upgradable_bats: UpgradableBats
     upgradable_tools: UpgradableTools
@@ -135,6 +141,7 @@ class PhoaOptions(PerGameCommonOptions):
             "shop_sanity",
             "enable_small_animal_drops",
             "enable_rin_locations",
+            "enable_geo_challenge_rewards",
             "start_with_wooden_bat",
             "upgradable_bats",
             "upgradable_tools",
@@ -161,6 +168,7 @@ phoa_option_groups: list[OptionGroup] = [
             EnableShopSanity,
             EnableSmallAnimalDrops,
             EnableRinLocations,
+            EnableGEOChallengeRewards,
         ],
     ),
     OptionGroup(

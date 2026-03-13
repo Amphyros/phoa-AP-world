@@ -31,6 +31,9 @@ class PhoaLogic:
         return (state.has_any({"Fishing Rod", "Serpent Rod"}, self.player)
                 or state.has("Progressive Fishing Rod", self.player, 1))
 
+    def has_music_instrument(self, state: CollectionState):
+        return state.has_any({"Bandit's Flute", "Spheralis"}, self.player)
+
     def has_light_source(self, state: CollectionState) -> bool:
         return (state.has_any({"Refurbished Crank Lamp", "Crank Lamp", "Neutron Lamp"}, self.player)
                 or state.has("Progressive Crank Lamp", self.player, 1))
@@ -47,12 +50,13 @@ class PhoaLogic:
                 or self.can_use_spear_bomb(state)
                 or state.has("Kobold Blaster", self.player))
 
-    def can_deal_damage(self, state: CollectionState) -> bool:
+    def can_deal_damage(self, state: CollectionState, exclude_hover_boots=False) -> bool:
         return (self.has_bat(state)
                 or self.has_slingshot(state)
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
+                or (state.has("Hover Boots", self.player) and not exclude_hover_boots)
                 or state.has_any({"Refurbished Crank Lamp", "Kobold Blaster"}, self.player))
 
     def can_reasonably_kill_enemies(self, state: CollectionState) -> bool:
@@ -61,7 +65,7 @@ class PhoaLogic:
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
-                or state.has_any({"Kobold Blaster"}, self.player))
+                or state.has_any({"Kobold Blaster", "Hover Boots"}, self.player))
 
     def can_hit_switch_from_a_distance(self, state: CollectionState, bombless: bool = False) -> bool:
         return (self.has_slingshot(state)
