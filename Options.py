@@ -61,7 +61,7 @@ class EnableShopSanity(Toggle):
 
 
 class EnableSmallAnimalDrops(Toggle):
-    """Includes drops from animals like lizards, mice, scorpions and birds"""
+    """Includes drops from animals like lizards, mice and scorpions"""
     display_name = "Include small animal drops"
 
 

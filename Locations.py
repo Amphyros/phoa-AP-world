@@ -55,6 +55,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Watchtower (West) - Lizard": PhoaLocationData(
             region="panselo_village",
             address=7676041,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -305,12 +306,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - Cave guarded by Gummies - Lizard": PhoaLocationData(
             region="panselo_region",
             address=7676042,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
         "Doki Forest - Lizard at climbable roots": PhoaLocationData(
             region="panselo_region",
             address=7676043,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -330,18 +333,21 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - Lizard in alcove": PhoaLocationData(
             region="panselo_region",
             address=7676044,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
         "Doki Forest - Campfire cave - First Lizard": PhoaLocationData(
             region="panselo_region",
             address=7676045,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
         "Doki Forest - Campfire cave - Second Lizard": PhoaLocationData(
             region="panselo_region",
             address=7676046,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -380,6 +386,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard at top of climbable vines at entrance": PhoaLocationData(
             region="anuri_temple(main_entrance)",
             address=7676047,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -392,6 +399,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard behind Bombable Blocks": PhoaLocationData(
             region="anuri_temple(top_floor)",
             address=7676048,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -404,12 +412,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard left of Anuri throne": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676050,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
         "Anuri Temple - Lizard right of Anuri throne": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676049,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -422,6 +432,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard at the end of treasure room": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676051,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -448,6 +459,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Side entrance room - First Lizard": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676055,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -460,6 +472,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard in water steps room": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676054,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -472,6 +485,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Stackable pots room - Lizard": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676053,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -493,6 +507,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.DUNGEONITEM,
             vanillaItem="Anuri Pearlstone",
         ),
+        "Anuri Temple - Mouse in pot in many pots room": PhoaLocationData(
+            region="anuri_temple(main)",
+            address=7676091,
+            rule=lambda state: logic.has_bat(state),
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
         "Anuri Temple - Skeleton at bottom of right elevator room": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676064,
@@ -502,6 +523,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Side entrance room - Second Lizard": PhoaLocationData(
             region="anuri_temple(side_entrance)",
             address=7676056,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -526,6 +548,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard in movable bridge room": PhoaLocationData(
             region="anuri_temple(moveable_bridge_area)",
             address=7676052,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -603,8 +626,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Lizard at treasure room before century toad": PhoaLocationData(
             region="anuri_temple(post_pond)",
             address=7676057,
-            flags=PhoaFlag.SMALLANIMALS,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
         "Anuri Temple - Dive down in long vertical room": PhoaLocationData(
