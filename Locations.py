@@ -196,6 +196,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Warehouse Chest": PhoaLocationData(
             region="panselo_village",
             address=7676062,
+            rule=lambda state: logic.can_break_big_box_with_tools(state),
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="25 Rin",
         ),
@@ -226,6 +227,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Watchtower (East) item up top": PhoaLocationData(
             region="panselo_village",
             address=7676000,
+            rule=lambda state: logic.can_break_big_box_with_tools(state, exclude_spear=True),
             flags=PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
         ),
@@ -273,7 +275,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="panselo_region",
             address=7676003,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state)
-                               or state.has("Hover Boots", player),
+                               or state.has("Rocket Boots", player),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
@@ -281,7 +283,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="panselo_region",
             address=7676081,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state)
-                               or state.has("Hover Boots", player),
+                               or state.has("Rocket Boots", player),
             flags=PhoaFlag.RINCONTAINERS,
             vanillaItem="30 Rin",
         ),

@@ -31,7 +31,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="panselo_gate",
             region="panselo_village",
             connection="panselo_region",
-            rule=lambda state: logic.can_deal_damage(state, exclude_hover_boots=True) or options.open_panselo_gates,
+            rule=lambda state: logic.can_deal_damage(state, exclude_rocket_boots=True) or options.open_panselo_gates,
         ),
         PhoaExit(
             name="rutea's_lab_gate",
@@ -76,7 +76,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="anuri_temple(main_entrance)",
             connection="anuri_temple(top_floor)",
             rule=lambda state: logic.has_explosives(state)
-                               or (logic.has_sonic_spear(state) and state.has("Hover Boots", player)),
+                               or (logic.has_sonic_spear(state) and state.has("Rocket Boots", player)),
         ),
         # anuri_temple(top_floor)
         PhoaExit(
@@ -119,7 +119,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="anuri_temple(main)",
             connection="anuri_temple(moveable_bridge_area)",
             rule=lambda state: logic.can_hit_switch_from_a_distance(state)
-                               or state.has("Hover Boots", player),
+                               or state.has("Rocket Boots", player),
         ),
         PhoaExit(
             name="anuri_temple_to_slargummy",
@@ -172,7 +172,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="anuri_temple(post_pond)",
             connection="anuri_temple(urn_room)",
             rule=lambda state: logic.has_bombs(state)
-                               or state.has("Hover Boots", player),
+                               or state.has("Rocket Boots", player),
         ),
     ]
 
