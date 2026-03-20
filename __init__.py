@@ -1,3 +1,5 @@
+import time
+
 from BaseClasses import Tutorial, Item
 from BaseClasses import ItemClassification as IC
 from worlds.AutoWorld import WebWorld, World
@@ -33,7 +35,10 @@ class PhoaWorld(World):
         self._determine_item_classifications_overrides()
 
     def create_item(self, name: str) -> PhoaItem:
-        return PhoaItem(name, item_table[name].type, item_table[name].code, self.player)
+        item_classification = IC.progression \
+            if name in self.progressive_item_classifications_overrides \
+            else item_table[name].type
+        return PhoaItem(name, item_classification, item_table[name].code, self.player)
 
     def create_items(self):
         self.create_and_assign_event_items()
@@ -49,6 +54,9 @@ class PhoaWorld(World):
             item_pool.append(self.create_item(item_name))
 
         self.multiworld.itempool += item_pool
+        # for itemyea in self.multiworld.itempool:
+        #     print(itemyea.name, itemyea.classification)
+        # time.sleep(1200)
 
     def create_regions(self):
         create_regions_and_locations(self.multiworld, self.player, self.options)

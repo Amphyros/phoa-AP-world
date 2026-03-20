@@ -135,7 +135,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             rule=lambda state: logic.has_explosives(state),
         ),
         PhoaExit(
-            name="anuri_temple_side_exit",
+            name="anuri_temple_side_to_main",
             region="anuri_temple(side_entrance)",
             connection="anuri_temple(main)",
             rule=lambda state: state.has("Anuri Temple - Side entrance gate opened", player),

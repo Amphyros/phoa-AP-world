@@ -652,7 +652,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=None,
         ),
         "Slargummy boss defeated": PhoaLocationData(
-            region="anuri_temple(anuri_temple(slargummy_boss)",
+            region="anuri_temple(slargummy_boss)",
             address=None,
             rule=lambda state: logic.can_reasonably_kill_enemies(state),
         ),

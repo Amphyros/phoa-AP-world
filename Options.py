@@ -71,7 +71,7 @@ class EnableRinLocations(Choice):
     option_no = 0
     option_chests_only = 1
     option_everything = 2
-    default = 0
+    default = 1
 
 
 class EnableGEOChallengeRewards(Toggle):
