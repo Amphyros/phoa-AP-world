@@ -353,6 +353,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
+        "Doki Forest - Campfire cave - Pot high up above statue": PhoaLocationData(
+            region="panselo_region",
+            address=7676092,
+            rule=lambda state: logic.has_sonic_spear(state),
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="50 Rin",
+        ),
         "Doki Forest - Shelby's gift for lighting the campfire": PhoaLocationData(
             region="panselo_region",
             address=7676076,

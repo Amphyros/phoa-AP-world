@@ -79,6 +79,7 @@ item_table: Dict[str, PhoaItemData] = {
     "25 Rin":                   PhoaItemData(325,   1,  IC.filler),
     "30 Rin":                   PhoaItemData(330,   1,  IC.filler),
     "35 Rin":                   PhoaItemData(335,   3,  IC.filler),
+    "50 Rin":                   PhoaItemData(350,   1,  IC.filler),
 }
 # @formatter:on
 
