@@ -27,7 +27,7 @@ class EnableMoonstoneLocations(DefaultOnToggle):
 class KeepExcludedStatusUpgradesInItemPool(DefaultOnToggle):
     """When enabled, Heart rubies, Energy gems and Moonstones will stay in the item pool if not included. Filler items are placed at the disabled locations.
     When disabled, these items can be acquired at their vanilla locations"""
-    auto_display_name = "Keep status upgrades and moonstones in item pool when locations are excluded"
+    display_name = "Keep status upgrades and moonstones in item pool when locations are excluded"
 
 
 # class EnableDungeonKeys(DefaultOnToggle):

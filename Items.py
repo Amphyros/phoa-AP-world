@@ -23,7 +23,7 @@ class PhoaItemData(NamedTuple):
 item_table: Dict[str, PhoaItemData] = {
     "Heart Ruby":               PhoaItemData(3,     3,  IC.useful),
     "Energy Gem":               PhoaItemData(4,     2,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     10, IC.filler),
+    "Moonstone":                PhoaItemData(5,     11, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Life Saver":               PhoaItemData(14,    1,  IC.progression),
@@ -79,7 +79,7 @@ item_table: Dict[str, PhoaItemData] = {
     "25 Rin":                   PhoaItemData(325,   1,  IC.filler),
     "30 Rin":                   PhoaItemData(330,   1,  IC.filler),
     "35 Rin":                   PhoaItemData(335,   3,  IC.filler),
-    "50 Rin":                   PhoaItemData(350,   1,  IC.filler),
+    "50 Rin":                   PhoaItemData(350,   2,  IC.filler),
 }
 # @formatter:on
 
@@ -190,6 +190,9 @@ def filter_upgradable_items(items, options: PhoaOptions) -> dict[str, PhoaItemDa
         (not options.enable_moonstone_locations
          and not options.keep_excluded_status_upgrades_in_item_pool,
          ["Moonstone"]),
+        (not options.enable_npc_gifts
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Prelude of Panselo"]),
     ]
 
     for condition, names in removal_map:

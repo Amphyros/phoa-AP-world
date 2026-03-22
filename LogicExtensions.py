@@ -50,14 +50,15 @@ class PhoaLogic:
                 or self.can_use_spear_bomb(state)
                 or state.has("Kobold Blaster", self.player))
 
-    def can_deal_damage(self, state: CollectionState, exclude_rocket_boots=False) -> bool:
+    def can_deal_damage(self, state: CollectionState, exclude_rocket_boots=False, exclude_lamp=False) -> bool:
         return (self.has_bat(state)
                 or self.has_slingshot(state)
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
                 or (state.has("Rocket Boots", self.player) and not exclude_rocket_boots)
-                or state.has_any({"Refurbished Crank Lamp", "Kobold Blaster"}, self.player))
+                or (state.has("Refurbished Crank Lamp", self.player) and not exclude_lamp)
+                or state.has("Kobold Blaster", self.player))
 
     def can_reasonably_kill_enemies(self, state: CollectionState) -> bool:
         return (self.has_bat(state)
@@ -67,7 +68,7 @@ class PhoaLogic:
                 or self.has_sonic_spear(state)
                 or state.has_any({"Kobold Blaster", "Rocket Boots"}, self.player))
 
-    def can_break_big_box_with_tools(self, state: CollectionState, exclude_spear: bool = False) -> bool:
+    def can_break_big_object_with_tools(self, state: CollectionState, exclude_spear: bool = False) -> bool:
         return (self.has_bat(state)
                 or self.has_slingshot(state)
                 or self.has_bombs(state)

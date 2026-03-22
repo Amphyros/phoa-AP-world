@@ -46,7 +46,9 @@ class PhoaWorld(World):
         item_pool_strings, precollected_items = get_item_pool(self, get_location_data(self.player, self.options))
 
         for item in precollected_items:
-            self.multiworld.push_precollected(self.create_item(item))
+            precollected_item = self.create_item(item)
+            precollected_item.classification = IC.progression
+            self.multiworld.push_precollected(precollected_item)
 
         item_pool: list[PhoaItem] = []
 
@@ -54,9 +56,6 @@ class PhoaWorld(World):
             item_pool.append(self.create_item(item_name))
 
         self.multiworld.itempool += item_pool
-        # for itemyea in self.multiworld.itempool:
-        #     print(itemyea.name, itemyea.classification)
-        # time.sleep(1200)
 
     def create_regions(self):
         create_regions_and_locations(self.multiworld, self.player, self.options)
