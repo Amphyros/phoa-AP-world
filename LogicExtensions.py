@@ -23,6 +23,12 @@ class PhoaLogic:
 
     def has_flute(self, state: CollectionState) -> bool:
         return state.has_any({"Flute", "Spheralis"}, self.player)
+    
+    def has_rocket_boots(self, state: CollectionState) -> bool:
+        return state.has({"Rocket Boots"}, self.player)
+    
+    def has_lifesaver(self, state: CollectionState) -> bool:
+        return state.has({"Lifesaver"}, self.player)
 
 
 

@@ -193,6 +193,13 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             group="region",
         ),
         PhoaExit(
+            name="atai_town_to_weapon_shop_dropper",
+            region="atai_town",
+            connection="atai_town(weapons_shop_dropper)",
+            rule=lambda state: logic.has_rocket_boots(state),
+            group="logic",
+        ),
+        PhoaExit(
             name="atai_town_to_shrine",
             region="atai_town",
             connection="atai_town(ouroboros_shrine)",
@@ -228,16 +235,30 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
         ),
         PhoaExit(
             name="adars_cave_to_ancient_vault",
-            region="adars_house",
-            connection="adars_house(ancient_vault)",
+            region="adars_house(cave)",
+            connection="ancient_vault",
             rule=lambda state: state.has("Spheralis", player),
             group="logic",
         ),
+        PhoaExit( # Needs logic for how well equipped the player needs to be for fights
+            name="ancient_vault_to_printer_room",
+            region="ancient_vault",
+            connection="ancient_vault(printer_room)",
+            rule=lambda state: state.has("Spheralis", player),
+            group="logic",
+        ),
+        
+
+
+
+
+
+
         PhoaExit(
             name="atai_region_to_shrine",
             region="atai_region",
             connection="atai_region(ouroboros_shrine)",
-            rule=lambda state: state.has("Spear", "Lifesaver", player),
+            rule=lambda state: state.has("Sonic Spear", "Lifesaver", player),
             group="logic",
         ),
         PhoaExit(
@@ -359,14 +380,14 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="sand_drifts_to_ouroboros_hideout",
             region="sand_drifts",
             connection="ouroboros_hideout(tower)",
-            rule=lambda state: state.has("Spear", "Rocket Boots", player),
+            rule=lambda state: state.has_any("Sonic Spear", "Rocket Boots", player),
             group="logic" # logic and region?
         ),
         PhoaExit(
             name="ouroboros_hideout_to_tower",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(tower)",
-            rule=lambda state: state.has("Spear", player),
+            rule=lambda state: state.has("Sonic Spear", player),
             group="logic"
         ),
         PhoaExit(
@@ -399,7 +420,8 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="ouroboros_hideout_to_infant_drake_arena",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(infant_drake_arena)",
-            group="region"
+            rule=lambda state: logic.can_deal_damage(state),
+            group="logic"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_treasure_room",
@@ -474,13 +496,15 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "atai_region"),
         create_region(world, player, locations_per_region, "adars_house"),
         create_region(world, player, locations_per_region, "adars_house(cave)"),
-        create_region(world, player, locations_per_region, "adars_house(ancient_vault)"),
+        create_region(world, player, locations_per_region, "ancient_vault"),
+        create_region(world, player, locations_per_region, "ancient_vault(printer_room)"),
         create_region(world, player, locations_per_region, "atai_region(ouroboros_shrine)"),
 
 
         # ATAI TOWN
 
         create_region(world, player, locations_per_region, "atai_town"),
+        create_region(world, player, locations_per_region, "atai_town(weapons_shop_dropper)"),
         create_region(world, player, locations_per_region, "atai_town(ouroboros_shrine)"),
         create_region(world, player, locations_per_region, "atai_town(metro)"),
 
