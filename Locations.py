@@ -717,7 +717,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
 
         "Atai Town - Lisa's Item": PhoaLocationData(
             region="atai_town",
-            address=7676232,
+            address=7676332,
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="Lisa's ID Card",
         ),
@@ -1398,7 +1398,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             vanillaItem="Baroque of Battle",
         ),
 
-        # LAST ADDRESS 7676331 
+        # LAST ADDRESS 7676332
 
 
 
