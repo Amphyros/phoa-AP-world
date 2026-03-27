@@ -50,6 +50,11 @@ class EnableNpcGifts(Toggle):
     display_name = "Include NPC gifts"
 
 
+class EnablePlantoRewards(Toggle):
+    """Include rewards from Mr. Planto after giving them food units"""
+    display_name = "Include Planto rewards"
+
+
 class EnableMisc(Toggle):
     """Include miscellaneous locations and items"""
     display_name = "Include miscellaneous"
@@ -114,6 +119,7 @@ class PhoaOptions(PerGameCommonOptions):
     enable_lunar_artifacts_locations: EnableLunarArtifactLocations
     enable_fishing_spots: EnableFishingSpots
     enable_npc_gifts: EnableNpcGifts
+    enable_planto_rewards: EnablePlantoRewards
     enable_misc: EnableMisc
     shop_sanity: EnableShopSanity
     enable_small_animal_drops: EnableSmallAnimalDrops
@@ -137,6 +143,7 @@ class PhoaOptions(PerGameCommonOptions):
             "enable_lunar_artifacts_locations",
             "enable_fishing_spots",
             "enable_npc_gifts",
+            "enable_planto_rewards",
             "enable_misc",
             "shop_sanity",
             "enable_small_animal_drops",
@@ -164,6 +171,7 @@ phoa_option_groups: list[OptionGroup] = [
             EnableLunarArtifactLocations,
             EnableFishingSpots,
             EnableNpcGifts,
+            EnablePlantoRewards,
             EnableMisc,
             EnableShopSanity,
             EnableSmallAnimalDrops,

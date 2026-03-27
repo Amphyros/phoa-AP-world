@@ -21,9 +21,9 @@ class PhoaItemData(NamedTuple):
 
 # @formatter:off
 item_table: Dict[str, PhoaItemData] = {
-    "Heart Ruby":               PhoaItemData(3,     3,  IC.useful),
-    "Energy Gem":               PhoaItemData(4,     2,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     11, IC.filler),
+    "Heart Ruby":               PhoaItemData(3,     5,  IC.useful),
+    "Energy Gem":               PhoaItemData(4,     4,  IC.useful),
+    "Moonstone":                PhoaItemData(5,     15, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Life Saver":               PhoaItemData(14,    1,  IC.progression),
@@ -49,10 +49,15 @@ item_table: Dict[str, PhoaItemData] = {
     "Cooked Toad Leg":          PhoaItemData(49,    1,  IC.filler),
     "Berry Fruit":              PhoaItemData(50,    1,  IC.filler),
     "Perro Egg":                PhoaItemData(52,    3,  IC.filler),
+    "Nectear":                  PhoaItemData(53,    13, IC.filler),
+    "Honey Brew":               PhoaItemData(54,    1,  IC.filler),
     "Fruit Jam":                PhoaItemData(57,    2,  IC.filler),
     "Potato Lunch":             PhoaItemData(59,    1,  IC.filler),
-    "Cheese":                   PhoaItemData(64,    1,  IC.filler),
+    "Turtle":                   PhoaItemData(63,    1,  IC.filler),
+    "Cheese":                   PhoaItemData(64,    2,  IC.filler),
     "Milk":                     PhoaItemData(67,    2,  IC.filler),
+    "Raw Meat":                 PhoaItemData(73,    1,  IC.filler),
+    "Honey Drop":               PhoaItemData(89,    2,  IC.filler),
     "Anuri Pearlstone":         PhoaItemData(98,    10, IC.progression),  # Dungeon option?
     "Lunar Frog":               PhoaItemData(99,    1,  IC.filler),
     "Lunar Vase":               PhoaItemData(100,   1,  IC.filler),
@@ -63,8 +68,10 @@ item_table: Dict[str, PhoaItemData] = {
     "GEO Song":                 PhoaItemData(125,   1,  IC.progression),
     "Royal Hymn":               PhoaItemData(126,   1,  IC.progression),
     "Prelude of Panselo":       PhoaItemData(127,   1,  IC.useful),
+    "GEO Ticket":               PhoaItemData(140,   1,  IC.filler),
     "Mysterious Golem Head":    PhoaItemData(166,   1,  IC.filler),
     "Dragon's Scale":           PhoaItemData(185,   1,  IC.filler),
+    "Honey Bun":                PhoaItemData(205,   1,  IC.filler),
     "Progressive Bat":          PhoaItemData(293,   2,  IC.useful),
     "Progressive Slingshot":    PhoaItemData(294,   2,  IC.progression),
     "Progressive Bombs":        PhoaItemData(295,   2,  IC.progression),
@@ -72,14 +79,15 @@ item_table: Dict[str, PhoaItemData] = {
     "Progressive Spear":        PhoaItemData(297,   2,  IC.progression),
     "Progressive Crossbow":     PhoaItemData(298,   2,  IC.progression),
     "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.useful),
+    "1 Rin":                    PhoaItemData(301,   1,  IC.filler),
     "5 Rin":                    PhoaItemData(305,   1,  IC.filler),
     "9 Rin":                    PhoaItemData(309,   1,  IC.filler),
     "15 Rin":                   PhoaItemData(315,   3,  IC.filler),
-    "20 Rin":                   PhoaItemData(320,   3,  IC.filler),
+    "20 Rin":                   PhoaItemData(320,   5,  IC.filler),
     "25 Rin":                   PhoaItemData(325,   1,  IC.filler),
-    "30 Rin":                   PhoaItemData(330,   1,  IC.filler),
-    "35 Rin":                   PhoaItemData(335,   3,  IC.filler),
-    "50 Rin":                   PhoaItemData(350,   2,  IC.filler),
+    "30 Rin":                   PhoaItemData(330,   2,  IC.filler),
+    "35 Rin":                   PhoaItemData(335,   5,  IC.filler),
+    "50 Rin":                   PhoaItemData(350,   3,  IC.filler),
 }
 # @formatter:on
 
@@ -95,9 +103,10 @@ upgrade_groups = [
 
 item_inclusion_priority: list[str] = \
     ["Progressive Bat", "Composite Bat", "Progressive Fishing Rod", "Serpent Rod", "Fishing Rod", "Prelude of Panselo",
-     "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Pumpkin Muffin",
-     "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Fruit Jam", "Berry Fruit", "Perro Egg",
-     "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog", "Lunar Vase", "Moonstone", "Mysterious Golem Head"]
+     "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Honey Brew", "Honey Drop",
+     "Pumpkin Muffin", "Honey Bun", "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Raw Meat",
+     "Fruit Jam", "Berry Fruit", "Perro Egg", "Nectear", "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog",
+     "Lunar Vase", "Moonstone", "Turtle", "Mysterious Golem Head"]
 
 
 def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) -> tuple[list[str], list[str]]:

@@ -16,6 +16,7 @@ class PhoaFlag(Flag):
     LUNARARTIFACT = auto()
     FISHINGSPOT = auto()
     NPCGIFTS = auto()
+    PLANTO = auto()
     MISC = auto()
     SHOPSANITY = auto()
     SMALLANIMALS = auto()
@@ -254,7 +255,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.GEOCHALLENGE,
             rule=lambda state: logic.has_music_instrument(state)
                                and state.has("GEO Song", player),
-            vanillaItem="Dandelion",
+            vanillaItem="GEO Ticket",
         ),
         "Panselo Region - Overworld encounter near Sunflower Road": PhoaLocationData(
             region="panselo_region",
@@ -655,6 +656,245 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.LUNARARTIFACT,
             vanillaItem="Lunar Frog",
         ),
+        "Sunflower Road - East - First item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676094,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - Second item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676095,
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
+        "Sunflower Road - East - Third item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676096,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - First item hanging from sunflower stem": PhoaLocationData(
+            region="panselo_region",
+            address=7676097,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - Fourth item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676098,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - Chest on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676099,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="35 Rin",
+        ),
+        "Sunflower Road - East - Second item hanging from sunflower stem": PhoaLocationData(
+            region="panselo_region",
+            address=7676100,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - Fifth item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676101,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - East - Item high up on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676102,
+            rule=lambda state: state.has("Rocket Boots", player),
+            flags=PhoaFlag.HEARTRUBY,
+            vanillaItem="Heart Ruby",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Item on sunflower leaf on the right": PhoaLocationData(
+            region="panselo_region",
+            address=7676103,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Item on sunflower leaf on the left": PhoaLocationData(
+            region="panselo_region",
+            address=7676104,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Mr. Planto's reward": PhoaLocationData(
+            region="panselo_region",
+            address=7676105,
+            flags=PhoaFlag.PLANTO,
+            vanillaItem="20 Rin",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Shop Item 1": PhoaLocationData(
+            region="panselo_region",
+            address=7676106,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Honey Bun",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Shop Item 2": PhoaLocationData(
+            region="panselo_region",
+            address=7676107,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Honey Brew",
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Shop Item 3": PhoaLocationData(
+            region="panselo_region",
+            address=7676108,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Honey Drop",  # 3 of them
+        ),
+        "Sunflower Road - Honey Bee Lab and Inn - Inside box in shop attic": PhoaLocationData(
+            region="panselo_region",
+            address=7676109,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Honey Drop",
+        ),
+        "Sunflower Road - West - First item hanging from sunflower stem": PhoaLocationData(
+            region="panselo_region",
+            address=7676110,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - West - First item on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676111,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - West - Item on sunflower leaf under bee parkour": PhoaLocationData(
+            region="panselo_region",
+            address=7676112,
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
+        "Sunflower Road - West - Item on sunflower leaf after bee parkour": PhoaLocationData(
+            region="panselo_region",
+            address=7676113,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - West - Item surrounded by bees": PhoaLocationData(
+            region="panselo_region",
+            address=7676114,
+            flags=PhoaFlag.ENERGYGEM,
+            vanillaItem="Energy Gem",
+        ),
+        "Sunflower Road - West - Chest on sunflower leaf": PhoaLocationData(
+            region="panselo_region",
+            address=7676115,
+            flags=PhoaFlag.ENERGYGEM,
+            vanillaItem="35 Rin",
+        ),
+        "Sunflower Road - West - Second item hanging from sunflower stem": PhoaLocationData(
+            region="panselo_region",
+            address=7676131,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Sunflower Road - West - Third item hanging from sunflower stem": PhoaLocationData(
+            region="panselo_region",
+            address=7676116,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Nectear",
+        ),
+        "Panselo Region - Chest in dark cave": PhoaLocationData(
+            region="panselo_region",
+            address=7676117,
+            rule=lambda state: logic.has_light_source(state),
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="50 Rin",
+        ),
+        "Panselo Region - Fish up turtle in dark cave": PhoaLocationData(
+            region="panselo_region",
+            address=7676118,
+            rule=lambda state: logic.has_fishing_rod(state),
+            flags=PhoaFlag.FISHINGSPOT,
+            vanillaItem="Turtle",
+        ),
+        "Atelo Bridge - Top left box in east tower": PhoaLocationData(
+            region="panselo_region",
+            address=7676119,
+            rule=lambda state: logic.can_break_big_object_with_tools(state),
+            flags=PhoaFlag.MISC,
+            vanillaItem="Cheese",
+        ),
+        "Atelo Bridge - Place boxes to fit into crawlspace ": PhoaLocationData(
+            region="panselo_region",
+            address=7676120,
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
+        "Atelo Bridge - Alcove behind boulders": PhoaLocationData(
+            region="panselo_region",
+            address=7676121,
+            rule=lambda state: (logic.has_explosives(state) and state.has("Life Saver", player))
+                               or state.has("Rocket Boots", player),
+            flags=PhoaFlag.HEARTRUBY,
+            vanillaItem="Heart Ruby",
+        ),
+        "Atelo Bridge - Lizard in middle tower": PhoaLocationData(
+            region="panselo_region",
+            address=7676122,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Atelo Bridge - Small box in middle tower": PhoaLocationData(
+            region="panselo_region",
+            address=7676123,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Raw Meat",
+        ),
+        "Atelo Bridge - Chest in middle tower": PhoaLocationData(
+            region="panselo_region",
+            address=7676124,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="20 Rin",
+        ),
+        "Atelo Bridge - GEO reward": PhoaLocationData(
+            region="panselo_region",
+            address=7676125,
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("GEO Song", player),
+            flags=PhoaFlag.GEOCHALLENGE,
+            vanillaItem="GEO Ticket",
+        ),
+        "Atelo Bridge - Chest on top of big box in alcove": PhoaLocationData(
+            region="panselo_region",
+            address=7676126,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="30 Rin",
+        ),
+        "Atelo Bridge - Moonstone deep in the water": PhoaLocationData(
+            region="panselo_region",
+            address=7676127,
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
+        "Atelo Bridge - Middle chest": PhoaLocationData(
+            region="panselo_region",
+            address=7676128,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="1 Rin",
+        ),
+        "Atelo Bridge - Crawlspace blocked by boulders": PhoaLocationData(
+            region="panselo_region",
+            address=7676129,
+            rule=lambda state: logic.has_explosives(state),
+            flags=PhoaFlag.ENERGYGEM,
+            vanillaItem="Energy Gem",
+        ),
+        "Atelo Bridge - Puzzle in west tower": PhoaLocationData(
+            region="panselo_region",
+            address=7676130,
+            rule=lambda state: logic.has_sonic_spear(state)
+                               or state.has("Rocket Boots", player),
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
         # Events
         "Anuri Temple - Side entrance gate opened": PhoaLocationData(
             region="anuri_temple(main)",
@@ -682,6 +922,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         (options.enable_lunar_artifacts_locations <= 0, PhoaFlag.LUNARARTIFACT),
         (options.enable_fishing_spots <= 0, PhoaFlag.FISHINGSPOT),
         (options.enable_npc_gifts <= 0, PhoaFlag.NPCGIFTS),
+        (options.enable_planto_rewards <= 0, PhoaFlag.PLANTO),
         (options.enable_misc <= 0, PhoaFlag.MISC),
         (options.shop_sanity <= 0, PhoaFlag.SHOPSANITY),
         (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
