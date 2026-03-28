@@ -3,6 +3,7 @@ from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
 from Options import OptionError
 from worlds.phoa.Locations import PhoaLocationData
+from . import PhoaOptions
 
 if TYPE_CHECKING:
     from .. import PhoaWorld
@@ -20,9 +21,9 @@ class PhoaItemData(NamedTuple):
 
 # @formatter:off
 item_table: Dict[str, PhoaItemData] = {
-    "Heart Ruby":               PhoaItemData(3,     13, IC.useful),
-    "Energy Gem":               PhoaItemData(4,     7,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     28, IC.filler),
+    "Heart Ruby":               PhoaItemData(3,     15,  IC.useful),
+    "Energy Gem":               PhoaItemData(4,     8,  IC.useful),
+    "Moonstone":                PhoaItemData(5,     33, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Sky Vest":                 PhoaItemData(11,    1,  IC.useful),
@@ -40,8 +41,8 @@ item_table: Dict[str, PhoaItemData] = {
     "Civilian Crossbow":        PhoaItemData(37,    1,  IC.progression),
     "Double Crossbow":          PhoaItemData(38,    1,  IC.progression),
     "Refurbished Crank Lamp":   PhoaItemData(39,    1,  IC.progression),
-    "Fishing Rod":              PhoaItemData(40,    1,  IC.progression),  # Only if fishing spots are included?
-    "Serpent Rod":              PhoaItemData(41,    1,  IC.progression),
+    "Fishing Rod":              PhoaItemData(40,    1,  IC.useful),
+    "Serpent Rod":              PhoaItemData(41,    1,  IC.useful),
     "Kobold Blaster":           PhoaItemData(42,    1,  IC.progression),
     "Neutron Lamp":             PhoaItemData(43,    1,  IC.progression),  # Ignore light requirement option?
     "Remote Bombs":             PhoaItemData(44,    1,  IC.progression),
@@ -49,35 +50,42 @@ item_table: Dict[str, PhoaItemData] = {
     "Pumpkin Muffin":           PhoaItemData(47,    1,  IC.filler),
     "Cooked Toad Leg":          PhoaItemData(49,    1,  IC.filler),
     "Berry Fruit":              PhoaItemData(50,    1,  IC.filler),
-    "Perro Egg":                PhoaItemData(52,    2,  IC.filler),
-    "Honey Brew":               PhoaItemData(54,    2,  IC.filler),
+    "Perro Egg":                PhoaItemData(52,    4,  IC.filler),
+    "Nectear":                  PhoaItemData(53,    13,  IC.filler),
+    "Honey Brew":               PhoaItemData(54,    3,  IC.filler),
     "Pooki Jerky":              PhoaItemData(56,    3,  IC.filler),
-    "Fruit Jam":                PhoaItemData(57,    1,  IC.filler),
+    "Fruit Jam":                PhoaItemData(57,    2,  IC.filler),
     "Canned Beans":             PhoaItemData(58,    4,  IC.filler),
+    "Potato Lunch":             PhoaItemData(59,    1,  IC.filler),
     "Curry Bento":              PhoaItemData(61,    1,  IC.filler),
-    "Cheese":                   PhoaItemData(64,    1,  IC.filler),
+    "Turtle":                   PhoaItemData(63,    1,  IC.filler),
+    "Cheese":                   PhoaItemData(64,    2,  IC.filler),
     "Drake Tail":               PhoaItemData(66,    1,  IC.filler),
-    "Milk":                     PhoaItemData(67,    1,  IC.filler),
-    # "Chocolate":                PhoaItemData(68,    1,  IC.filler), Only given in 3's, so I'm not sure how to implement.
+    "Milk":                     PhoaItemData(67,    3,  IC.filler),
+    "Chocolate":                PhoaItemData(68,    1,  IC.filler),
+    "Raw Meat":                 PhoaItemData(73,    1,  IC.filler),
     "Big Raw Meat":             PhoaItemData(74,    1,  IC.filler),
     "Prime Fish Fillet":        PhoaItemData(81,    1,  IC.filler),
+    "Honey Drop":               PhoaItemData(89,    2,  IC.filler),
     "Anuri Pearlstone":         PhoaItemData(98,    10, IC.progression),  # Dungeon option?
     "Lunar Frog":               PhoaItemData(99,    1,  IC.filler),
     "Lunar Vase":               PhoaItemData(100,   1,  IC.filler),
     "Dandelion":                PhoaItemData(101,   4,  IC.filler),
-    "Panselo Potato":           PhoaItemData(102,   2,  IC.filler),
+    "Panselo Potato":           PhoaItemData(102,   4,  IC.filler),
     "Moon Kelp":                PhoaItemData(104,   1,  IC.filler),
     "Prickle Fruit":            PhoaItemData(106,   6,  IC.filler),
     "Stink Root":               PhoaItemData(107,   1,  IC.filler),
     "Ouro Guard Key":           PhoaItemData(108,   5,  IC.filler),
     "Rubber Ducky":             PhoaItemData(109,   2,  IC.filler),
     "Ouroboros Proof":          PhoaItemData(111,   3,  IC.progression),
-    "Mystery Meat":             PhoaItemData(112,   33, IC.filler),
+    "Mystery Meat":             PhoaItemData(112,   35, IC.filler),
     "Lisa's ID Card":           PhoaItemData(122,   1,  IC.progression),
     "Bottle of Wine":           PhoaItemData(123,   1,  IC.progression),
     "Song of Ouroboros":        PhoaItemData(124,   1,  IC.progression),
-    "Geo Song":                 PhoaItemData(125,   1,  IC.progression),
+    "GEO Song":                 PhoaItemData(125,   1,  IC.progression),
     "Royal Hymn":               PhoaItemData(126,   1,  IC.progression),
+    "Prelude of Panselo":       PhoaItemData(127,   1,  IC.useful),
+    "GEO Ticket":               PhoaItemData(140,   1,  IC.filler),
     "Baroque of Battle":        PhoaItemData(129,   1,  IC.useful),
     "Perro":                    PhoaItemData(139,   1,  IC.filler),
     "Antique Pin":              PhoaItemData(141,   1,  IC.filler),
@@ -90,33 +98,45 @@ item_table: Dict[str, PhoaItemData] = {
     "Desert Squash":            PhoaItemData(180,   1,  IC.filler),
     "Cooked Squash":            PhoaItemData(181,   1,  IC.filler),
     "Dragon's Scale":           PhoaItemData(185,   1,  IC.filler),
-    "Honey Bun":                PhoaItemData(205,   2,  IC.filler),
+    "Honey Bun":                PhoaItemData(205,   3,  IC.filler),
+    "Spell of Rejuvination":    PhoaItemData(292,   1,  IC.useful),  # Progressive Prelude of Panselo
     "Progressive Bat":          PhoaItemData(293,   2,  IC.useful),
     "Progressive Slingshot":    PhoaItemData(294,   2,  IC.progression),
     "Progressive Bombs":        PhoaItemData(295,   2,  IC.progression),
     "Progressive Crank Lamp":   PhoaItemData(296,   2,  IC.progression),  # Ignore light requirement option?
     "Progressive Spear":        PhoaItemData(297,   2,  IC.progression),
     "Progressive Crossbow":     PhoaItemData(298,   2,  IC.progression),
-    "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.progression),
+    "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.useful),
+    "1 Rin":                    PhoaItemData(301,   2,  IC.filler),
     "5 Rin":                    PhoaItemData(305,   1,  IC.filler),
     "9 Rin":                    PhoaItemData(309,   1,  IC.filler),
     "15 Rin":                   PhoaItemData(315,   3,  IC.filler),
-    "20 Rin":                   PhoaItemData(320,   4,  IC.filler),
+    "20 Rin":                   PhoaItemData(320,   7,  IC.filler),
     "25 Rin":                   PhoaItemData(325,   6,  IC.filler),
-    # "30 Rin":                   PhoaItemData(,      6,  IC.filler), Need new IDs
-    "35 Rin":                   PhoaItemData(335,   7,  IC.filler),
-    # "40 Rin":                   PhoaItemData(,      2,  IC.filler), Need new IDs
-    # "45 Rin":                   PhoaItemData(,      1,  IC.filler), Need new IDs
-    # "50 Rin":                   PhoaItemData(,      1,  IC.filler), Need new IDs
-    # "Spell of Rejuvination":    PhoaItemData(,      1,  IC.useful), Need new IDs (not a real item apparently)
+    "30 Rin":                   PhoaItemData(330,   8,  IC.filler),
+    "35 Rin":                   PhoaItemData(335,   9,  IC.filler),
+    "40 Rin":                   PhoaItemData(340,   2,  IC.filler),
+    "45 Rin":                   PhoaItemData(345,   1,  IC.filler),
+    "50 Rin":                   PhoaItemData(350,   4,  IC.filler),
 }
 # @formatter:on
 
+upgrade_groups = [
+    ("upgradable_bats", "Progressive Bat", ["Wooden Bat", "Composite Bat"]),
+    ("upgradable_tools", "Progressive Slingshot", ["Slingshot", "Treble Shot"]),
+    ("upgradable_tools", "Progressive Bombs", ["Bombs", "Remote Bombs"]),
+    ("upgradable_tools", "Progressive Crank Lamp", ["Crank Lamp", "Neutron Lamp"]),
+    ("upgradable_tools", "Progressive Crossbow", ["Civilian Crossbow", "Double Crossbow"]),
+    ("upgradable_tools", "Progressive Fishing Rod", ["Fishing Rod", "Serpent Rod"]),
+    ("upgradable_spear", "Progressive Spear", ["Sonic Spear", "Spear Bomb"]),
+]
+
 item_inclusion_priority: list[str] = \
-    ["Progressive Bat", "Composite Bat", "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin",
-     "15 Rin", "Pumpkin Muffin", "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Fruit Jam",
-     "Berry Fruit", "Perro Egg", "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog", "Lunar Vase", "Moonstone",
-     "Mysterious Golem Head"]
+    ["Progressive Bat", "Composite Bat", "Progressive Fishing Rod", "Serpent Rod", "Fishing Rod", "Prelude of Panselo",
+     "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Honey Brew", "Honey Drop",
+     "Pumpkin Muffin", "Honey Bun", "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Raw Meat",
+     "Fruit Jam", "Berry Fruit", "Perro Egg", "Nectear", "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog",
+     "Lunar Vase", "Moonstone", "Turtle", "Mysterious Golem Head"]
 
 
 def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) -> tuple[list[str], list[str]]:
@@ -130,16 +150,24 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     location_count = len(locations)
 
     # Initialize item pools based on classifications
-    progressive_items = []
-    useful_items = []
+    progressive_items: list[str] = []
+    useful_items: list[str] = []
 
     for item_name, item_data in local_item_table.items():
         if item_data.type == IC.progression or item_name in world.progressive_item_classifications_overrides:
             progressive_items.extend([item_name] * item_data.amount)
-        elif item_data.type == IC.useful:  # and (item_name is not "Heart Ruby" or item_name is not "Energy Gem")
+        elif item_data.type == IC.useful:
             useful_items.extend([item_name] * item_data.amount)
 
-    items_from_locations: list[str] = [location.vanillaItem for location in locations.values()]
+    # Remove progressive and useful items from the items_from_locations
+    upgrade_map = build_upgrade_map(world.options)
+    items_from_locations: list[str] = [
+        upgrade_map.get(location.vanillaItem, location.vanillaItem)
+        for location in locations.values()
+    ]
+
+    items_from_locations = [item for item in items_from_locations if item not in set(progressive_items)]
+    items_from_locations = [item for item in items_from_locations if item not in set(useful_items)]
 
     # Filter out the Wooden Bat or a Progressive Bat and add it to precollected items if starting with one
     precollected_items: list[str] = []
@@ -187,26 +215,27 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     return item_pool, precollected_items
 
 
-def filter_upgradable_items(items, options) -> dict[str, PhoaItemData]:
+def filter_upgradable_items(items, options: PhoaOptions) -> dict[str, PhoaItemData]:
+    for option, progressive, bases in upgrade_groups:
+        if getattr(options, option):
+            for base in bases:
+                items.pop(base, None)
+            continue
+        items.pop(progressive, None)
+
     removal_map = [
-        (options.upgradable_bats, ["Wooden Bat", "Composite Bat"]),
-        (not options.upgradable_bats, ["Progressive Bat"]),
-        (options.upgradable_tools, [
-            "Slingshot", "Treble Shot",
-            "Bombs", "Remote Bombs",
-            "Crank Lamp", "Neutron Lamp",
-            "Civilian Crossbow", "Double Crossbow",
-            "Fishing Rod", "Serpent Rod",
-        ]),
-        (not options.upgradable_tools, [
-            "Progressive Slingshot",
-            "Progressive Bombs",
-            "Progressive Crank Lamp",
-            "Progressive Crossbow",
-            "Progressive Fishing Rod",
-        ]),
-        (options.upgradable_spear, ["Sonic Spear", "Spear Bomb"]),
-        (not options.upgradable_spear, ["Progressive Spear"]),
+        (not options.enable_heart_ruby_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Heart Ruby"]),
+        (not options.enable_energy_gem_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Energy Gem"]),
+        (not options.enable_moonstone_locations
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Moonstone"]),
+        (not options.enable_npc_gifts
+         and not options.keep_excluded_status_upgrades_in_item_pool,
+         ["Prelude of Panselo"]),
     ]
 
     for condition, names in removal_map:
@@ -215,3 +244,14 @@ def filter_upgradable_items(items, options) -> dict[str, PhoaItemData]:
                 items.pop(name, None)
 
     return items
+
+
+def build_upgrade_map(options: PhoaOptions) -> dict[str, str]:
+    mapping = {}
+
+    for option, progressive, bases in upgrade_groups:
+        if getattr(options, option):
+            for base in bases:
+                mapping[base] = progressive
+
+    return mapping

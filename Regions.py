@@ -1,7 +1,5 @@
 from typing import Dict, Callable, Optional, NamedTuple
-
 from BaseClasses import MultiWorld, Region, Location, CollectionState
-from Utils import visualize_regions
 from worlds.phoa import get_location_data, PhoaOptions
 from worlds.phoa.Locations import PhoaLocationData
 from worlds.phoa.LogicExtensions import PhoaLogic
@@ -31,7 +29,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="panselo_gate",
             region="panselo_village",
             connection="panselo_region",
-            rule=lambda state: logic.can_deal_damage(state) or options.open_panselo_gates,
+            rule=lambda state: logic.can_deal_damage(state, exclude_rocket_boots=True) or options.open_panselo_gates,
         ),
         PhoaExit(
             name="rutea's_lab_gate",
@@ -76,7 +74,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="anuri_temple(main_entrance)",
             connection="anuri_temple(top_floor)",
             rule=lambda state: logic.has_explosives(state)
-                               or (logic.has_sonic_spear(state) and state.has("Hover Boots", player)),
+                               or (logic.has_sonic_spear(state) and state.has("Rocket Boots", player)),
         ),
         # anuri_temple(top_floor)
         PhoaExit(
@@ -119,7 +117,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="anuri_temple(main)",
             connection="anuri_temple(moveable_bridge_area)",
             rule=lambda state: logic.can_hit_switch_from_a_distance(state)
-                               or state.has("Hover Boots", player),
+                               or state.has("Rocket Boots", player),
         ),
         PhoaExit(
             name="anuri_temple_to_slargummy",
@@ -135,7 +133,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             rule=lambda state: logic.has_explosives(state),
         ),
         PhoaExit(
-            name="anuri_temple_side_exit",
+            name="anuri_temple_side_to_main",
             region="anuri_temple(side_entrance)",
             connection="anuri_temple(main)",
             rule=lambda state: state.has("Anuri Temple - Side entrance gate opened", player),
@@ -171,12 +169,9 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="anuri_temple_to_urn_room",
             region="anuri_temple(post_pond)",
             connection="anuri_temple(urn_room)",
-            rule=lambda state: logic.has_bombs(state),
+            rule=lambda state: logic.has_bombs(state)
+                               or state.has("Rocket Boots", player),
         ),
-
-
-
-
 
         # PHOAEXIT ADDITIONS
 
@@ -184,278 +179,279 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="atai_west_exit",
             region="atai_town",
             connection="atai_region",
-            group="region",
+            # group="region",
         ),
         PhoaExit(
             name="atai_east_exit",
             region="atai_town",
             connection="atai_region",
-            group="region",
+            # group="region",
         ),
         PhoaExit(
             name="atai_town_to_weapon_shop_dropper",
             region="atai_town",
             connection="atai_town(weapons_shop_dropper)",
-            rule=lambda state: logic.has_rocket_boots(state),
-            group="logic",
+            rule=lambda state: state.has("Rocket Boots", player),
+            # group="logic",
         ),
         PhoaExit(
             name="atai_town_to_shrine",
             region="atai_town",
             connection="atai_town(ouroboros_shrine)",
-            rule=lambda state: logic.has_flute(state) and state.has("Song of Ouroboros", player),
-            group="logic",
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
+            # group="logic",
         ),
-        PhoaExit( # Does this break logic? I might need to add an "or has_ouroboros_metro_access" or something
+        PhoaExit(  # Does this break logic? I might need to add an "or has_ouroboros_metro_access" or something
             name="atai_town_to_metro",
             region="atai_town",
             connection="atai_town(metro)",
             rule=lambda state: state.has("Lifesaver", player),
-            group="logic",
+            # group="logic",
         ),
-        PhoaExit( # Key shenanigans
+        PhoaExit(  # Key shenanigans
             name="town_metro_to_sand_drifts",
             region="atai_town(metro)",
             connection="sand_drifts(metro_stairwell)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
-            group="logic", # logic and region?
+            # group="logic", # logic and region?
         ),
         PhoaExit(
             name="adars_house_east_exit",
             region="adars_house",
             connection="atai_region",
-            group="region",
+            # group="region",
         ),
         PhoaExit(
             name="adars_house_to_cave",
             region="adars_house",
             connection="adars_house(cave)",
             rule=lambda state: logic.has_explosives(state),
-            group="logic",
+            # group="logic",
         ),
         PhoaExit(
             name="adars_cave_to_ancient_vault",
             region="adars_house(cave)",
             connection="ancient_vault",
             rule=lambda state: state.has("Spheralis", player),
-            group="logic",
+            # group="logic",
         ),
-        PhoaExit( # Needs logic for how well equipped the player needs to be for fights
+        PhoaExit(  # Needs logic for how well equipped the player needs to be for fights
             name="ancient_vault_to_printer_room",
             region="ancient_vault",
             connection="ancient_vault(printer_room)",
             rule=lambda state: state.has("Spheralis", player),
-            group="logic",
+            # group="logic",
         ),
-        
-
-
-
-
-
 
         PhoaExit(
             name="atai_region_to_shrine",
             region="atai_region",
             connection="atai_region(ouroboros_shrine)",
             rule=lambda state: state.has("Sonic Spear", "Lifesaver", player),
-            group="logic",
+            # group="logic",
         ),
         PhoaExit(
             name="atai_region_to_sand_drifts_region",
             region="atai_region",
             connection="sand_drifts_region",
-            rule=lambda state: logic.has_explosives(state) and logic.has_flute(state),
-            group="logic" # logic and region?
+            rule=lambda state: logic.has_music_instrument(state)
+                               and logic.has_music_instrument(state),
+            # group="logic" # logic and region?
         ),
         PhoaExit(
             name="sand_drifts_region_to_ouroboros_shrine",
             region="sand_drifts_region",
             connection="sand_drifts_region(ouroboros_shrine)",
-            rule=lambda state: logic.has_flute(state) and state.has("Song of Ouroboros", player),
-            group="logic",
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
+            # group="logic",
         ),
         PhoaExit(
             name="sand_drifts_region_to_ancient_geo_dungeon",
             region="sand_drifts_region",
             connection="sand_drifts_region(ancient_geo_dungeon)",
-            rule=lambda state: logic.has_flute(state),
-            group="logic"
+            rule=lambda state: logic.has_music_instrument(state),
+            # group="logic"
         ),
         PhoaExit(
             name="sand_drifts_east_exit",
             region="sand_drifts",
             connection="sand_drifts_region",
-            group="region",
+            # group="region",
         ),
         PhoaExit(
             name="sand_drifts_to_metro_stairwell",
             region="sand_drifts",
             connection="sand_drifts(metro_stairwell)",
             rule=lambda state: logic.has_explosives(state),
-            group="logic"
+            # group="logic"
         ),
-        PhoaExit( # Possible softlock without an explosive
+        PhoaExit(  # Possible softlock without an explosive
             name="sand_drifts_to_chest_trap",
             region="sand_drifts",
             connection="sand_drifts(chest_trap_room_1)",
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="sand_drifts_to_storage_room",
             region="sand_drifts",
             connection="sand_drifts(storage_room)",
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="sand_drifts_to_shrine",
             region="sand_drifts",
             connection="sand_drifts(ouroboros_shrine)",
-            rule=lambda state: logic.has_flute(state) and state.has("Song of Ouroboros", "Rocket Boots", player),
-            group="logic"
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", "Rocket Boots", player),
+            # group="logic"
         ),
         PhoaExit(
             name="sand_drifts_to_forlorn_ruins",
             region="sand_drifts",
             connection="forlorn_ruins",
-            rule=lambda state: logic.has_flute(state) and state.has("Song of Ouroboros", player),
-            group="logic" # logic and region?
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
+            # group="logic" # logic and region?
         ),
         PhoaExit(
             name="forlorn_ruins_to_fountain",
             region="forlorn_ruins",
             connection="forlorn_ruins(fountain_room)",
             rule=lambda state: logic.can_deal_damage(state),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="forlorn_ruins_to_dragon_snare",
             region="forlorn_ruins",
             connection="forlorn_ruins(dragon_snare_room)",
-            group="region"
+            # group="region"
         ),
         PhoaExit(
             name="forlorn_ruins_bombable_wall",
             region="forlorn_ruins",
             connection="forlorn_ruins(bombable_wall)",
             rule=lambda state: logic.has_explosives(state),
-            group="logic"
+            # group="logic"
         ),
-        PhoaExit( # Possible softlock without an explosive
+        PhoaExit(  # Possible softlock without an explosive
             name="forlorn_ruins_to_falafel_trap",
             region="forlorn_ruins",
             connection="forlorn_ruins(falafel_trap)",
-            group="region"
+            # group="region"
         ),
-        PhoaExit( # Key shenanigans
+        PhoaExit(  # Key shenanigans
             name="forlorn_ruins_staircase_key_door",
             region="forlorn_ruins",
             connection="forlorn_ruins(staircase_room_key_door)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
-            group="logic"
+            # group="logic"
         ),
-        PhoaExit( # Possible softlock without an explosive and music tool
+        PhoaExit(  # Possible softlock without an explosive and music tool
             name="forlorn_ruins_to_chest_trap",
             region="forlorn_ruins",
             connection="forlorn_ruins(chest_trap)",
-            group="region"
+            # group="region"
         ),
-        PhoaExit( # Key shenanigans
+        PhoaExit(  # Key shenanigans
             name="forlorn_ruins_switch_room_key_door",
             region="forlorn_ruins",
             connection="forlorn_ruins(switch_room_key_door)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="forlorn_ruins_to_ouroboros_hideout",
             region="forlorn_ruins",
             connection="ouroboros_hideout",
-            rule=lambda state: logic.has_explosives(state) and logic.has_flute(state) and state.has("Song of Ouroboros", player),
-            group="logic" # logic and region?
+            rule=lambda state: logic.has_explosives(state)
+                               and logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
+            # group="logic" # logic and region?
         ),
         PhoaExit(
             name="sand_drifts_to_ouroboros_hideout",
             region="sand_drifts",
             connection="ouroboros_hideout(tower)",
             rule=lambda state: state.has_any("Sonic Spear", "Rocket Boots", player),
-            group="logic" # logic and region?
+            # group="logic" # logic and region?
         ),
         PhoaExit(
             name="ouroboros_hideout_to_tower",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(tower)",
             rule=lambda state: state.has("Sonic Spear", player),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_fountain",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(fountain_room)",
-            group="region"
+            # group="region"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_balo_challenge",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(balo_challenge_room)",
-            group="region"
+            # group="region"
         ),
-        PhoaExit( # Key shenanigans
+        PhoaExit(  # Key shenanigans
             name="ouroboros_hideout_to_prison",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(prison_key_door)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
-            group="logic"
+            # group="logic"
         ),
-        PhoaExit( # Key shenanigans
+        PhoaExit(  # Key shenanigans
             name="ouroboros_hideout_to_storage",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(storage_key_door)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
-            group="logic"
+            # group="logic"
         ),
-        PhoaExit( # I can do has_melee_weapon instead if we want to be more lax on the fights
+        PhoaExit(  # I can do has_melee_weapon instead if we want to be more lax on the fights
             name="ouroboros_hideout_to_infant_drake_arena",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(infant_drake_arena)",
             rule=lambda state: logic.can_deal_damage(state),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_treasure_room",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(treasure_room)",
-            group="region"
+            # group="region"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_trial_one",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(trial_one)",
-            group="region"
+            # group="region"
         ),
-        PhoaExit( # I can do has_melee_weapon instead if we want to be more lax on the fights
+        PhoaExit(  # I can do has_melee_weapon instead if we want to be more lax on the fights
             name="ouroboros_hideout_to_trial_two",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(trial_two)",
             rule=lambda state: logic.can_deal_damage(state),
-            group="logic"
+            # group="logic"
         ),
         PhoaExit(
             name="ouroboros_hideout_to_trial_three",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(trial_three)",
-            group="region"
+            # group="region"
         ),
-        PhoaExit( # Key Shenanigans (this one's probably fine)
+        PhoaExit(  # Key Shenanigans (this one's probably fine)
             name="ouroboros_hideout_to_great_drake_arena",
             region="ouroboros_hideout",
             connection="ouroboros_hideout(great_drake_arena)",
             rule=lambda state: state.has("Ouroboros_Proof", player, 3),
-            group="logic"
+            # group="logic"
         ),
-        
+
         # END OF PHOAEXIT ADDITIONS
     ]
 
@@ -485,10 +481,6 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "anuri_temple(dive_room)"),
         create_region(world, player, locations_per_region, "anuri_temple(urn_room)"),
 
-
-
-
-
         # CREATE_REGION ADDITIONS
 
         # ATAI REGION
@@ -500,7 +492,6 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "ancient_vault(printer_room)"),
         create_region(world, player, locations_per_region, "atai_region(ouroboros_shrine)"),
 
-
         # ATAI TOWN
 
         create_region(world, player, locations_per_region, "atai_town"),
@@ -508,15 +499,12 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "atai_town(ouroboros_shrine)"),
         create_region(world, player, locations_per_region, "atai_town(metro)"),
 
-
-
         # SAND DRIFTS REGION
-        
+
         # Needs Explosive and Flute or Lifesaver and Ouro Guard Key for logic
         create_region(world, player, locations_per_region, "sand_drifts_region"),
         create_region(world, player, locations_per_region, "sand_drifts_region(ouroboros_shrine)"),
         create_region(world, player, locations_per_region, "sand_drifts_region(ancient_geo_dungeon)"),
-
 
         # SAND DRIFTS
 
@@ -533,7 +521,6 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
 
         # Rocket Boots and Flute
         create_region(world, player, locations_per_region, "sand_drifts(ouroboros_shrine)"),
-
 
         # FORLORN RUINS (SAND DRIFTS MAIN RUIN)
 
@@ -560,7 +547,6 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
 
         # Key
         create_region(world, player, locations_per_region, "forlorn_ruins(switch_room_key_door)"),
-
 
         # OUROBOROS HIDEOUT
 

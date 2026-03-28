@@ -15,25 +15,6 @@ class PhoaLogic:
         return (state.has_any({"Slingshot", "Treble Shot"}, self.player)
                 or state.has("Progressive Slingshot", self.player, 1))
 
-
-
-
-
-    # Additions to logic
-
-    def has_flute(self, state: CollectionState) -> bool:
-        return state.has_any({"Flute", "Spheralis"}, self.player)
-    
-    def has_rocket_boots(self, state: CollectionState) -> bool:
-        return state.has({"Rocket Boots"}, self.player)
-    
-    def has_lifesaver(self, state: CollectionState) -> bool:
-        return state.has({"Lifesaver"}, self.player)
-
-
-
-
-
     def has_bombs(self, state: CollectionState) -> bool:
         return (state.has_any({"Bombs", "Remote Bombs"}, self.player)
                 or state.has("Progressive Bombs", self.player, 1))
@@ -49,6 +30,9 @@ class PhoaLogic:
     def has_fishing_rod(self, state: CollectionState) -> bool:
         return (state.has_any({"Fishing Rod", "Serpent Rod"}, self.player)
                 or state.has("Progressive Fishing Rod", self.player, 1))
+
+    def has_music_instrument(self, state: CollectionState):
+        return state.has_any({"Bandit's Flute", "Spheralis"}, self.player)
 
     def has_light_source(self, state: CollectionState) -> bool:
         return (state.has_any({"Refurbished Crank Lamp", "Crank Lamp", "Neutron Lamp"}, self.player)
@@ -66,25 +50,35 @@ class PhoaLogic:
                 or self.can_use_spear_bomb(state)
                 or state.has("Kobold Blaster", self.player))
 
-    def can_deal_damage(self, state: CollectionState) -> bool:
+    def can_deal_damage(self, state: CollectionState, exclude_rocket_boots=False, exclude_lamp=False) -> bool:
         return (self.has_bat(state)
                 or self.has_slingshot(state)
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
-                or state.has_any({"Refurbished Crank Lamp", "Kobold Blaster"}, self.player))
+                or (state.has("Rocket Boots", self.player) and not exclude_rocket_boots)
+                or (state.has("Refurbished Crank Lamp", self.player) and not exclude_lamp)
+                or state.has("Kobold Blaster", self.player))
 
     def can_reasonably_kill_enemies(self, state: CollectionState) -> bool:
         return (self.has_bat(state)
-                or (self.has_slingshot(state))
+                or self.has_slingshot(state)
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
-                or state.has_any({"Kobold Blaster"}, self.player))
+                or state.has_any({"Kobold Blaster", "Rocket Boots"}, self.player))
 
-    def can_hit_switch_from_a_distance(self, state: CollectionState, bombless: bool = False) -> bool:
+    def can_break_big_object_with_tools(self, state: CollectionState, exclude_spear: bool = False) -> bool:
+        return (self.has_bat(state)
+                or self.has_slingshot(state)
+                or self.has_bombs(state)
+                or self.has_crossbow(state)
+                or (self.has_sonic_spear(state) and not exclude_spear)
+                or state.has_any({"Kobold Blaster", "Rocket Boots"}, self.player))
+
+    def can_hit_switch_from_a_distance(self, state: CollectionState, exclude_bombs: bool = False) -> bool:
         return (self.has_slingshot(state)
-                or (self.has_bombs(state) and not bombless)
+                or (self.has_bombs(state) and not exclude_bombs)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
                 or state.has("Kobold Blaster", self.player))

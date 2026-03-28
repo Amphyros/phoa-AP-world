@@ -33,7 +33,10 @@ class PhoaWorld(World):
         self._determine_item_classifications_overrides()
 
     def create_item(self, name: str) -> PhoaItem:
-        return PhoaItem(name, item_table[name].type, item_table[name].code, self.player)
+        item_classification = IC.progression \
+            if name in self.progressive_item_classifications_overrides \
+            else item_table[name].type
+        return PhoaItem(name, item_classification, item_table[name].code, self.player)
 
     def create_items(self):
         self.create_and_assign_event_items()
@@ -41,7 +44,9 @@ class PhoaWorld(World):
         item_pool_strings, precollected_items = get_item_pool(self, get_location_data(self.player, self.options))
 
         for item in precollected_items:
-            self.multiworld.push_precollected(self.create_item(item))
+            precollected_item = self.create_item(item)
+            precollected_item.classification = IC.progression
+            self.multiworld.push_precollected(precollected_item)
 
         item_pool: list[PhoaItem] = []
 
@@ -75,3 +80,7 @@ class PhoaWorld(World):
 
         if not options.start_with_wooden_bat:
             self.progressive_item_classifications_overrides.append("Progressive Bat")
+        if options.enable_fishing_spots:
+            self.progressive_item_classifications_overrides.append("Fishing Rod")
+            self.progressive_item_classifications_overrides.append("Serpent Rod")
+            self.progressive_item_classifications_overrides.append("Progressive Fishing Rod")
