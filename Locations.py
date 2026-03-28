@@ -909,6 +909,831 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="anuri_temple(urn_room)",
             address=None,
         ),
+
+        # Location Additions
+
+        "Atai Town - Dark Tower Pot": PhoaLocationData(
+            region="atai_town",
+            address=7676200,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Dark Tower Chest": PhoaLocationData(
+            region="atai_town",
+            address=7676201,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="30 Rin",
+        ),
+        "Atai Town - Prison Pot": PhoaLocationData(
+            region="atai_town",
+            address=7676202,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Prison Chest": PhoaLocationData(
+            region="atai_town",
+            address=7676203,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="40 Rin",
+        ),
+        # NUMBER
+        "Atai Town - Storage room hidden behind carpet": PhoaLocationData(
+            region="atai_town",
+            address=7676204,
+            vanillaItem="Heart Ruby",
+        ),
+        "Atai Town - Vegetable Shop Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676205,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Vala Bean",
+        ),
+        "Atai Town - Vegetable Shop Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676206,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Desert Squash",
+        ),
+        "Atai Town - Vegetable Shop Item 3": PhoaLocationData(
+            region="atai_town",
+            address=7676207,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Moon Kelp",
+        ),
+        "Atai Town - Meat Shop Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676208,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Big Raw Meat",
+        ),
+        "Atai Town - Meat Shop Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676209,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Drake Tail",
+        ),
+        "Atai Town - Meat Shop Item 3": PhoaLocationData(
+            region="atai_town",
+            address=7676210,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Prime Fish Fillet",
+        ),
+        "Atai Town - Weapon Shop Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676211,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Sky Vest",
+        ),
+        "Atai Town - Weapon Shop Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676212,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Civillian Crossbow",
+        ),
+        "Atai Town - Weapon Shop Item 3": PhoaLocationData(
+            region="atai_town",
+            address=7676213,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Composite Bat",
+        ),
+        "Atai Town - Weapon Shop Item 4": PhoaLocationData(
+            region="atai_town",
+            address=7676214,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Crank Lamp",
+        ),
+        "Atai Town - Weapon Shop Item 5": PhoaLocationData(
+            region="atai_town",
+            address=7676215,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Fishing Rod",
+        ),
+
+        "Atai Town - Weapon Shop Dropper Bottom": PhoaLocationData(
+            region="atai_town(weapons_shop_dropper)",
+            address=7676216,
+            vanillaItem="Heart Ruby",
+        ),
+        "Atai Town - Weapon Shop Dropper Pot": PhoaLocationData(
+            region="atai_town(weapons_shop_dropper)",
+            address=7676217,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Weapon Shop Dropper Chest": PhoaLocationData(
+            region="atai_town(weapons_shop_dropper)",
+            address=7676218,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="35 Rin",
+        ),
+
+        "Atai Town - Weapon Shop Balcony Chest": PhoaLocationData(
+            region="atai_town",
+            address=7676219,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="30 Rin",
+        ),
+        "Atai Town - Daycare Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676220,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Daycare Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676221,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Fruit Shop Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676222,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Prickle Fruit",
+        ),
+        "Atai Town - Fruit Shop Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676223,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Berry Fruit",
+        ),
+        "Atai Town - Fruit Shop Quest": PhoaLocationData(  # 4 Berry Fruit
+            region="atai_town",
+            address=7676224,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="25 Rin",
+        ),
+        "Atai Town - Tavern Shop Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676225,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Milk",
+        ),
+        "Atai Town - Tavern Shop Quest": PhoaLocationData(
+            region="atai_town",
+            address=7676226,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Bottle of Wine",
+        ),
+        "Atai Town - Guard Residence Mouse": PhoaLocationData(
+            region="atai_town",
+            address=7676227,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Atai Town - Bo Running Challenge": PhoaLocationData(
+            region="atai_town",
+            address=7676228,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="30 Rin",
+        ),
+
+        "Atai Town - Ouroboros Shrine": PhoaLocationData(
+            region="atai_town(ouroboros_shrine)",
+            address=7676229,
+            vanillaItem="Ouroboros Scroll",
+        ),
+
+        "Atai Town - Metro Chest": PhoaLocationData(
+            region="atai_town(metro)",
+            address=7676230,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="Ouroboros Scroll",
+        ),
+        "Atai Town - Metro Train Car Crate": PhoaLocationData(
+            region="atai_town(metro)",
+            address=7676231,
+            rule=lambda state: logic.has_explosives(state),
+            vanillaItem="Moonstone",
+        ),
+
+        "Atai Town - Lisa's Item": PhoaLocationData(
+            region="atai_town",
+            address=7676332,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Lisa's ID Card",
+        ),
+        "Atai Town - Mansion Chef Item": PhoaLocationData(
+            region="atai_town",
+            address=7676232,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Cooked Squash",
+        ),
+        "Atai Town - Mansion Storage Pot": PhoaLocationData(
+            region="atai_town",
+            address=7676233,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Mansion Storage Chest": PhoaLocationData(
+            region="atai_town",
+            address=7676234,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="30 Rin",
+        ),
+        "Atai Town - Mansion East Wing Lizard": PhoaLocationData(
+            region="atai_town",
+            address=7676235,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Atai Town - East Sewer Pipe Room Chest": PhoaLocationData(
+            region="atai_town",
+            address=7676236,
+            flags=PhoaFlag.RINCHESTS,
+            rule=lambda state: logic.has_light_source(state),
+            vanillaItem="25 Rin",
+        ),
+        "Atai Town - East Sewer Crate": PhoaLocationData(
+            region="atai_town",
+            address=7676237,
+            flags=PhoaFlag.MISC,
+            rule=lambda state: logic.has_light_source(state),
+            vanillaItem="Canned Beans",
+        ),
+        "Atai Town - East Residence Balcony Pot": PhoaLocationData(
+            region="atai_town",
+            address=7676238,
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Shooting Range Item 1": PhoaLocationData(
+            region="atai_town",
+            address=7676239,
+            flags=PhoaFlag.SHOPSANITY,
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            vanillaItem="Rubber Ducky",
+        ),
+        "Atai Town - Shooting Range Item 2": PhoaLocationData(
+            region="atai_town",
+            address=7676240,
+            flags=PhoaFlag.SHOPSANITY,
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            vanillaItem="Heart Ruby",
+        ),
+        "Atai Town - Shooting Range Item 3": PhoaLocationData(
+            region="atai_town",
+            address=7676241,
+            flags=PhoaFlag.SHOPSANITY,
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            vanillaItem="Moonstone",
+        ),
+        "Atai Town - Far East Residence Crate": PhoaLocationData(
+            region="atai_town",
+            address=7676242,
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="30 Rin",
+        ),
+
+        "Rhodus Checkpoint - East Tower Commons Crate": PhoaLocationData(
+            region="atai_region",
+            address=7676243,
+            vanillaItem="Honey Bun",
+        ),
+        "Rhodus Checkpoint - East Tower Lizard": PhoaLocationData(
+            region="atai_region",
+            address=7676244,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Rhodus Checkpoint - East Tower Turret Guard": PhoaLocationData(
+            region="atai_region",
+            address=7676245,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Rhodus Checkpoint - East Shop Item 1": PhoaLocationData(
+            region="atai_region",
+            address=7676246,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Honey Brew",
+        ),
+        "Rhodus Checkpoint - East Shop Item 2": PhoaLocationData(
+            region="atai_region",
+            address=7676247,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Chocolates",
+            # Item is singular, but the guy gives 3. It is one check though, so should it be its own item?
+        ),
+        "Rhodus Checkpoint - Central Shop Item 1": PhoaLocationData(
+            region="atai_region",
+            address=7676248,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Rubber Ducky",
+        ),
+        "Rhodus Checkpoint - Central Shop Item 2": PhoaLocationData(
+            region="atai_region",
+            address=7676249,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Refurbished Crank Lamp",
+        ),
+        "Rhodus Checkpoint - West Shop Item 1": PhoaLocationData(
+            region="atai_region",
+            address=7676250,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Saffron Milk",
+        ),
+        "Rhodus Checkpoint - West Shop Item 2": PhoaLocationData(
+            region="atai_region",
+            address=7676251,
+            flags=PhoaFlag.SHOPSANITY,
+            vanillaItem="Curry Bento",
+        ),
+        "Rhodus Checkpoint - Golem Gift": PhoaLocationData(
+            region="atai_region",
+            address=7676252,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Dandelion",
+        ),
+        "Rhodus Checkpoint - West Tower Top Guard Gift": PhoaLocationData(  # Needs an amount of energy gems
+            region="atai_region",
+            address=7676253,
+            flags=PhoaFlag.NPCGIFTS,
+            rule=lambda state: state.has("Rocket Boots", player),
+            vanillaItem="Moonstone",
+        ),
+
+        "Adar's House - Scorpion": PhoaLocationData(
+            region="adars_house",
+            address=7676254,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Adar's House - Cave Ledge Item": PhoaLocationData(
+            region="adars_house(cave)",
+            address=7676255,
+            vanillaItem="Energy Gem",
+        ),
+
+        "Ancient Vault - Printer Item 1": PhoaLocationData(
+            region="ancient_vault(printer_room)",
+            address=7676330,
+            vanillaItem="Heart Ruby",
+        ),
+        "Ancient Vault - Printer Item 2": PhoaLocationData(
+            region="ancient_vault(printer_room)",
+            address=7676331,
+            vanillaItem="Energy Gem",
+        ),
+
+        "Atai Region - Northwest Cave Chest": PhoaLocationData(
+            region="atai_region",
+            address=7676256,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="50 Rin",
+        ),
+        "Atai Region - Northwest Cave Top Path Item": PhoaLocationData(
+            region="atai_region",
+            address=7676257,
+            rule=lambda state: logic.has_explosives(state),
+            vanillaItem="Heart Ruby",
+        ),
+
+        "Atai Region - Franway Songstone Chest": PhoaLocationData(
+            region="atai_region",
+            address=7676258,
+            flags=PhoaFlag.RINCHESTS,
+            rule=lambda state: logic.has_music_instrument(state),
+            vanillaItem="45 Rin",
+        ),
+        "Atai Region - Franway Fish": PhoaLocationData(
+            region="atai_region",
+            address=7676259,
+            rule=lambda state: logic.has_fishing_rod(state),
+            vanillaItem="Moonstone",
+        ),
+        "Atai Region - Franway Cactus": PhoaLocationData(
+            region="atai_region",
+            address=7676260,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Prickle Fruit",
+        ),
+        "Atai Region - Boar Boy Quest": PhoaLocationData(  # 4 Drake Tails
+            region="atai_region",
+            address=7676261,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Tusk Strike",
+        ),
+        "Atai Region - Oasis Guard Gift": PhoaLocationData(
+            region="atai_region",
+            address=7676262,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Saffron Milk",
+        ),
+        "Atai Region - Oasis Mr. Planto Quest": PhoaLocationData(  # 5 "Food"
+            region="atai_region",
+            address=7676263,
+            flags=PhoaFlag.NPCGIFTS,
+            rule=lambda state: logic.has_explosives(state),
+            vanillaItem="20 Rin",
+        ),
+        "Atai Region - Oasis Shrine": PhoaLocationData(
+            region="atai_region(ouroboros_shrine)",
+            address=7676264,
+            vanillaItem="Ouroboros Scroll",
+        ),
+        "Atai Region - Sand Drifts Access Lizard": PhoaLocationData(
+            region="atai_region",
+            address=7676265,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Atai Region - Sand Drifts Access Glowing Rock Item": PhoaLocationData(
+            region="atai_region",
+            address=7676266,
+            vanillaItem="Moonstone",
+        ),
+
+        "Sand Drifts Region - West Tower Lizard": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676267,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Sand Drifts Region - West Tower Top": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676268,
+            vanillaItem="Energy Gem",
+        ),
+        "Sand Drifts Region - West Tower Perro": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676269,
+            vanillaItem="Perro",
+        ),
+        "Sand Drifts Region - West Tower Cactus 1": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676270,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Prickle Fruit",
+        ),
+        "Sand Drifts Region - West Tower Cactus 2": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676271,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Prickle Fruit",
+        ),
+        "Sand Drifts Region - Ouroboros Shrine": PhoaLocationData(
+            region="sand_drifts_region(ouroboros_shrine)",
+            address=7676272,
+            vanillaItem="Ouroboros Scroll",
+        ),
+        "Sand Drifts Region - Ancient GEO Dungeon Solution 1 Item": PhoaLocationData(
+            region="sand_drifts_region(ancient_geo_dungeon)",
+            address=7676273,
+            vanillaItem="Antique Pin",
+        ),
+        "Sand Drifts Region - Ancient GEO Dungeon Solution 2 Item": PhoaLocationData(
+            region="sand_drifts_region(ancient_geo_dungeon)",
+            address=7676274,
+            vanillaItem="Heart Ruby",
+        ),
+        "Sand Drifts Region - South Tree Crate": PhoaLocationData(
+            region="sand_drifts_region",
+            address=7676275,
+            vanillaItem="Heart Ruby",
+        ),
+
+        "Sand Drifts - Shelter Mouse": PhoaLocationData(
+            region="sand_drifts",
+            address=7676276,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Sand Drifts - East Tower Puzzle Item": PhoaLocationData(
+            region="sand_drifts",
+            address=7676277,
+            rule=lambda state: logic.has_bombs(state),
+            vanillaItem="Heart Ruby",
+        ),
+        "Sand Drifts - Above First Ruin Entrance Chest": PhoaLocationData(
+            region="sand_drifts",
+            address=7676278,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="25 Rin",
+        ),
+        "Sand Drifts - First Ruin Trapped Chest": PhoaLocationData(
+            # Should/Could this be a check + Maybe Needs Logic? Have to sort out the softlocks
+            region="sand_drifts(chest_trap_room)",
+            address=7676279,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="1 Rin",
+        ),
+        "Sand Drifts - First Ruin Storage Crate": PhoaLocationData(
+            region="sand_drifts(storage_room)",
+            address=7676280,
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="25 Rin",
+        ),
+        "Sand Drifts - First Ruin Center Room Scorpion": PhoaLocationData(
+            region="sand_drifts",
+            address=7676281,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Sand Drifts - Stealer Bird Plains Floor Patch": PhoaLocationData(
+            region="sand_drifts",
+            address=7676282,
+            vanillaItem="Moonstone",
+        ),
+        "Sand Drifts - Ouroboros Shrine": PhoaLocationData(
+            region="sand_drifts(ouroboros_shrine)",
+            address=7676283,
+            vanillaItem="Ouroboros Scroll",
+        ),
+
+        "Forlorn Ruins - Fountain Room Chest": PhoaLocationData(
+            region="forlorn_ruins(fountain_room)",
+            address=7676284,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="35 Rin",
+        ),
+        "Forlorn Ruins - Fountain Room Dive Item": PhoaLocationData(
+            region="forlorn_ruins(fountain_room)",
+            address=7676285,
+            rule=lambda state: logic.has_sonic_spear(state)
+                               and state.has("Lifesaver", player),
+            vanillaItem="Moonstone",
+        ),
+        "Forlorn Ruins - Fountain Room Lizard": PhoaLocationData(
+            region="forlorn_ruins(fountain_room)",
+            address=7676286,
+            flags=PhoaFlag.SMALLANIMALS,
+            rule=lambda state: logic.has_slingshot(state) or logic.has_sonic_spear(state) or logic.has_crossbow(state),
+            vanillaItem="Mystery Meat",
+        ),
+
+        "Forlorn Ruins - Bombable Wall Room Pot": PhoaLocationData(
+            region="forlorn_ruins(bombable_wall)",
+            address=7676287,
+            vanillaItem="Moonstone",
+        ),
+        "Forlorn Ruins - Bombable Wall Room Mouse": PhoaLocationData(
+            region="forlorn_ruins(bombable_wall)",
+            address=7676288,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+
+        "Forlorn Ruins - Dragon Snare Room Chest": PhoaLocationData(
+            region="forlorn_ruins(dragon_snare_room)",
+            address=7676289,
+            flags=PhoaFlag.RINCHESTS,
+            rule=lambda state: logic.has_explosives(state),
+            vanillaItem="35 Rin",
+        ),
+
+        "Forlorn Ruins - Stairwell Scorpion": PhoaLocationData(
+            region="forlorn_ruins",
+            address=7676290,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+
+        "Forlorn Ruins - Stairwell Keydoor Gauntlet Item": PhoaLocationData(
+            region="forlorn_ruins(staircase_room_key_door)",
+            address=7676291,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+
+        "Forlorn Ruins - Falafel Trap": PhoaLocationData(  # Maybe Needs Logic? Have to sort out the softlocks
+            region="forlorn_ruins(falafel_trap)",
+            address=7676292,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Falafel",
+        ),
+
+        "Forlorn Ruins - Drake Death Room Pot": PhoaLocationData(
+            region="forlorn_ruins",
+            address=7676293,
+            vanillaItem="Canned Beans",
+        ),
+        "Forlorn Ruins - Ceiling Switch Room Pot": PhoaLocationData(
+            region="forlorn_ruins",
+            address=7676294,
+            vanillaItem="Canned Beans",
+        ),
+
+        "Forlorn Ruins - Trapped Chest": PhoaLocationData(  # Maybe Needs Logic? Have to sort out the softlocks
+            region="forlorn_ruins(chest_trap)",
+            address=7676295,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="25 Rin",
+
+        ),
+        "Forlorn Ruins - Dragon Snare Keydoor Pot": PhoaLocationData(
+            region="forlorn_ruins(switch_room_key_door)",
+            address=7676296,
+            vanillaItem="Moonstone",
+        ),
+        "Forlorn Ruins - Dragon Snare Keydoor Chest": PhoaLocationData(
+            region="forlorn_ruins(switch_room_key_door)",
+            address=7676297,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="20 Rin",
+        ),
+
+        "Forlorn Ruins - Hideout Entrance Pot": PhoaLocationData(
+            region="forlorn_ruins",
+            address=7676298,
+            vanillaItem="Canned Beans",
+        ),
+        "Forlorn Ruins - Hideout entrance behind a hidden wall": PhoaLocationData(
+            region="forlorn_ruins",
+            address=7676299,
+            rule=lambda state: logic.has_explosives(state),
+            vanillaItem="Honey Brew",
+        ),
+
+        "Ouroboros Hideout - West entrance behind the save book": PhoaLocationData(
+            region="ouroboros_hideout",
+            address=7676300,
+            vanillaItem="Pooki Jerky",
+        ),
+        "Ouroboros Hideout - Main Hideout Shuriken Guard Item": PhoaLocationData(
+            region="ouroboros_hideout",
+            address=7676301,
+            rule=lambda state: logic.can_deal_damage(state),
+            vanillaItem="Ouro Guard Key",
+        ),
+
+        "Ouroboros Hideout - Songstone Treasure Room Mouse Item 1": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676302,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+        "Ouroboros Hideout - Songstone Treasure Room Mouse Item 2": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676303,
+            vanillaItem="Ouro Guard Key",
+        ),
+        "Ouroboros Hideout - Songstone Treasure Room Pot": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676304,
+            rule=lambda state: logic.has_music_instrument(state),
+            vanillaItem="Moonstone",
+        ),
+        "Ouroboros Hideout - Songstone Treasure Room Crate 1": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676305,
+            flags=PhoaFlag.MISC,
+            rule=lambda state: logic.has_music_instrument(state),
+            vanillaItem="Prickle Fruit",
+        ),
+        "Ouroboros Hideout - Songstone Treasure Room Crate 2": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676306,
+            flags=PhoaFlag.MISC,
+            rule=lambda state: logic.has_music_instrument(state),
+            vanillaItem="Pooki Jerky",
+        ),
+        "Ouroboros Hideout - Songstone Treasure Room Bombable Wall Chest": PhoaLocationData(
+            region="ouroboros_hideout(treasure_room)",
+            address=7676307,
+            flags=PhoaFlag.RINCHESTS,
+            rule=lambda state: logic.has_music_instrument(state)
+                               and logic.has_explosives(state),
+            vanillaItem="40 Rin",
+        ),
+
+        "Ouroboros Hideout - Melody's Gift": PhoaLocationData(
+            region="ouroboros_hideout(fountain_room)",
+            address=7676308,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Ouro Guard Key",
+        ),
+        "Ouroboros Hideout - Fountain Room Underwater": PhoaLocationData(
+            region="ouroboros_hideout(fountain_room)",
+            address=7676309,
+            vanillaItem="Moonstone",
+        ),
+
+        "Ouroboros Hideout - Ruby's Gift": PhoaLocationData(
+            region="ouroboros_hideout(prison_key_door)",
+            address=7676310,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Heart Ruby",
+        ),
+
+        "Ouroboros Hideout - Storage Item 1": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676311,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Prickle Fruit",
+        ),
+        "Ouroboros Hideout - Storage Item 2": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676312,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Perro Egg",
+        ),
+        "Ouroboros Hideout - Storage Item 3": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676313,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Stink Root",
+        ),
+        "Ouroboros Hideout - Storage Item 4": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676314,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Honey Bun",
+        ),
+        "Ouroboros Hideout - Storage Chest": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676315,
+            flags=PhoaFlag.RINCHESTS,
+            vanillaItem="30 Rin",
+        ),
+        "Ouroboros Hideout - Storage Mouse": PhoaLocationData(
+            region="ouroboros_hideout(storage_key_door)",
+            address=7676316,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
+
+        "Ouroboros Hideout - Box Breaker Challenge 1": PhoaLocationData(
+            region="ouroboros_hideout(balo_challenge_room)",
+            address=7676317,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Energy Gem",
+        ),
+        "Ouroboros Hideout - Box Breaker Challenge 2": PhoaLocationData(
+            region="ouroboros_hideout(balo_challenge_room)",
+            address=7676318,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Heart Ruby",
+        ),
+
+        "Ouroboros Hideout - Drake Hatchery Guard": PhoaLocationData(
+            region="ouroboros_hideout(infant_drake_arena)",
+            address=7676319,
+            vanillaItem="Ouro Guard Key",
+        ),
+        "Ouroboros Hideout - Drake Hatchery Pot 1": PhoaLocationData(
+            region="ouroboros_hideout(infant_drake_arena)",
+            address=7676320,
+            flags=PhoaFlag.MISC,
+            vanillaItem="Pooki Jerky",
+        ),
+        "Ouroboros Hideout - Drake Hatchery Pot 2": PhoaLocationData(
+            region="ouroboros_hideout(infant_drake_arena)",
+            address=7676321,
+            rule=lambda state: logic.has_slingshot(state) or logic.has_crossbow(state),
+            vanillaItem="Lunar Drake",
+        ),
+        "Ouroboros Hideout - Drake Hatchery Chest": PhoaLocationData(
+            region="ouroboros_hideout(infant_drake_arena)",
+            address=7676322,
+            flags=PhoaFlag.RINCHESTS,
+            rule=lambda state: logic.has_slingshot(state) or logic.has_crossbow(state),
+            vanillaItem="35 Rin",
+        ),
+
+        "Ouroboros Hideout - Trial 1 Guard": PhoaLocationData(
+            region="ouroboros_hideout(trial_one)",
+            address=7676323,
+            vanillaItem="Ouro Guard Key",
+        ),
+        "Ouroboros Hideout - Trial 1 Completion": PhoaLocationData(
+            region="ouroboros_hideout(trial_one)",
+            address=7676324,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Ouroboros Proof",
+        ),
+
+        "Ouroboros Hideout - Trial 2 Completion": PhoaLocationData(
+            region="ouroboros_hideout(trial_two)",
+            address=7676325,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Ouroboros Proof",
+        ),
+
+        "Ouroboros Hideout - Trial 3 Completion": PhoaLocationData(
+            region="ouroboros_hideout(trial_three)",
+            address=7676326,
+            flags=PhoaFlag.NPCGIFTS,
+            vanillaItem="Ouroboros Proof",
+        ),
+
+        "Ouroboros Hideout - Atri Training 1": PhoaLocationData(  # 2 Ouroboros Scrolls
+            region="ouroboros_hideout(great_drake_arena)",
+            address=7676327,
+            flags=PhoaFlag.NPCGIFTS,
+            rule=lambda state: logic.has_sonic_spear(state),
+            vanillaItem="Spear Bomb",
+        ),
+        "Ouroboros Hideout - Atri Training 2": PhoaLocationData(  # 4 Ouroboros Scrolls Total
+            region="ouroboros_hideout(great_drake_arena)",
+            address=7676328,
+            flags=PhoaFlag.NPCGIFTS,
+            rule=lambda state: logic.has_sonic_spear(state) and state.has("Prelude of Panselo", player),
+            vanillaItem="Spell of Rejuvination",
+        ),
+        "Ouroboros Hideout - Atri Training 3": PhoaLocationData(  # 6 Ouroboros Scrolls Total
+            region="ouroboros_hideout(great_drake_arena)",
+            address=7676329,
+            flags=PhoaFlag.NPCGIFTS,
+            rule=lambda state: logic.has_sonic_spear(state) and state.has("Prelude of Panselo", player),
+            vanillaItem="Baroque of Battle",
+        ),
+
+        # LAST ADDRESS 7676332
+
     }
 
     if not options:

@@ -1,5 +1,3 @@
-import time
-
 from BaseClasses import Tutorial, Item
 from BaseClasses import ItemClassification as IC
 from worlds.AutoWorld import WebWorld, World
