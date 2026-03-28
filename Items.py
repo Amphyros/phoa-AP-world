@@ -75,7 +75,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Moon Kelp":                PhoaItemData(104,   1,  IC.filler),
     "Prickle Fruit":            PhoaItemData(106,   6,  IC.filler),
     "Stink Root":               PhoaItemData(107,   1,  IC.filler),
-    "Ouro Guard Key":           PhoaItemData(108,   5,  IC.filler),
+    "Ouro Guard Key":           PhoaItemData(108,   5,  IC.progression),  # Only progressive when option enabled
     "Rubber Ducky":             PhoaItemData(109,   2,  IC.filler),
     "Ouroboros Proof":          PhoaItemData(111,   3,  IC.progression),
     "Mystery Meat":             PhoaItemData(112,   35, IC.filler),
@@ -89,7 +89,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Baroque of Battle":        PhoaItemData(129,   1,  IC.useful),
     "Perro":                    PhoaItemData(139,   1,  IC.filler),
     "Antique Pin":              PhoaItemData(141,   1,  IC.filler),
-    "Ouroboros Scroll":         PhoaItemData(143,   4,  IC.progression),
+    "Ouroboros Scroll":         PhoaItemData(143,   4,  IC.progression),  # Only progressive when option enabled
     "Lunar Drake":              PhoaItemData(145,   1,  IC.filler),
     "Mysterious Golem Head":    PhoaItemData(166,   1,  IC.filler),
     "Saffron Milk":             PhoaItemData(177,   2,  IC.filler),
@@ -133,10 +133,14 @@ upgrade_groups = [
 
 item_inclusion_priority: list[str] = \
     ["Progressive Bat", "Composite Bat", "Progressive Fishing Rod", "Serpent Rod", "Fishing Rod", "Prelude of Panselo",
-     "Energy Gem", "Heart Ruby", "Dragon's Scale", "35 Rin", "25 Rin", "20 Rin", "15 Rin", "Honey Brew", "Honey Drop",
-     "Pumpkin Muffin", "Honey Bun", "Cooked Toad Leg", "Milk", "Cheese", "Panselo Potato", "Mystery Meat", "Raw Meat",
-     "Fruit Jam", "Berry Fruit", "Perro Egg", "Nectear", "Doki Herb", "Dandelion", "9 Rin", "5 Rin", "Lunar Frog",
-     "Lunar Vase", "Moonstone", "Turtle", "Mysterious Golem Head"]
+     "Baroque of Battle", "Sky Vest", "Tusk Strike", "Energy Gem", "Heart Ruby", "Dragon's Scale", "50 Rin", "45 Rin",
+     "40 Rin", "35 Rin", "30 Rin", "25 Rin", "20 Rin", "15 Rin", "Perro", "Honey Brew", "Curry Bento", "Honey Drop",
+     "Rubber Ducky", "Stink Root", "Pumpkin Muffin", "Honey Bun", "Cooked Toad Leg", "Saffron Milk", "Milk", "Cheese",
+     "Canned Beans", "Pooki Jerky", "Panselo Potato", "Mystery Meat", "Chocolate", "Falafel", "Desert Squash",
+     "Cooked Squash", "Big Raw Meat", "Raw Meat", "Drake Tail", "Prime Fish Fillet", "Fruit Jam", "Vala Bean",
+     "Berry Fruit", "Perro Egg", "Nectear", "Prickle Fruit", "Moon Kelp", "Doki Herb", "Dandelion", "9 Rin", "5 Rin",
+     "1 Rin", "Lunar Frog", "Lunar Vase", "Lunar Drake", "Moonstone", "Antique Pin", "Turtle", "Mysterious Golem Head",
+     "Spell of Rejuvination"]
 
 
 def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) -> tuple[list[str], list[str]]:
