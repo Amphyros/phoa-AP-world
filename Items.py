@@ -23,7 +23,7 @@ class PhoaItemData(NamedTuple):
 item_table: Dict[str, PhoaItemData] = {
     "Heart Ruby":               PhoaItemData(3,     15,  IC.useful),
     "Energy Gem":               PhoaItemData(4,     8,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     33, IC.filler),
+    "Moonstone":                PhoaItemData(5,     34, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Sky Vest":                 PhoaItemData(11,    1,  IC.useful),
