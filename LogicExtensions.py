@@ -60,9 +60,9 @@ class PhoaLogic:
                 or (state.has("Refurbished Crank Lamp", self.player) and not exclude_lamp)
                 or state.has("Kobold Blaster", self.player))
 
-    def can_reasonably_kill_enemies(self, state: CollectionState) -> bool:
+    def can_reasonably_kill_enemies(self, state: CollectionState, exclude_slingshot: bool = False) -> bool:
         return (self.has_bat(state)
-                or self.has_slingshot(state)
+                or (self.has_slingshot(state) and not exclude_slingshot)
                 or self.has_bombs(state)
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
