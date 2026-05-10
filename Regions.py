@@ -448,7 +448,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
         PhoaExit(
             name="forlorn_ruins_through_key_door_to_obstacle_course",
             region="forlorn_ruins",
-            connection="forlorn_ruins(arrow_obstacle_course)",
+            connection="forlorn_ruins(arrow_obstacle_room)",
             rule=lambda state: state.has("Ouro Guard Key", player, 5),
         ),
         PhoaExit(
@@ -603,7 +603,7 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "forlorn_ruins(top_path)"),
         create_region(world, player, locations_per_region, "forlorn_ruins(fountain_room)"),
         create_region(world, player, locations_per_region, "forlorn_ruins(bombable_wall)"),
-        create_region(world, player, locations_per_region, "forlorn_ruins(arrow_obstacle_course)"),
+        create_region(world, player, locations_per_region, "forlorn_ruins(arrow_obstacle_room)"),
         create_region(world, player, locations_per_region, "forlorn_ruins(metal_crates_puzzle_area)"),
         create_region(world, player, locations_per_region, "forlorn_ruins(trap_switches_puzzle_area)"),
         create_region(world, player, locations_per_region, "forlorn_ruins(east)"),

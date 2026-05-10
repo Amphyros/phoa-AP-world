@@ -22,8 +22,8 @@ class PhoaItemData(NamedTuple):
 # @formatter:off
 item_table: Dict[str, PhoaItemData] = {
     "Heart Ruby":               PhoaItemData(3,     15,  IC.useful),
-    "Energy Gem":               PhoaItemData(4,     8,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     35, IC.filler),
+    "Energy Gem":               PhoaItemData(4,     9,  IC.useful),
+    "Moonstone":                PhoaItemData(5,     36, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Sky Vest":                 PhoaItemData(11,    1,  IC.useful),
@@ -91,6 +91,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Antique Pin":              PhoaItemData(141,   1,  IC.filler),
     "Ouroboros Scroll":         PhoaItemData(143,   4,  IC.progression),  # Only progressive when option enabled
     "Lunar Drake":              PhoaItemData(145,   1,  IC.filler),
+    "Strange Urn":              PhoaItemData(161,   1,  IC.filler),
     "Mysterious Golem Head":    PhoaItemData(166,   1,  IC.filler),
     "Saffron Milk":             PhoaItemData(177,   2,  IC.filler),
     "Vala Bean":                PhoaItemData(178,   1,  IC.filler),
@@ -107,16 +108,16 @@ item_table: Dict[str, PhoaItemData] = {
     "Progressive Spear":        PhoaItemData(297,   2,  IC.progression),
     "Progressive Crossbow":     PhoaItemData(298,   2,  IC.progression),
     "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.useful),
-    "1 Rin":                    PhoaItemData(301,   2,  IC.filler),
+    "1 Rin":                    PhoaItemData(301,   3,  IC.filler),
     "5 Rin":                    PhoaItemData(305,   1,  IC.filler),
     "9 Rin":                    PhoaItemData(309,   1,  IC.filler),
     "15 Rin":                   PhoaItemData(315,   3,  IC.filler),
     "20 Rin":                   PhoaItemData(320,   7,  IC.filler),
     "25 Rin":                   PhoaItemData(325,   6,  IC.filler),
     "30 Rin":                   PhoaItemData(330,   8,  IC.filler),
-    "35 Rin":                   PhoaItemData(335,   9,  IC.filler),
+    "35 Rin":                   PhoaItemData(335,   10,  IC.filler),
     "40 Rin":                   PhoaItemData(340,   2,  IC.filler),
-    "45 Rin":                   PhoaItemData(345,   1,  IC.filler),
+    "45 Rin":                   PhoaItemData(345,   2,  IC.filler),
     "50 Rin":                   PhoaItemData(350,   4,  IC.filler),
 }
 # @formatter:on
@@ -139,8 +140,8 @@ item_inclusion_priority: list[str] = \
      "Canned Beans", "Pooki Jerky", "Panselo Potato", "Mystery Meat", "Chocolate", "Falafel", "Desert Squash",
      "Cooked Squash", "Big Raw Meat", "Raw Meat", "Drake Tail", "Prime Fish Fillet", "Fruit Jam", "Vala Bean",
      "Berry Fruit", "Perro Egg", "Nectear", "Prickle Fruit", "Moon Kelp", "Doki Herb", "Dandelion", "9 Rin", "5 Rin",
-     "1 Rin", "Lunar Frog", "Lunar Vase", "Lunar Drake", "Moonstone", "Antique Pin", "Turtle", "Mysterious Golem Head",
-     "Spell of Rejuvination"]
+     "1 Rin", "Strange Urn", "Lunar Frog", "Lunar Vase", "Lunar Drake", "Moonstone", "Antique Pin", "Turtle",
+     "Mysterious Golem Head", "Spell of Rejuvination"]
 
 
 def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) -> tuple[list[str], list[str]]:
