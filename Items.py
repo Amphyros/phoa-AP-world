@@ -21,9 +21,9 @@ class PhoaItemData(NamedTuple):
 
 # @formatter:off
 item_table: Dict[str, PhoaItemData] = {
-    "Heart Ruby":               PhoaItemData(3,     15,  IC.useful),
+    "Heart Ruby":               PhoaItemData(3,     14,  IC.useful),
     "Energy Gem":               PhoaItemData(4,     9,  IC.useful),
-    "Moonstone":                PhoaItemData(5,     36, IC.filler),
+    "Moonstone":                PhoaItemData(5,     37, IC.filler),
     "Wooden Bat":               PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":            PhoaItemData(7,     1,  IC.useful),
     "Sky Vest":                 PhoaItemData(11,    1,  IC.useful),
@@ -108,7 +108,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Progressive Spear":        PhoaItemData(297,   2,  IC.progression),
     "Progressive Crossbow":     PhoaItemData(298,   2,  IC.progression),
     "Progressive Fishing Rod":  PhoaItemData(299,   2,  IC.useful),
-    "1 Rin":                    PhoaItemData(301,   3,  IC.filler),
+    "1 Rin":                    PhoaItemData(301,   4,  IC.filler),
     "5 Rin":                    PhoaItemData(305,   1,  IC.filler),
     "9 Rin":                    PhoaItemData(309,   1,  IC.filler),
     "15 Rin":                   PhoaItemData(315,   3,  IC.filler),

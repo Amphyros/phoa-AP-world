@@ -219,13 +219,31 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             connection="adars_house(cave)",
             rule=lambda state: logic.has_explosives(state),
         ),
+        PhoaExit(
+            name="adars_house_to_top_of_cave",
+            region="adars_house",
+            connection="adars_house(cave_top)",
+            rule=lambda state: state.has("Rocket Boots", player),
+        ),
         # adars_house(cave)
+        PhoaExit(
+            name="adars_cave_to_top",
+            region="adars_house(cave)",
+            connection="adars_house(cave_top)",
+        ),
         PhoaExit(
             name="adars_cave_to_ancient_vault",
             region="adars_house(cave)",
             connection="ancient_vault",
             rule=lambda state: logic.has_explosives(state)
                                and state.has("Spheralis", player),
+        ),
+        # adars_house(cave_top)
+        PhoaExit(
+            name="adar_top_of_cave_to_main_cave",
+            region="adars_house(cave_top)",
+            connection="adars_house(cave)",
+            rule=lambda state: logic.has_explosives(state),
         ),
         # ancient_vault
         PhoaExit(  # TODO: Needs logic for how well equipped the player needs to be for fights
@@ -546,6 +564,13 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             connection="ouroboros_hideout(great_drake_arena)",
             rule=lambda state: state.has("Ouroboros Proof", player, 3),
         ),
+        # ouroboros_hideout(storage)
+        PhoaExit(
+            name="ouroboros_hideout_storage_to_back_side",
+            region="ouroboros_hideout(storage)",
+            connection="ouroboros_hideout(storage_back)",
+            rule=lambda state: logic.has_bombs(state),
+        ),
         # ouroboros_hideout(treasure_room)
         PhoaExit(
             name="ouroboros_hideout_treasure_room_to_hidden_area",
@@ -589,6 +614,7 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "atai_town(weapons_shop_dropper)"),
         create_region(world, player, locations_per_region, "atai_town(metro)"),
         create_region(world, player, locations_per_region, "adars_house(cave)"),
+        create_region(world, player, locations_per_region, "adars_house(cave_top)"),
         create_region(world, player, locations_per_region, "ancient_vault"),
         create_region(world, player, locations_per_region, "ancient_vault(printer_room)"),
         create_region(world, player, locations_per_region, "sand_drifts_region(access_cave)"),
@@ -613,6 +639,7 @@ def create_regions_and_locations(world: MultiWorld, player: int, options: PhoaOp
         create_region(world, player, locations_per_region, "ouroboros_hideout(tower)"),
         create_region(world, player, locations_per_region, "ouroboros_hideout(prison)"),
         create_region(world, player, locations_per_region, "ouroboros_hideout(storage)"),
+        create_region(world, player, locations_per_region, "ouroboros_hideout(storage_back)"),
         create_region(world, player, locations_per_region, "ouroboros_hideout(infant_drake_arena)"),
         create_region(world, player, locations_per_region, "ouroboros_hideout(treasure_room)"),
         create_region(world, player, locations_per_region, "ouroboros_hideout(treasure_room_hidden_area)"),

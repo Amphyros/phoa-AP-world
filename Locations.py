@@ -231,6 +231,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
         ),
+        "Panselo Village - Watchtower (East) trap chest": PhoaLocationData(
+            region="panselo_village",
+            address=7676187,
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="1 Rin",
+        ),
         "Panselo Region - End of secret fishing spot": PhoaLocationData(
             region="panselo_region",
             address=7676002,
@@ -372,13 +378,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.FISHINGSPOT,
             vanillaItem="Dragon's Scale",
         ),
-        # "Doki Forest - High up the mountain left of Anuri Temple entrance": PhoaLocationData(
-        #     region="panselo_region",
-        #     address=7676093,
-        #     rule=lambda state: logic.has_sonic_spear(state),
-        #     flags=PhoaFlag.RINCONTAINERS,
-        #     vanillaItem="50 Rin",
-        # ),
+        "Doki Forest - High up the mountain left of Anuri Temple entrance": PhoaLocationData(
+            region="panselo_region",
+            address=7676093,
+            # TODO: Requires 10 energy gems
+            rule=lambda state: logic.has_sonic_spear(state),
+            flags=PhoaFlag.RINCONTAINERS,
+            vanillaItem="50 Rin",
+        ),
         "Doki Forest - Gift from Seth": PhoaLocationData(
             region="panselo_region",
             address=7676071,
@@ -1268,7 +1275,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Rhodus Checkpoint - West tower top guard gift": PhoaLocationData(
             region="atai_region",
             address=7676253,
-            # Needs an amount of energy gems
+            # TODO: Needs an amount of energy gems
             rule=lambda state: state.has("Rocket Boots", player),
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="Moonstone",
@@ -1293,7 +1300,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             vanillaItem="1 Rin",
         ),
         "Adar's House - Cave ledge item": PhoaLocationData(
-            region="adars_house(cave)",
+            region="adars_house(cave_top)",
             address=7676255,
             flags=PhoaFlag.ENERGYGEM,
             vanillaItem="Energy Gem",
@@ -1674,6 +1681,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="40 Rin",
         ),
+        "Ouroboros Hideout - Chest at top of watchtower": PhoaLocationData(
+            region="ouroboros_hideout(tower_top)",
+            address=7676188,
+            flags=PhoaFlag.MOONSTONE,
+            vanillaItem="Moonstone",
+        ),
         "Ouroboros Hideout - Melody's gift": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676308,
@@ -1700,31 +1713,31 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             vanillaItem="Prickle Fruit",
         ),
         "Ouroboros Hideout - Storage item 2": PhoaLocationData(
-            region="ouroboros_hideout(storage)",
+            region="ouroboros_hideout(storage_back)",
             address=7676312,
             flags=PhoaFlag.MISC,
             vanillaItem="Perro Egg",
         ),
         "Ouroboros Hideout - Storage item 3": PhoaLocationData(
-            region="ouroboros_hideout(storage)",
+            region="ouroboros_hideout(storage_back)",
             address=7676313,
             flags=PhoaFlag.MISC,
             vanillaItem="Stink Root",
         ),
         "Ouroboros Hideout - Storage item 4": PhoaLocationData(
-            region="ouroboros_hideout(storage)",
+            region="ouroboros_hideout(storage_back)",
             address=7676314,
             flags=PhoaFlag.MISC,
             vanillaItem="Honey Bun",
         ),
         "Ouroboros Hideout - Storage chest": PhoaLocationData(
-            region="ouroboros_hideout(storage)",
+            region="ouroboros_hideout(storage_back)",
             address=7676315,
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="30 Rin",
         ),
         "Ouroboros Hideout - Storage mouse": PhoaLocationData(
-            region="ouroboros_hideout(storage)",
+            region="ouroboros_hideout(storage_back)",
             address=7676316,
             rule=lambda state: logic.has_bat(state),
             flags=PhoaFlag.SMALLANIMALS,
@@ -1737,13 +1750,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="Energy Gem",
         ),
-        "Ouroboros Hideout - Box breaker challenge 2": PhoaLocationData(
-            region="ouroboros_hideout",
-            address=7676318,
-            # TODO: Needs to be able to destroy boxes quickly
-            flags=PhoaFlag.NPCGIFTS,
-            vanillaItem="Heart Ruby",
-        ),
+        # "Ouroboros Hideout - Box breaker challenge 2": PhoaLocationData(
+        #     region="ouroboros_hideout",
+        #     address=7676318,
+        #     # TODO: Needs to be able to destroy boxes quickly
+        #     flags=PhoaFlag.NPCGIFTS,
+        #     vanillaItem="Heart Ruby",
+        # ),
         "Ouroboros Hideout - Drake hatchery guard": PhoaLocationData(
             region="ouroboros_hideout(infant_drake_arena)",
             address=7676319,

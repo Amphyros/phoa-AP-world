@@ -15,6 +15,10 @@ class PhoaLogic:
         return (state.has_any({"Slingshot", "Treble Shot"}, self.player)
                 or state.has("Progressive Slingshot", self.player, 1))
 
+    def has_treble_shot(self, state: CollectionState) -> bool:
+        return (state.has("Treble Shot", self.player)
+                or state.has("Progressive Slingshot", self.player, 2))
+
     def has_bombs(self, state: CollectionState) -> bool:
         return (state.has_any({"Bombs", "Remote Bombs"}, self.player)
                 or state.has("Progressive Bombs", self.player, 1))
@@ -22,6 +26,10 @@ class PhoaLogic:
     def has_crossbow(self, state: CollectionState) -> bool:
         return (state.has_any({"Civilian Crossbow", "Double Crossbow"}, self.player)
                 or state.has("Progressive Crossbow", self.player, 1))
+
+    def has_double_crossbow(self, state: CollectionState) -> bool:
+        return (state.has("Double Crossbow", self.player)
+                or state.has("Progressive Crossbow", self.player, 2))
 
     def has_sonic_spear(self, state: CollectionState) -> bool:
         return (state.has("Sonic Spear", self.player)
@@ -82,3 +90,11 @@ class PhoaLogic:
                 or self.has_crossbow(state)
                 or self.has_sonic_spear(state)
                 or state.has("Kobold Blaster", self.player))
+
+    def can_balo(self, state: CollectionState) -> bool:
+        return (self.has_bat(state)
+                or self.has_treble_shot(state)
+                or self.has_bombs(state)
+                or self.has_sonic_spear(state)
+                or self.has_double_crossbow(state)
+                or state.has_any({"Kobold Blaster", "Rocket Boots"}, self.player))
