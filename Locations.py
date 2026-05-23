@@ -23,6 +23,13 @@ class PhoaFlag(Flag):
     RINCHESTS = auto()
     RINCONTAINERS = auto()
     GEOCHALLENGE = auto()
+    BREAKABLE = auto()
+    SIDEQUEST = auto()
+    FREESTANDING = auto()
+    MINIGAMES = auto()
+    TRAPCHEST = auto()
+    OUROBOROS = auto()
+    PERRO = auto()
 
 
 class PhoaLocation(Location):
@@ -50,7 +57,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Watchtower (West) - Hidden in box": PhoaLocationData(
             region="panselo_village",
             address=7676031,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Cheese",
         ),
         "Panselo Village - Watchtower (West) - Lizard": PhoaLocationData(
@@ -87,35 +94,35 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="panselo_village",
             address=7676084,
             rule=lambda state: state.has("Slargummy boss defeated", player),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Panselo Potato",
         ),
         "Panselo Village - Panselo Shop Box 2 after abduction": PhoaLocationData(
             region="panselo_village",
             address=7676085,
             rule=lambda state: state.has("Slargummy boss defeated", player),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Perro Egg",
         ),
         "Panselo Village - Panselo Shop Box 3 after abduction": PhoaLocationData(
             region="panselo_village",
             address=7676086,
             rule=lambda state: state.has("Slargummy boss defeated", player),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Fruit Jam",
         ),
         "Panselo Village - Panselo Shop Box 4 after abduction": PhoaLocationData(
             region="panselo_village",
             address=7676087,
             rule=lambda state: state.has("Slargummy boss defeated", player),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Milk",
         ),
         "Panselo Village - Panselo Shop Box 5 after abduction": PhoaLocationData(
             region="panselo_village",
             address=7676088,
             rule=lambda state: state.has("Slargummy boss defeated", player),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Panselo Potato",
         ),
         "Panselo Village - Dojo high up punchbag": PhoaLocationData(
@@ -129,25 +136,25 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="panselo_village",
             address=7676089,
             rule=lambda state: logic.has_music_instrument(state),
-            flags=PhoaFlag.NPCGIFTS,  # Sidequest?
+            flags=PhoaFlag.SIDEQUEST,  # Main
             vanillaItem="Prelude of Panselo",
         ),
         "Panselo Village - Inside coop": PhoaLocationData(
             region="panselo_village",
             address=7676030,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Perro Egg",
         ),
         "Panselo Village - Orphanage roof": PhoaLocationData(
             region="panselo_village",
             address=7676028,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Dandelion",
         ),
         "Panselo Village - On table in girl's room": PhoaLocationData(
             region="panselo_village",
             address=7676032,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Berry Fruit",
         ),
         "Panselo Village - Pot in boys Room": PhoaLocationData(
@@ -183,7 +190,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Kitt's money for the milk": PhoaLocationData(
             region="panselo_village",
             address=7676078,
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.SIDEQUEST,  # Obscure
             vanillaItem="20 Rin",
         ),
         "Panselo Village - Amanda's gift lunch": PhoaLocationData(
@@ -215,7 +222,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - On roof next to Stan": PhoaLocationData(
             region="panselo_village",
             address=7676029,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Dandelion",
         ),
         "Panselo Village - Rutea's room": PhoaLocationData(
@@ -234,7 +241,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Village - Watchtower (East) trap chest": PhoaLocationData(
             region="panselo_village",
             address=7676187,
-            flags=PhoaFlag.RINCONTAINERS,
+            flags=PhoaFlag.TRAPCHEST,
             vanillaItem="1 Rin",
         ),
         "Panselo Region - End of secret fishing spot": PhoaLocationData(
@@ -246,13 +253,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Panselo Region - Franway roof": PhoaLocationData(
             region="panselo_region",
             address=7676034,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Dandelion",
         ),
         "Panselo Region - GEO house roof": PhoaLocationData(
             region="panselo_region",
             address=7676033,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Dandelion",
         ),
         "Panselo Region - GEO house reward": PhoaLocationData(
@@ -296,19 +303,19 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - Cave guarded by Gummies - First item": PhoaLocationData(
             region="panselo_region",
             address=7676035,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Doki Forest - Cave guarded by Gummies - Second item": PhoaLocationData(
             region="panselo_region",
             address=7676036,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Doki Forest - Cave guarded by Gummies - Third item": PhoaLocationData(
             region="panselo_region",
             address=7676037,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Doki Forest - Cave guarded by Gummies - Lizard": PhoaLocationData(
@@ -532,7 +539,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Mouse in pot in many pots room": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676091,
-            rule=lambda state: logic.has_bat(state),  # New logic rule can_reasonably_kill_small_animals?
+            rule=lambda state: logic.has_bat(state),  # TODO: New logic rule can_reasonably_kill_small_animals?
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -553,13 +560,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Side entrance first item": PhoaLocationData(
             region="anuri_temple(side_entrance)",
             address=7676038,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Anuri Temple - Side entrance second item": PhoaLocationData(
             region="anuri_temple(side_entrance)",
             address=7676039,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Anuri Temple - Moveable bridges room": PhoaLocationData(
@@ -591,7 +598,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Tall tower puzzle side item": PhoaLocationData(
             region="anuri_temple(tall_tower_puzzle_room)",
             address=7676040,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Doki Herb",
         ),
         "Anuri Temple Basement - Hit the switch hidden under breakable tomb": PhoaLocationData(
@@ -673,7 +680,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - East - First item on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676094,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - Second item on sunflower leaf": PhoaLocationData(
@@ -685,19 +692,19 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - East - Third item on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676096,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - First item hanging from sunflower stem": PhoaLocationData(
             region="panselo_region",
             address=7676097,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - Fourth item on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676098,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - Chest on sunflower leaf": PhoaLocationData(
@@ -709,13 +716,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - East - Second item hanging from sunflower stem": PhoaLocationData(
             region="panselo_region",
             address=7676100,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - Fifth item on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676101,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - East - Item high up on sunflower leaf": PhoaLocationData(
@@ -728,13 +735,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - Honey Bee Lab and Inn - Item on sunflower leaf on the right": PhoaLocationData(
             region="panselo_region",
             address=7676103,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - Honey Bee Lab and Inn - Item on sunflower leaf on the left": PhoaLocationData(
             region="panselo_region",
             address=7676104,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - Honey Bee Lab and Inn - Mr. Planto's reward": PhoaLocationData(
@@ -764,19 +771,19 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - Honey Bee Lab and Inn - Inside box in shop attic": PhoaLocationData(
             region="panselo_region",
             address=7676109,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Honey Drop",
         ),
         "Sunflower Road - West - First item hanging from sunflower stem": PhoaLocationData(
             region="panselo_region",
             address=7676110,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - West - First item on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676111,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - West - Item on sunflower leaf under bee parkour": PhoaLocationData(
@@ -788,7 +795,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - West - Item on sunflower leaf after bee parkour": PhoaLocationData(
             region="panselo_region",
             address=7676113,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - West - Item surrounded by bees": PhoaLocationData(
@@ -800,19 +807,19 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sunflower Road - West - Chest on sunflower leaf": PhoaLocationData(
             region="panselo_region",
             address=7676115,
-            flags=PhoaFlag.ENERGYGEM,
+            flags=PhoaFlag.RINCHESTS,
             vanillaItem="35 Rin",
         ),
         "Sunflower Road - West - Second item hanging from sunflower stem": PhoaLocationData(
             region="panselo_region",
             address=7676131,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Sunflower Road - West - Third item hanging from sunflower stem": PhoaLocationData(
             region="panselo_region",
             address=7676116,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Nectear",
         ),
         "Panselo Region - Chest in dark cave": PhoaLocationData(
@@ -829,11 +836,17 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.FISHINGSPOT,
             vanillaItem="Turtle",
         ),
+        "Panselo Region - Perro in treetops": PhoaLocationData(
+            region="panselo_region",
+            address=7676132,
+            flags=PhoaFlag.PERRO,
+            vanillaItem="Perro",
+        ),
         "Atelo Bridge - Top left box in east tower": PhoaLocationData(
             region="panselo_region",
             address=7676119,
             rule=lambda state: logic.can_break_big_object_with_tools(state),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Cheese",
         ),
         "Atelo Bridge - Place boxes to fit into crawlspace ": PhoaLocationData(
@@ -866,7 +879,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atelo Bridge - Small box in middle tower": PhoaLocationData(
             region="panselo_region",
             address=7676123,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Raw Meat",
         ),
         "Atelo Bridge - Chest in middle tower": PhoaLocationData(
@@ -898,7 +911,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atelo Bridge - Middle chest": PhoaLocationData(
             region="panselo_region",
             address=7676128,
-            flags=PhoaFlag.RINCHESTS,
+            flags=PhoaFlag.TRAPCHEST,
             vanillaItem="1 Rin",
         ),
         "Atelo Bridge - Crawlspace blocked by boulders": PhoaLocationData(
@@ -1083,7 +1096,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="atai_town",
             address=7676224,
             rule=lambda state: state.can_reach_region("panselo_region", player),
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.MISC,
             vanillaItem="25 Rin",
         ),
         "Atai Town - Tavern shop regular item": PhoaLocationData(
@@ -1109,7 +1122,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Town - Bo running challenge": PhoaLocationData(
             region="atai_town",
             address=7676228,
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.SIDEQUEST,
             vanillaItem="30 Rin",
         ),
         "Atai Town - Ouroboros shrine": PhoaLocationData(
@@ -1117,7 +1130,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676229,
             rule=lambda state: logic.has_music_instrument(state)
                                and state.has("Song of Ouroboros", player),
-            flags=PhoaFlag.GEOCHALLENGE,
+            flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
         "Atai Town - Metro chest": PhoaLocationData(
@@ -1173,7 +1186,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Town - West sewer crate": PhoaLocationData(
             region="atai_town(sewer)",
             address=7676237,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Canned Beans",
         ),
         "Atai Town - West residence balcony pot": PhoaLocationData(
@@ -1186,23 +1199,23 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="atai_town",
             address=7676239,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            flags=PhoaFlag.SHOPSANITY,
+            flags=PhoaFlag.MINIGAMES,
             vanillaItem="Rubber Ducky",
         ),
         "Atai Town - Shooting range item 2": PhoaLocationData(
             region="atai_town",
             address=7676240,
-            # These two should require some energy gems and/or tools to make it easier
+            # TODO: These two should require some energy gems and/or tools to make it easier
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            flags=PhoaFlag.SHOPSANITY,
+            flags=PhoaFlag.MINIGAMES,
             vanillaItem="Heart Ruby",
         ),
         "Atai Town - Shooting range item 3": PhoaLocationData(
             region="atai_town",
             address=7676241,
-            # These two should require some energy gems and/or tools to make it easier
+            # TODO: These two should require some energy gems and/or tools to make it easier
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            flags=PhoaFlag.SHOPSANITY,
+            flags=PhoaFlag.MINIGAMES,
             vanillaItem="Moonstone",
         ),
         "Atai Town - West residence crate under step up": PhoaLocationData(
@@ -1214,7 +1227,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Rhodus Checkpoint - East tower commons crate": PhoaLocationData(
             region="atai_region",
             address=7676243,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Honey Bun",
         ),
         "Rhodus Checkpoint - East tower lizard": PhoaLocationData(
@@ -1227,7 +1240,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Rhodus Checkpoint - East tower turret guard": PhoaLocationData(
             region="atai_region",
             address=7676245,
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
         "Rhodus Checkpoint - East shop item 1": PhoaLocationData(
@@ -1277,7 +1290,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676253,
             # TODO: Needs an amount of energy gems
             rule=lambda state: state.has("Rocket Boots", player),
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
         "Adar's House - Scorpion": PhoaLocationData(
@@ -1296,7 +1309,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Adar's House - Chest in cave": PhoaLocationData(
             region="adars_house(cave)",
             address=7676192,
-            flags=PhoaFlag.RINCHESTS,
+            flags=PhoaFlag.TRAPCHEST,
             vanillaItem="1 Rin",
         ),
         "Adar's House - Cave ledge item": PhoaLocationData(
@@ -1361,13 +1374,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Region - Franway cactus": PhoaLocationData(
             region="atai_region",
             address=7676260,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Prickle Fruit",
         ),
         "Atai Region - Boar boy quest": PhoaLocationData(
             region="atai_region",
             address=7676261,
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.SIDEQUEST,
             vanillaItem="Tusk Strike",
         ),
         "Atai Region - Oasis guard gift": PhoaLocationData(
@@ -1380,13 +1393,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="atai_region",
             address=7676263,
             rule=lambda state: logic.has_explosives(state),
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.PLANTO,
             vanillaItem="20 Rin",
         ),
         "Atai Region - Oasis fish": PhoaLocationData(
             region="atai_region",
             address=7676193,
-            rule=lambda state: logic.has_fishing_rod(state), # TODO: Can't get without a couple of Energy gems
+            rule=lambda state: logic.has_fishing_rod(state),  # TODO: Can't get without a couple of Energy gems
             flags=PhoaFlag.FISHINGSPOT,
             vanillaItem="Energy Gem",
         ),
@@ -1394,7 +1407,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="atai_region",
             address=7676264,
             rule=lambda state: state.has_any({"Sonic Spear", "Life Saver"}, player),
-            flags=PhoaFlag.GEOCHALLENGE,
+            flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
         "Atai Region - Sand Drifts Access lizard": PhoaLocationData(
@@ -1424,19 +1437,19 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts Region - Tower perro": PhoaLocationData(
             region="sand_drifts_region",
             address=7676269,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.PERRO,
             vanillaItem="Perro",
         ),
         "Sand Drifts Region - Tower cactus 1": PhoaLocationData(
             region="sand_drifts_region",
             address=7676270,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Prickle Fruit",
         ),
         "Sand Drifts Region - Tower cactus 2": PhoaLocationData(
             region="sand_drifts_region",
             address=7676271,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Prickle Fruit",
         ),
         "Sand Drifts Region - Ouroboros shrine": PhoaLocationData(
@@ -1444,7 +1457,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             address=7676272,
             rule=lambda state: logic.has_music_instrument(state)
                                and state.has("Song of Ouroboros", player),
-            flags=PhoaFlag.GEOCHALLENGE,
+            flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
         "Sand Drifts Region - Ancient GEO Dungeon solution 1 item": PhoaLocationData(
@@ -1481,7 +1494,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts - Pot next to metro entrance": PhoaLocationData(
             region="sand_drifts",
             address=7676291,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Canned Beans",
         ),
         "Sand Drifts - East tower puzzle item": PhoaLocationData(
@@ -1500,7 +1513,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts - First ruin trapped chest": PhoaLocationData(
             region="sand_drifts(chest_trap_room)",
             address=7676279,
-            flags=PhoaFlag.RINCHESTS,
+            flags=PhoaFlag.TRAPCHEST,
             vanillaItem="1 Rin",
         ),
         "Sand Drifts - First ruin storage crate": PhoaLocationData(
@@ -1526,7 +1539,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts - Ouroboros Shrine": PhoaLocationData(
             region="sand_drifts(ouroboros_shrine)",
             address=7676283,
-            flags=PhoaFlag.GEOCHALLENGE,
+            flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
         "Forlorn Ruins - Fountain room chest": PhoaLocationData(
@@ -1586,23 +1599,23 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Forlorn Ruins - Falafel trap": PhoaLocationData(
             region="forlorn_ruins",
             address=7676292,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.FREESTANDING,
             vanillaItem="Falafel",
         ),
         "Forlorn Ruins - Drake death room pot": PhoaLocationData(
             region="forlorn_ruins(metal_crates_puzzle_area)",
             address=7676293,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Canned Beans",
         ),
         "Forlorn Ruins - Ceiling switch room pot": PhoaLocationData(
             region="forlorn_ruins(east)",
             address=7676294,
             rule=lambda state: logic.can_hit_switch_from_a_distance(state),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Canned Beans",
         ),
-        "Forlorn Ruins - Trapped chest": PhoaLocationData(  # Maybe Needs Logic? Have to sort out the softlocks
+        "Forlorn Ruins - Trapped chest": PhoaLocationData(
             region="forlorn_ruins(east)",
             address=7676295,
             flags=PhoaFlag.RINCHESTS,
@@ -1620,22 +1633,18 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="20 Rin",
         ),
-        # "Forlorn Ruins - Hideout entrance pot": PhoaLocationData(
-        #     region="forlorn_ruins",
-        #     address=7676298,
-        #     vanillaItem="Canned Beans",
-        # ),
+        # Free address: 7676298
         "Forlorn Ruins - Hideout entrance behind a hidden wall": PhoaLocationData(
             region="forlorn_ruins",
             address=7676299,
             rule=lambda state: logic.has_explosives(state),
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Honey Brew",
         ),
         "Ouroboros Hideout - West entrance behind the save book": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676300,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Pooki Jerky",
         ),
         "Ouroboros Hideout - Main hideout shuriken guard Item": PhoaLocationData(
@@ -1645,12 +1654,12 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.DUNGEONITEM,
             vanillaItem="Ouro Guard Key",
         ),
-        # "Ouroboros Hideout - Songstone treasure room mouse item 1": PhoaLocationData(
-        #     region="ouroboros_hideout",
-        #     address=7676302,
-        #     flags=PhoaFlag.SMALLANIMALS,
-        #     vanillaItem="Mystery Meat",
-        # ), # The combination of these two checks breaks stuff currently
+        "Ouroboros Hideout - Songstone treasure room mouse item 1": PhoaLocationData(
+            region="ouroboros_hideout",
+            address=7676302,
+            flags=PhoaFlag.SMALLANIMALS,
+            vanillaItem="Mystery Meat",
+        ),
         "Ouroboros Hideout - Songstone treasure Room mouse item 2": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676303,
@@ -1666,13 +1675,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Songstone treasure room crate 1": PhoaLocationData(
             region="ouroboros_hideout(treasure_room)",
             address=7676305,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Prickle Fruit",
         ),
         "Ouroboros Hideout - Songstone treasure room crate 2": PhoaLocationData(
             region="ouroboros_hideout(treasure_room)",
             address=7676306,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Pooki Jerky",
         ),
         "Ouroboros Hideout - Songstone treasure room bombable wall chest": PhoaLocationData(
@@ -1703,31 +1712,31 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Ruby's gift": PhoaLocationData(
             region="ouroboros_hideout(prison)",
             address=7676310,
-            flags=PhoaFlag.NPCGIFTS,
+            flags=PhoaFlag.SIDEQUEST,
             vanillaItem="Heart Ruby",
         ),
         "Ouroboros Hideout - Storage item 1": PhoaLocationData(
             region="ouroboros_hideout(storage)",
             address=7676311,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Prickle Fruit",
         ),
         "Ouroboros Hideout - Storage item 2": PhoaLocationData(
             region="ouroboros_hideout(storage_back)",
             address=7676312,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Perro Egg",
         ),
         "Ouroboros Hideout - Storage item 3": PhoaLocationData(
             region="ouroboros_hideout(storage_back)",
             address=7676313,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Stink Root",
         ),
         "Ouroboros Hideout - Storage item 4": PhoaLocationData(
             region="ouroboros_hideout(storage_back)",
             address=7676314,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Honey Bun",
         ),
         "Ouroboros Hideout - Storage chest": PhoaLocationData(
@@ -1746,14 +1755,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Box breaker challenge 1": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676317,
-            # TODO: Needs to be able to destroy boxes quickly
+            rule=lambda state: logic.can_balo(state),
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="Energy Gem",
         ),
         # "Ouroboros Hideout - Box breaker challenge 2": PhoaLocationData(
         #     region="ouroboros_hideout",
         #     address=7676318,
-        #     # TODO: Needs to be able to destroy boxes quickly
+        #     # Needs rule
         #     flags=PhoaFlag.NPCGIFTS,
         #     vanillaItem="Heart Ruby",
         # ),
@@ -1766,7 +1775,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Drake hatchery pot 1": PhoaLocationData(
             region="ouroboros_hideout(infant_drake_arena)",
             address=7676320,
-            flags=PhoaFlag.MISC,
+            flags=PhoaFlag.BREAKABLE,
             vanillaItem="Pooki Jerky",
         ),
         "Ouroboros Hideout - Drake hatchery pot 2": PhoaLocationData(
@@ -1845,7 +1854,6 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="ouroboros_hideout(great_drake_arena)",
             address=None,
         ),
-
     }
 
     if not options:
@@ -1865,7 +1873,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         (options.enable_small_animal_drops <= 0, PhoaFlag.SMALLANIMALS),
         (options.enable_rin_locations <= 0, PhoaFlag.RINCHESTS),
         (options.enable_rin_locations <= 1, PhoaFlag.RINCONTAINERS),
-        (options.enable_geo_challenge_rewards <= 0, PhoaFlag.GEOCHALLENGE)
+        (options.enable_geo_challenge_rewards <= 0, PhoaFlag.GEOCHALLENGE),
+        (options.enable_breakables <= 0, PhoaFlag.BREAKABLE),
+        (options.enable_sidequests <= 0, PhoaFlag.SIDEQUEST),
+        (options.enable_freestanding <= 0, PhoaFlag.FREESTANDING),
+        (options.enable_minigames <= 0, PhoaFlag.MINIGAMES),
+        (options.enable_trap_chests <= 0, PhoaFlag.TRAPCHEST),
+        (options.enable_ouroboros_shrines <= 0, PhoaFlag.OUROBOROS),
+        (options.enable_perros <= 0, PhoaFlag.PERRO),
     ]
 
     for option, flag in filters:

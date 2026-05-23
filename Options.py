@@ -55,8 +55,33 @@ class EnablePlantoRewards(Toggle):
     display_name = "Include Planto rewards"
 
 
+class EnableItemsInBreakables(Toggle):
+    """Include utility items found in breakable objects like pots and boxes"""
+    display_name = "Include items in breakables objects"
+
+
+class EnableSidequests(Toggle):
+    """Include checks related to sidequests"""
+    display_name = "Include sidequests"
+
+
+class EnableFreestandingItems(Toggle):
+    """Include utility items found in freestanding locations"""
+    display_name = "Include freestanding items"
+
+
+class EnableMinigames(Toggle):
+    """Include items won through minigames"""
+    display_name = "Include minigames"
+
+
+class EnablePerros(Toggle):
+    """Include findable Perros"""
+    display_name = "Include Perros"
+
+
 class EnableMisc(Toggle):
-    """Include miscellaneous locations and items"""
+    """Include miscellaneous locations (Strange Urn & Atai berry selling reward)"""
     display_name = "Include miscellaneous"
 
 
@@ -79,9 +104,19 @@ class EnableRinLocations(Choice):
     default = 1
 
 
+class EnableTrapChests(Toggle):
+    """Includes chests that usually contain only 1 Rin"""
+    display_name = "Include small animal drops"
+
+
 class EnableGEOChallengeRewards(Toggle):
     """Includes the rewards you get from completing GEO challenges"""
     display_name = "Include GEO challenge rewards"
+
+
+class EnableOuroborosShrines(Toggle):
+    """Includes the rewards at the end of Ouroboros Shrines"""
+    display_name = "Include Ouroboros shrines"
 
 
 class StartWithWoodenBat(DefaultOnToggle):
@@ -120,11 +155,18 @@ class PhoaOptions(PerGameCommonOptions):
     enable_fishing_spots: EnableFishingSpots
     enable_npc_gifts: EnableNpcGifts
     enable_planto_rewards: EnablePlantoRewards
+    enable_breakables: EnableItemsInBreakables
+    enable_sidequests: EnableSidequests
+    enable_freestanding: EnableFreestandingItems
+    enable_minigames: EnableMinigames
+    enable_perros: EnablePerros
     enable_misc: EnableMisc
     shop_sanity: EnableShopSanity
     enable_small_animal_drops: EnableSmallAnimalDrops
     enable_rin_locations: EnableRinLocations
+    enable_trap_chests: EnableTrapChests
     enable_geo_challenge_rewards: EnableGEOChallengeRewards
+    enable_ouroboros_shrines: EnableOuroborosShrines
     start_with_wooden_bat: StartWithWoodenBat
     upgradable_bats: UpgradableBats
     upgradable_tools: UpgradableTools
@@ -144,11 +186,18 @@ class PhoaOptions(PerGameCommonOptions):
             "enable_fishing_spots",
             "enable_npc_gifts",
             "enable_planto_rewards",
+            "enable_breakables",
+            "enable_sidequests",
+            "enable_freestanding",
+            "enable_minigames",
+            "enable_perros",
             "enable_misc",
             "shop_sanity",
             "enable_small_animal_drops",
             "enable_rin_locations",
+            "enable_trap_chests",
             "enable_geo_challenge_rewards",
+            "enable_ouroboros_shrines",
             "start_with_wooden_bat",
             "upgradable_bats",
             "upgradable_tools",
@@ -172,11 +221,18 @@ phoa_option_groups: list[OptionGroup] = [
             EnableFishingSpots,
             EnableNpcGifts,
             EnablePlantoRewards,
+            EnableItemsInBreakables,
+            EnableSidequests,
+            EnableFreestandingItems,
+            EnableMinigames,
+            EnablePerros,
             EnableMisc,
             EnableShopSanity,
             EnableSmallAnimalDrops,
             EnableRinLocations,
+            EnableTrapChests,
             EnableGEOChallengeRewards,
+            EnableOuroborosShrines,
         ],
     ),
     OptionGroup(

@@ -87,7 +87,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Prelude of Panselo":       PhoaItemData(127,   1,  IC.useful),
     "GEO Ticket":               PhoaItemData(140,   1,  IC.filler),
     "Baroque of Battle":        PhoaItemData(129,   1,  IC.useful),
-    "Perro":                    PhoaItemData(139,   1,  IC.filler),
+    "Perro":                    PhoaItemData(139,   2,  IC.filler),
     "Antique Pin":              PhoaItemData(141,   1,  IC.filler),
     "Ouroboros Scroll":         PhoaItemData(143,   4,  IC.progression),  # Only progressive when option enabled
     "Lunar Drake":              PhoaItemData(145,   1,  IC.filler),
