@@ -246,11 +246,11 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             rule=lambda state: logic.has_explosives(state),
         ),
         # ancient_vault
-        PhoaExit(  # TODO: Needs logic for how well equipped the player needs to be for fights
+        PhoaExit(
             name="ancient_vault_to_printer_room",
             region="ancient_vault",
             connection="ancient_vault(printer_room)",
-            rule=lambda state: state.has("Spheralis", player),
+            rule=lambda state: logic.can_clear_ancient_vault(state),
         ),
         # atai_town
         PhoaExit(
@@ -289,7 +289,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="atai_town(sewer)",
             connection="atai_town",
         ),
-        PhoaExit(  # TODO: Rocket Boots entrance can trigger infinite drown. Respawn point needs to be set
+        PhoaExit(
             name="atai_sewer_to_metro",
             region="atai_town(sewer)",
             connection="atai_town(metro)",
@@ -378,7 +378,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="sand_drifts_to_forlorn_ruins_top_path",
             region="sand_drifts",
             connection="forlorn_ruins(top_path)",
-            rule=lambda state: state.has("Rocket Boots", player)  # TODO: Can reach with minimum stamina?
+            rule=lambda state: state.has("Rocket Boots", player),
         ),
         # sand_drifts(metro_stairwell)
         # Could use an exit to ouroboros hideout but logic doesn't require one
@@ -579,7 +579,6 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             rule=lambda state: logic.has_explosives(state),
         ),
         # ouroboros_hideout(great_drake_arena)
-        # TODO: Requires items to defeat the boss TBD
     ]
 
     return exits

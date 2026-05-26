@@ -148,7 +148,7 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     local_item_table = dict(item_table)
 
     # Determine item classifications based on settings
-    local_item_table = filter_upgradable_items(local_item_table, world.options)
+    local_item_table = filter_upgradable_items(local_item_table, world)
 
     # Remove events from locations
     locations = {key: location for key, location in locations.items() if location.vanillaItem}
@@ -220,32 +220,38 @@ def get_item_pool(world: "PhoaWorld", locations: dict[str, PhoaLocationData]) ->
     return item_pool, precollected_items
 
 
-def filter_upgradable_items(items, options: PhoaOptions) -> dict[str, PhoaItemData]:
+def filter_upgradable_items(items, world: "PhoaWorld") -> dict[str, PhoaItemData]:
     for option, progressive, bases in upgrade_groups:
-        if getattr(options, option):
+        if getattr(world.options, option):
             for base in bases:
                 items.pop(base, None)
             continue
         items.pop(progressive, None)
 
     removal_map = [
-        (not options.enable_heart_ruby_locations
-         and not options.keep_excluded_status_upgrades_in_item_pool,
+        (not world.options.enable_heart_ruby_locations
+         and not world.options.keep_excluded_status_upgrades_in_item_pool,
          ["Heart Ruby"]),
-        (not options.enable_energy_gem_locations
-         and not options.keep_excluded_status_upgrades_in_item_pool,
+        (not world.options.enable_energy_gem_locations
+         and not world.options.keep_excluded_status_upgrades_in_item_pool,
          ["Energy Gem"]),
-        (not options.enable_moonstone_locations
-         and not options.keep_excluded_status_upgrades_in_item_pool,
+        (not world.options.enable_moonstone_locations
+         and not world.options.keep_excluded_status_upgrades_in_item_pool,
          ["Moonstone"]),
-        (not options.enable_npc_gifts
-         and not options.keep_excluded_status_upgrades_in_item_pool,
+        (not world.options.enable_npc_gifts
+         and not world.options.keep_excluded_status_upgrades_in_item_pool,
          ["Prelude of Panselo"]),
     ]
 
     for condition, names in removal_map:
         if condition:
             for name in names:
+                if name in world.progressive_item_classifications_overrides:
+                    raise OptionError(
+                        "KeepExcludedStatusUpgradesInItemPool Error: "
+                        "Items excluded from the item pool are progression items for enabled locations. "
+                        "Consider disabling these locations or keeping status upgrades in the item pool."
+                    )
                 items.pop(name, None)
 
     return items

@@ -84,3 +84,9 @@ class PhoaWorld(World):
             self.progressive_item_classifications_overrides.append("Fishing Rod")
             self.progressive_item_classifications_overrides.append("Serpent Rod")
             self.progressive_item_classifications_overrides.append("Progressive Fishing Rod")
+        if (options.enable_rin_locations > 1
+                or options.enable_minigames
+                or options.enable_moonstone_locations
+                or options.enable_fishing_spots
+                or options.enable_ancient_vault):
+            self.progressive_item_classifications_overrides.append("Energy Gem")

@@ -30,6 +30,7 @@ class PhoaFlag(Flag):
     TRAPCHEST = auto()
     OUROBOROS = auto()
     PERRO = auto()
+    VAULT = auto()
 
 
 class PhoaLocation(Location):
@@ -388,8 +389,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Doki Forest - High up the mountain left of Anuri Temple entrance": PhoaLocationData(
             region="panselo_region",
             address=7676093,
-            # TODO: Requires 10 energy gems
-            rule=lambda state: logic.has_sonic_spear(state),
+            rule=lambda state: logic.has_sonic_spear(state)
+                               and state.has("Energy Gem", player, 9),  # TODO: 10 without spear trick
             flags=PhoaFlag.RINCONTAINERS,
             vanillaItem="50 Rin",
         ),
@@ -539,7 +540,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Anuri Temple - Mouse in pot in many pots room": PhoaLocationData(
             region="anuri_temple(main)",
             address=7676091,
-            rule=lambda state: logic.has_bat(state),  # TODO: New logic rule can_reasonably_kill_small_animals?
+            rule=lambda state: logic.can_reasonably_kill_mice(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -1198,23 +1199,21 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Town - Shooting range item 1": PhoaLocationData(
             region="atai_town",
             address=7676239,
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state, exclude_bombs=True),
             flags=PhoaFlag.MINIGAMES,
             vanillaItem="Rubber Ducky",
         ),
         "Atai Town - Shooting range item 2": PhoaLocationData(
             region="atai_town",
             address=7676240,
-            # TODO: These two should require some energy gems and/or tools to make it easier
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state, exclude_bombs=True),
             flags=PhoaFlag.MINIGAMES,
             vanillaItem="Heart Ruby",
         ),
         "Atai Town - Shooting range item 3": PhoaLocationData(
             region="atai_town",
             address=7676241,
-            # TODO: These two should require some energy gems and/or tools to make it easier
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            rule=lambda state: logic.can_clear_atai_expert_gallery(state),
             flags=PhoaFlag.MINIGAMES,
             vanillaItem="Moonstone",
         ),
@@ -1288,8 +1287,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Rhodus Checkpoint - West tower top guard gift": PhoaLocationData(
             region="atai_region",
             address=7676253,
-            # TODO: Needs an amount of energy gems
-            rule=lambda state: state.has("Rocket Boots", player),
+            rule=lambda state: state.has("Rocket Boots", player)
+                               and state.has("Energy Gem", player, 9),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
@@ -1321,13 +1320,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ancient Vault - Printer item 1": PhoaLocationData(
             region="ancient_vault(printer_room)",
             address=7676330,
-            flags=PhoaFlag.HEARTRUBY,
+            flags=PhoaFlag.VAULT,
             vanillaItem="Heart Ruby",
         ),
         "Ancient Vault - Printer item 2": PhoaLocationData(
             region="ancient_vault(printer_room)",
             address=7676331,
-            flags=PhoaFlag.ENERGYGEM,
+            flags=PhoaFlag.VAULT,
             vanillaItem="Energy Gem",
         ),
         "Daetai Bridge - Broken bridge chest": PhoaLocationData(
@@ -1399,7 +1398,10 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Region - Oasis fish": PhoaLocationData(
             region="atai_region",
             address=7676193,
-            rule=lambda state: logic.has_fishing_rod(state),  # TODO: Can't get without a couple of Energy gems
+            rule=lambda state: (logic.has_fishing_rod(state)
+                                and state.has("Energy Gem", player, 4))
+                               or (logic.has_serpant_rod(state)
+                                   and state.has("Energy Gem", player, 2)),
             flags=PhoaFlag.FISHINGSPOT,
             vanillaItem="Energy Gem",
         ),
@@ -1815,7 +1817,6 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Trial 3 completion": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676326,
-            # TODO: Can do with minimum stamina?
             flags=PhoaFlag.DUNGEONITEM,
             vanillaItem="Ouroboros Proof",
         ),
@@ -1853,6 +1854,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Defeat Sand Dragon": PhoaLocationData(
             region="ouroboros_hideout(great_drake_arena)",
             address=None,
+            rule=lambda state: logic.can_defeat_great_drake(state),
         ),
     }
 
@@ -1881,6 +1883,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         (options.enable_trap_chests <= 0, PhoaFlag.TRAPCHEST),
         (options.enable_ouroboros_shrines <= 0, PhoaFlag.OUROBOROS),
         (options.enable_perros <= 0, PhoaFlag.PERRO),
+        (options.enable_ancient_vault <= 0, PhoaFlag.VAULT),
     ]
 
     for option, flag in filters:

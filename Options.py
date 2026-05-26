@@ -19,6 +19,12 @@ class EnableEnergyGemLocations(DefaultOnToggle):
     display_name = "Energy Gem locations"
 
 
+class EnableAncientVault(Toggle):
+    """Include upgrades from Ancient Vault.
+    Warning: The logical requirement to clear this is bare minimum. Even while having every item in the game I consider these checks extremely difficult. God gamers only."""
+    display_name = "Ancient Vault upgrades"
+
+
 class EnableMoonstoneLocations(DefaultOnToggle):
     """Include Moonstone locations."""
     display_name = "Moonstone locations"
@@ -26,7 +32,8 @@ class EnableMoonstoneLocations(DefaultOnToggle):
 
 class KeepExcludedStatusUpgradesInItemPool(DefaultOnToggle):
     """When enabled, Heart rubies, Energy gems and Moonstones will stay in the item pool if not included. Filler items are placed at the disabled locations.
-    When disabled, these items can be acquired at their vanilla locations"""
+    When disabled, these items can be acquired at their vanilla locations.
+    Warning: disabling this setting is incompatible with certain other settings as these items are required in the pool"""
     display_name = "Keep status upgrades and moonstones in item pool when locations are excluded"
 
 
@@ -149,6 +156,7 @@ class PhoaOptions(PerGameCommonOptions):
     enable_main_quest_locations: EnableMainQuestLocations
     enable_heart_ruby_locations: EnableHeartRubyLocations
     enable_energy_gem_locations: EnableEnergyGemLocations
+    enable_ancient_vault: EnableAncientVault
     enable_moonstone_locations: EnableMoonstoneLocations
     # enable_dungeon_items: EnableDungeonKeys
     enable_lunar_artifacts_locations: EnableLunarArtifactLocations
@@ -180,6 +188,7 @@ class PhoaOptions(PerGameCommonOptions):
             "enable_main_quest_locations",
             "enable_heart_ruby_locations",
             "enable_energy_gem_locations",
+            "enable_ancient_vault",
             "enable_moonstone_locations",
             # "enable_dungeon_items",
             "enable_lunar_artifacts_locations",
@@ -215,6 +224,7 @@ phoa_option_groups: list[OptionGroup] = [
             EnableMainQuestLocations,
             EnableHeartRubyLocations,
             EnableEnergyGemLocations,
+            EnableAncientVault,
             EnableMoonstoneLocations,
             # EnableDungeonKeys,
             EnableLunarArtifactLocations,
