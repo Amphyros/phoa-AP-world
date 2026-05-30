@@ -151,6 +151,11 @@ class UpgradableSpear(Toggle):
     display_name = "Upgradable Spear"
 
 
+class UpgradablePrelude(Toggle):
+    """Instead of Prelude of Panselo and the Spell of Rejuvenation being two separate items, you will always find Prelude of Panselo first and then upgrade it with the Spell of Rejuvenation first"""
+    display_name = "Upgradable Prelude of Panselo"
+
+
 @dataclass
 class PhoaOptions(PerGameCommonOptions):
     enable_main_quest_locations: EnableMainQuestLocations
@@ -179,6 +184,7 @@ class PhoaOptions(PerGameCommonOptions):
     upgradable_bats: UpgradableBats
     upgradable_tools: UpgradableTools
     upgradable_spear: UpgradableSpear
+    upgradable_prelude: UpgradablePrelude
     open_panselo_gates: OpenPanseloGates
     keep_excluded_status_upgrades_in_item_pool: KeepExcludedStatusUpgradesInItemPool
     death_link: DeathLink
@@ -211,6 +217,7 @@ class PhoaOptions(PerGameCommonOptions):
             "upgradable_bats",
             "upgradable_tools",
             "upgradable_spear",
+            "upgradable_prelude",
             "open_panselo_gates",
             "keep_excluded_status_upgrades_in_item_pool",
             "death_link",
@@ -254,6 +261,7 @@ phoa_option_groups: list[OptionGroup] = [
             UpgradableBats,
             UpgradableTools,
             UpgradableSpear,
+            UpgradablePrelude,
         ],
     ),
 ]
