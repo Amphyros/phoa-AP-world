@@ -227,7 +227,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             vanillaItem="Dandelion",
         ),
         "Panselo Village - Rutea's room": PhoaLocationData(
-            region="panselo_village",
+            region="panselo_village_rutea's_lab",
             address=7676001,
             flags=PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
@@ -1662,7 +1662,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
-        "Ouroboros Hideout - Songstone treasure Room mouse item 2": PhoaLocationData(
+        "Ouroboros Hideout - Songstone treasure room mouse item 2": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676303,
             flags=PhoaFlag.DUNGEONITEM,
