@@ -1150,7 +1150,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         ),
         "Atai Town - Lisa's ID gift": PhoaLocationData(
             region="atai_town",
-            address=7676332,
+            address=7676298,
             flags=PhoaFlag.NPCGIFTS,
             vanillaItem="Lisa's ID Card",
         ),
@@ -1465,12 +1465,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts Region - Ancient GEO Dungeon solution 1 item": PhoaLocationData(
             region="sand_drifts_region(ancient_geo_dungeon)",
             address=7676273,
+            rule=lambda state: logic.has_light_source(state),
             flags=PhoaFlag.GEOCHALLENGE,
             vanillaItem="Antique Pin",
         ),
         "Sand Drifts Region - Ancient GEO Dungeon solution 2 item": PhoaLocationData(
             region="sand_drifts_region(ancient_geo_dungeon)",
             address=7676274,
+            rule=lambda state: logic.has_light_source(state),
             flags=PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
         ),
@@ -1635,9 +1637,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="20 Rin",
         ),
-        # Free address: 7676298
         "Forlorn Ruins - Hideout entrance behind a hidden wall": PhoaLocationData(
-            region="forlorn_ruins",
+            region="forlorn_ruins(east)",
             address=7676299,
             rule=lambda state: logic.has_explosives(state),
             flags=PhoaFlag.BREAKABLE,

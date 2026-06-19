@@ -271,7 +271,7 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             rule=lambda state: logic.has_light_source(state),
         ),
         # atai_town(metro)
-        PhoaExit(  # Key shenanigans
+        PhoaExit(
             name="atai_town_metro_to_sand_drifts",
             region="atai_town(metro)",
             connection="sand_drifts(metro_stairwell)",
@@ -527,6 +527,14 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
                                and state.has("Song of Ouroboros", player),
         ),
         # ouroboros_hideout
+        PhoaExit(
+            name="ouroboros_hideout_to_forlorn_ruins",
+            region="ouroboros_hideout",
+            connection="forlorn_ruins(east)",
+            rule=lambda state: logic.has_explosives(state)
+                               and logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
+        ),
         PhoaExit(
             name="ouroboros_hideout_to_prison",
             region="ouroboros_hideout",
