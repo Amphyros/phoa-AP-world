@@ -1352,7 +1352,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Region - Northwest cave top path item": PhoaLocationData(
             region="atai_region",
             address=7676257,
-            rule=lambda state: logic.has_explosives(state),
+            rule=lambda state: logic.has_light_source(state)
+                               and logic.has_explosives(state),
             flags=PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
         ),

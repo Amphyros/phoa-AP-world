@@ -235,7 +235,8 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="adars_cave_to_ancient_vault",
             region="adars_house(cave)",
             connection="ancient_vault",
-            rule=lambda state: logic.has_explosives(state)
+            rule=lambda state: logic.has_light_source(state)
+                               and logic.has_explosives(state)
                                and state.has("Spheralis", player),
         ),
         # adars_house(cave_top)
