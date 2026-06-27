@@ -1409,7 +1409,10 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Region - Oasis Ouroboros shrine": PhoaLocationData(
             region="atai_region",
             address=7676264,
-            rule=lambda state: state.has_any({"Sonic Spear", "Life Saver"}, player),
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player)
+                               and state.has("Sonic Spear", player)
+                               and state.has("Life Saver", player),
             flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
