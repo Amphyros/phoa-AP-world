@@ -1580,13 +1580,14 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Forlorn Ruins - Bombable wall room pot": PhoaLocationData(
             region="forlorn_ruins(bombable_wall)",
             address=7676287,
+            rule=lambda state: logic.can_break_big_object_with_tools(state),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
         "Forlorn Ruins - Bombable wall room mouse": PhoaLocationData(
             region="forlorn_ruins(bombable_wall)",
             address=7676288,
-            rule=lambda state: logic.has_bat(state),
+            rule=lambda state: logic.can_reasonably_kill_mice(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
