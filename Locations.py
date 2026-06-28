@@ -1116,7 +1116,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Town - Guard residence mouse": PhoaLocationData(
             region="atai_town",
             address=7676227,
-            rule=lambda state: logic.has_bat(state),
+            rule=lambda state: logic.can_reasonably_kill_mice(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -1496,7 +1496,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts - Shelter mouse": PhoaLocationData(
             region="sand_drifts",
             address=7676276,
-            rule=lambda state: logic.has_bat(state),
+            rule=lambda state: logic.can_reasonably_kill_mice(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
@@ -1757,7 +1757,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Storage mouse": PhoaLocationData(
             region="ouroboros_hideout(storage_back)",
             address=7676316,
-            rule=lambda state: logic.has_bat(state),
+            rule=lambda state: logic.can_reasonably_kill_mice(state),
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),

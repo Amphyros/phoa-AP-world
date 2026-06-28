@@ -29,7 +29,8 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="panselo_gate",
             region="panselo_village",
             connection="panselo_region",
-            rule=lambda state: logic.can_deal_damage(state, exclude_rocket_boots=True) or options.open_panselo_gates,
+            rule=lambda state: logic.can_deal_damage(state, exclude_rocket_boots=True)
+                               or options.open_panselo_gates > 0,
         ),
         PhoaExit(
             name="rutea's_lab_gate",
