@@ -198,8 +198,6 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             name="atai_region_to_sand_drifts_access_cave",
             region="atai_region",
             connection="sand_drifts_region(access_cave)",
-            rule=lambda state: logic.has_music_instrument(state)
-                               and state.has("Song of Ouroboros", player),
         ),
         PhoaExit(
             name="atai_region_to_sand_drifts_region",
