@@ -1410,8 +1410,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="atai_region",
             address=7676264,
             rule=lambda state: logic.has_music_instrument(state)
+                               and logic.has_sonic_spear(state)
                                and state.has("Song of Ouroboros", player)
-                               and state.has("Sonic Spear", player)
                                and state.has("Life Saver", player),
             flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
