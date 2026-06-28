@@ -1425,6 +1425,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Atai Region - Sand Drifts Access glowing rock item": PhoaLocationData(
             region="sand_drifts_region(access_cave)",
             address=7676266,
+            rule=lambda state: logic.has_explosives(state),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
         ),
