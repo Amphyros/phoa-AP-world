@@ -45,7 +45,8 @@ class PhoaWorld(World):
 
         for item in precollected_items:
             precollected_item = self.create_item(item)
-            precollected_item.classification = IC.progression
+            if precollected_item.classification != IC.progression:
+                raise Exception(f"Precollected item that is not progression: '{item}'")
             self.multiworld.push_precollected(precollected_item)
 
         item_pool: list[PhoaItem] = []
@@ -78,8 +79,6 @@ class PhoaWorld(World):
     def _determine_item_classifications_overrides(self) -> None:
         options = self.options
 
-        if not options.start_with_wooden_bat:
-            self.progressive_item_classifications_overrides.append("Progressive Bat")
         if options.enable_fishing_spots:
             self.progressive_item_classifications_overrides.append("Fishing Rod")
             self.progressive_item_classifications_overrides.append("Serpent Rod")
