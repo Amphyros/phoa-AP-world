@@ -102,7 +102,7 @@ item_table: Dict[str, PhoaItemData] = {
     "Honey Bun":                        PhoaItemData(205,   3,  IC.filler),
     "Spell of Rejuvenation":            PhoaItemData(216,   1,  IC.useful),
     "Progressive Prelude of Panselo":   PhoaItemData(292,   2,  IC.useful),
-    "Progressive Bat":                  PhoaItemData(293,   2,  IC.useful),
+    "Progressive Bat":                  PhoaItemData(293,   2,  IC.progression),
     "Progressive Slingshot":            PhoaItemData(294,   2,  IC.progression),
     "Progressive Bombs":                PhoaItemData(295,   2,  IC.progression),
     "Progressive Crank Lamp":           PhoaItemData(296,   2,  IC.progression),  # Ignore light requirement option?
