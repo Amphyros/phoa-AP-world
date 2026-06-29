@@ -200,12 +200,6 @@ def get_exit_data(player: int, options: PhoaOptions) -> list[PhoaExit]:
             region="atai_region",
             connection="sand_drifts_region(access_cave)",
         ),
-        PhoaExit(
-            name="atai_region_to_sand_drifts_region",
-            region="atai_region",
-            connection="sand_drifts_region",
-            rule=lambda state: logic.has_explosives(state),
-        ),
         # adars_house
         PhoaExit(
             name="adars_house_east_exit",
