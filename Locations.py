@@ -1548,6 +1548,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Sand Drifts - Ouroboros Shrine": PhoaLocationData(
             region="sand_drifts(ouroboros_shrine)",
             address=7676283,
+            rule=lambda state: logic.has_music_instrument(state)
+                               and state.has("Song of Ouroboros", player),
             flags=PhoaFlag.OUROBOROS,
             vanillaItem="Ouroboros Scroll",
         ),
