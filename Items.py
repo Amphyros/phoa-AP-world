@@ -31,8 +31,8 @@ class DungeonItemSettingGroup(NamedTuple):
 # @formatter:off
 item_table: dict[str, PhoaItemData] = {
     "Heart Ruby":                       PhoaItemData(3,     33, IC.progression),
-    "Energy Gem":                       PhoaItemData(4,     20, IC.useful),
-    "Moonstone":                        PhoaItemData(5,     66, IC.filler),
+    "Energy Gem":                       PhoaItemData(4,     21, IC.useful),
+    "Moonstone":                        PhoaItemData(5,     65, IC.filler),
     "Wooden Bat":                       PhoaItemData(6,     1,  IC.progression),
     "Composite Bat":                    PhoaItemData(7,     1,  IC.useful),
     "Steel Bat":                        PhoaItemData(8,     1,  IC.useful),
@@ -170,7 +170,7 @@ item_table: dict[str, PhoaItemData] = {
     "Master Keycard B":                 PhoaItemData(226,   1,  IC.progression),  # Only progression when dungeon is in location pool
     "Master Keycard A":                 PhoaItemData(227,   1,  IC.progression),  # Only progression when dungeon is in location pool
     "Progressive Prelude of Panselo":   PhoaItemData(292,   2,  IC.useful),
-    "Progressive Bat":                  PhoaItemData(293,   2,  IC.useful),
+    "Progressive Bat":                  PhoaItemData(293,   4,  IC.useful),
     "Progressive Slingshot":            PhoaItemData(294,   2,  IC.progression),
     "Progressive Bombs":                PhoaItemData(295,   2,  IC.progression),
     "Progressive Crank Lamp":           PhoaItemData(296,   2,  IC.progression),  # Ignore light requirement option?
@@ -197,7 +197,7 @@ item_table: dict[str, PhoaItemData] = {
 # @formatter:on
 
 upgrade_groups = [
-    ("upgradable_bats", "Progressive Bat", ["Wooden Bat", "Composite Bat"]),
+    ("upgradable_bats", "Progressive Bat", ["Wooden Bat", "Composite Bat", "Steel Bat", "Night Star"]),
     ("upgradable_tools", "Progressive Slingshot", ["Slingshot", "Treble Shot"]),
     ("upgradable_tools", "Progressive Bombs", ["Bombs", "Remote Bombs"]),
     ("upgradable_tools", "Progressive Crank Lamp", ["Crank Lamp", "Neutron Lamp"]),

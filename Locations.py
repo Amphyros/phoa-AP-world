@@ -1270,15 +1270,17 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.SMALLANIMALS,
             vanillaItem="Mystery Meat",
         ),
-        "Atai Town - Gift 1 from Mikail after helping the mayor": PhoaLocationData(
+        "Atai Town - Gift 1 from Mikhail after helping the mayor": PhoaLocationData(
             region="atai_town",
             address=7676558,
+            rule=lambda state: state.has("Stack of Letters", player),
             flags=PhoaFlag.SIDEQUEST,
             vanillaItem="150 Rin",
         ),
-        "Atai Town - Gift 2 from Mikail after helping the mayor": PhoaLocationData(
+        "Atai Town - Gift 2 from Mikhail after helping the mayor": PhoaLocationData(
             region="atai_town",
             address=7676559,
+            rule=lambda state: state.has("Stack of Letters", player),
             flags=PhoaFlag.SIDEQUEST | PhoaFlag.HEARTRUBY,
             vanillaItem="Heart Ruby",
         ),
@@ -1735,7 +1737,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Forlorn Ruins - Ceiling switch room pot": PhoaLocationData(
             region="forlorn_ruins(east)",
             address=7676294,
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state),
+            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+                               or logic.can_use_whirlwind(state),
             flags=PhoaFlag.BREAKABLE,
             vanillaItem="Canned Beans",
         ),
@@ -1905,14 +1908,18 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Drake hatchery pot 2": PhoaLocationData(
             region="ouroboros_hideout(infant_drake_arena)",
             address=7676321,
-            rule=lambda state: logic.has_slingshot(state) or logic.has_crossbow(state),
+            rule=lambda state: logic.has_slingshot(state)
+                               or logic.has_crossbow(state)
+                               or logic.can_use_whirlwind(state),
             flags=PhoaFlag.LUNARARTIFACT,
             vanillaItem="Lunar Drake",
         ),
         "Ouroboros Hideout - Drake hatchery chest": PhoaLocationData(
             region="ouroboros_hideout(infant_drake_arena)",
             address=7676322,
-            rule=lambda state: logic.has_slingshot(state) or logic.has_crossbow(state),
+            rule=lambda state: logic.has_slingshot(state)
+                               or logic.has_crossbow(state)
+                               or logic.can_use_whirlwind(state),
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="35 Rin",
         ),
@@ -2094,7 +2101,7 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.FREESTANDING,
             vanillaItem="Moon Kelp",
         ),
-        "Moonlight Ravine - Wilds room 3 pot": PhoaLocationData(
+        "Moonlight Ravine - Wilds room 3 tree pot": PhoaLocationData(
             region="moonlight_ravine(wilds)",
             address=7676350,
             rule=lambda state: logic.has_sonic_spear(state)
@@ -2587,8 +2594,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             region="daea_city",
             address=7676410,
             rule=lambda state: logic.can_clear_atai_expert_gallery(state),
-            flags=PhoaFlag.MINIGAMES | PhoaFlag.MOONSTONE,
-            vanillaItem="Moonstone",
+            flags=PhoaFlag.MINIGAMES | PhoaFlag.ENERGYGEM,
+            vanillaItem="Energy Gem",
         ),
         "Daea City - Guard tower balcony crate": PhoaLocationData(
             region="daea_city",
@@ -3354,7 +3361,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Castle Dungeon - Control room chest locked behind songstone 1": PhoaLocationData(
             region="castle_dungeon(post_control_room_fight)",
             address=7676518,
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+            rule=lambda state: (logic.can_hit_switch_from_a_distance(state)
+                                or logic.can_use_whirlwind(state))
                                and logic.has_music_instrument(state),
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="35 Rin",
@@ -3362,7 +3370,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Castle Dungeon - Control room chest locked behind songstone 2": PhoaLocationData(
             region="castle_dungeon(post_control_room_fight)",
             address=7676519,
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+            rule=lambda state: (logic.can_hit_switch_from_a_distance(state)
+                                or logic.can_use_whirlwind(state))
                                and logic.has_music_instrument(state),
             flags=PhoaFlag.MOONSTONE,
             vanillaItem="Moonstone",
@@ -3370,7 +3379,8 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Castle Dungeon - Control room chest locked behind songstone 3": PhoaLocationData(
             region="castle_dungeon(post_control_room_fight)",
             address=7676520,
-            rule=lambda state: logic.can_hit_switch_from_a_distance(state)
+            rule=lambda state: (logic.can_hit_switch_from_a_distance(state)
+                                or logic.can_use_whirlwind(state))
                                and logic.has_music_instrument(state),
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="35 Rin",
@@ -3563,7 +3573,6 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.BREAKABLE,
             vanillaItem="Prickle Fruit",
         ),
-        # FIXME: post-birdy reference: zeke & birdy sidequest ; safe in atai mayor room
         # Events
         "Anuri Temple - Side entrance gate opened": PhoaLocationData(
             region="anuri_temple(main)",
