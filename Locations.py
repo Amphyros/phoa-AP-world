@@ -1923,6 +1923,13 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
             flags=PhoaFlag.RINCHESTS,
             vanillaItem="35 Rin",
         ),
+        "Ouroboros Hideout - Make Snake pay": PhoaLocationData(
+            region="ouroboros_hideout",
+            address=7676561,
+            rule=lambda state: logic.can_reasonably_kill_enemies(state),
+            flags=PhoaFlag.SIDEQUEST,
+            vanillaItem="30 Rin",
+        ),
         "Ouroboros Hideout - Trial 1 guard": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676323,
