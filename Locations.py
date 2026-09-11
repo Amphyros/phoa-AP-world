@@ -1926,7 +1926,10 @@ def get_location_data(player: Optional[int], options: Optional[PhoaOptions]) -> 
         "Ouroboros Hideout - Make Snake pay": PhoaLocationData(
             region="ouroboros_hideout",
             address=7676561,
-            rule=lambda state: logic.can_reasonably_kill_enemies(state),
+            rule=lambda state: logic.has_bat(state)
+                               or logic.has_double_crossbow(state)
+                               or logic.has_treble_shot(state)
+                               or state.has("Kobold Blaster", player),
             flags=PhoaFlag.SIDEQUEST,
             vanillaItem="30 Rin",
         ),
